@@ -13,6 +13,7 @@ import re
 from pathlib import Path
 
 TAG_PATTERN = re.compile(r"v?\d+\.\d+\.\d+(?:rc\d+)?")
+RC_SUFFIX_PATTERN = re.compile(r"rc\d+$")
 
 
 def parse_args() -> argparse.Namespace:
@@ -50,6 +51,17 @@ def load_package_version(package_json_path: Path) -> str:
     return version
 
 
+def tag_to_expected_version(tag: str) -> str:
+    """Map release tags to the package.json version expectation.
+
+    VS Code extension versions must be plain semver (x.y.z). We still allow
+    rc release tags like v0.2.1rc1 and treat them as pre-release publishes for
+    the base extension version 0.2.1.
+    """
+    raw = tag.removeprefix("v")
+    return RC_SUFFIX_PATTERN.sub("", raw)
+
+
 def main() -> int:
     args = parse_args()
     tag = resolve_tag(args.tag)
@@ -61,13 +73,17 @@ def main() -> int:
         )
 
     version = load_package_version(args.package_json)
-    if tag.removeprefix("v") != version:
+    expected_version = tag_to_expected_version(tag)
+    if expected_version != version:
         raise SystemExit(
-            f"Release tag {tag!r} does not match version {version!r} "
+            f"Release tag {tag!r} expects version {expected_version!r}, "
+            f"but found {version!r} "
             f"in {args.package_json}"
         )
 
-    print(f"OK: tag {tag!r} matches package.json version {version!r}")
+    print(
+        f"OK: tag {tag!r} maps to package.json version {version!r}"
+    )
     return 0
 
 

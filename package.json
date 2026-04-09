@@ -2,7 +2,7 @@
   "name": "rqmd",
   "displayName": "rqmd — AI Agent Bundle",
   "description": "Distributes the rqmd AI agent bundle (prompts, skills, agent definitions) via VS Code Copilot Chat contribution points. No files written to your project.",
-  "version": "0.2.1rc1",
+  "version": "0.2.1",
   "publisher": "ryeleo",
   "license": "MIT",
   "repository": {

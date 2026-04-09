@@ -7,8 +7,9 @@ name: publish-marketplace
 #   - Stable release:   create a GitHub Release (tag vX.Y.Z, no "rc")
 #   - Pre-release:      push a tag matching v*rc* (e.g. v0.3.0rc1)
 #
-# Version sync: package.json version MUST match the release tag. The
-# validate step enforces this so a mismatch fails loudly before publish.
+# Version sync: package.json version MUST be plain semver (x.y.z). For
+# rc tags (e.g. v0.3.0rc1), validation maps the tag to base semver (0.3.0)
+# and enforces that match before publish.
 #
 # Required secrets:
 #   VSCE_PAT — Personal Access Token from marketplace.visualstudio.com
