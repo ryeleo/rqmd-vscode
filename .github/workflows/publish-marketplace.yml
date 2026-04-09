@@ -1,0 +1,70 @@
+name: publish-marketplace
+
+# Publishes the rqmd VS Code extension to the Visual Studio Marketplace.
+#
+# Trigger strategy mirrors rqmd-cli's publish-pypi.yml so both products
+# release from the same tag convention:
+#   - Stable release:   create a GitHub Release (tag vX.Y.Z, no "rc")
+#   - Pre-release:      push a tag matching v*rc* (e.g. v0.3.0rc1)
+#
+# Version sync: package.json version MUST match the release tag. The
+# validate step enforces this so a mismatch fails loudly before publish.
+#
+# Required secrets:
+#   VSCE_PAT — Personal Access Token from marketplace.visualstudio.com
+#              with "Marketplace > Manage" scope for publisher "ryeleo".
+
+on:
+  push:
+    tags:
+      - "v*rc*"
+  release:
+    types: [published]
+
+jobs:
+  publish:
+    # Stable releases come from the GitHub Release event (no "rc" in tag).
+    # Pre-release rc tags come from the push event.
+    if: |
+      github.event_name == 'push' ||
+      (github.event_name == 'release' && !contains(github.event.release.tag_name, 'rc'))
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    environment:
+      name: vscode-marketplace
+      url: https://marketplace.visualstudio.com/items?itemName=ryeleo.rqmd
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python (for tag validation)
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Validate release tag matches package.json version
+        env:
+          RELEASE_TAG: ${{ github.event_name == 'release' && github.event.release.tag_name || github.ref_name }}
+        run: python scripts/validate_release_tag.py
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Install vsce
+        run: npm install --global @vscode/vsce
+
+      - name: Publish stable release to Marketplace
+        if: github.event_name == 'release'
+        env:
+          VSCE_PAT: ${{ secrets.VSCE_PAT }}
+        run: vsce publish --pat "$VSCE_PAT"
+
+      - name: Publish pre-release to Marketplace
+        if: github.event_name == 'push'
+        env:
+          VSCE_PAT: ${{ secrets.VSCE_PAT }}
+        run: vsce publish --pre-release --pat "$VSCE_PAT"
