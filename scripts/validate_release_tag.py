@@ -31,6 +31,12 @@ def parse_args() -> argparse.Namespace:
         default=Path("package.json"),
         help="Path to package.json.",
     )
+    parser.add_argument(
+        "--changelog",
+        type=Path,
+        default=Path("CHANGELOG.md"),
+        help="Path to CHANGELOG.md to verify versioned entry exists.",
+    )
     return parser.parse_args()
 
 
@@ -49,6 +55,19 @@ def load_package_version(package_json_path: Path) -> str:
     if not version:
         raise SystemExit(f"Could not find 'version' in {package_json_path}")
     return version
+
+
+def check_changelog_version(changelog_path: Path, version: str) -> None:
+    """Assert CHANGELOG.md has a versioned section header for *version*."""
+    if not changelog_path.exists():
+        raise SystemExit(f"Changelog not found: {changelog_path}")
+    text = changelog_path.read_text(encoding="utf-8")
+    pattern = re.compile(r"^##\s+\[" + re.escape(version) + r"\]", re.MULTILINE)
+    if not pattern.search(text):
+        raise SystemExit(
+            f"{changelog_path} does not contain a versioned entry for {version!r}.\n"
+            f"Did you forget to roll [Unreleased] → [{version}] before tagging?"
+        )
 
 
 def tag_to_expected_version(tag: str) -> str:
@@ -80,6 +99,10 @@ def main() -> int:
             f"but found {version!r} "
             f"in {args.package_json}"
         )
+
+    # Changelog check only applies to stable releases — rc tags precede the roll.
+    if not RC_SUFFIX_PATTERN.search(tag):
+        check_changelog_version(args.changelog, expected_version)
 
     print(
         f"OK: tag {tag!r} maps to package.json version {version!r}"
