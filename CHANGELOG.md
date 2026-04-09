@@ -7,7 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 > **⚠️ Note:** Version numbers are intended to stay in sync with the `rqmd` Python CLI package.
 
+<a id="unreleased"></a>
 ## [Unreleased]
+
+<a id="v0-2-1"></a>
+## [0.2.1] - 2026-04-09
 
 ### Added
 
@@ -18,6 +22,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `rqmd-diagram` skill for authoring and validating Mermaid diagrams in markdown. Includes a comprehensive table of 16 diagram use cases (state/lifecycle, UI flows, protocols, call graphs, data pipelines, decision trees, entity relationships, infrastructure, class hierarchies, async/concurrency, error recovery, user journeys, CI/CD, permissions, game logic, caching) with recommended Mermaid diagram types for each. Uses `mmdc` purely as a linter; recommends inline `mermaid` blocks over external `.mmd` files.
 - Both `rqmd` and `rqmd-dev` agents now include compact "When to suggest diagrams" guidance with array-list notation pointing to the full use-case table in `/rqmd-diagram`. Agents will proactively offer diagrams whenever the problem touches state machines, protocols, data pipelines, or any of the catalogued scenarios.
 
+<a id="v0-2-0"></a>
 ## [0.2.0] - 2026-04-09
 
 ### Added
