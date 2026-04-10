@@ -21,19 +21,19 @@ metadata:
     max_source_areas: 4
 ---
 
-Use this skill when you explicitly need the old legacy-init behavior or are following older docs during the transition to `rqmd-init`.
+Use when you explicitly need old legacy-init behavior or are following older docs.
 
-Workflow:
-- Prefer `rqmd-ai init --chat --json --legacy` for new usage; keep this skill for compatibility and explicit override cases.
-- Preview the legacy-init plan with `rqmd-ai init --chat --json --legacy`.
-- If the repository uses a nonstandard requirements location, pass `--docs-dir` explicitly before applying.
-- Let the workflow inspect repository structure and developer commands, and let it consult `gh issue list` when GitHub CLI is installed and authenticated.
-- Use the grouped interview to choose catalog defaults, review inferred workflow commands, inspect recommended choices and safe defaults, select starter domains, decide how to treat existing docs and tests, and capture custom notes.
-- Review the generated `README.md`, workflow seed, domain seeds, and any issue-backlog seed before relying on them.
-- Apply with `rqmd-ai init --json --legacy --write` only when the target requirements directory is empty.
+## Workflow
 
-Constraints:
-- Treat generated requirements as a starting point, not authoritative truth.
-- Keep the first write focused on a small, editable starter catalog rather than an exhaustive migration.
-- Gracefully continue when `gh` is unavailable, unauthenticated, or the repository has no visible issues.
-- Skills improve workflow discovery; shell and tool approvals may still be required.
+1. Prefer `rqmd-ai init --chat --json --legacy` for new usage
+2. Pass `--docs-dir` if nonstandard requirements location
+3. Let workflow inspect repo structure; consult `gh issue list` when available
+4. Use grouped interview for catalog defaults, workflow commands, and starter domains
+5. Review generated README, workflow seed, domain seeds, and issue-backlog seed
+6. Apply: `rqmd-ai init --json --legacy --write` (only when target dir is empty)
+
+## Constraints
+
+- Treat generated requirements as starting point
+- Keep first write small and editable
+- Continue gracefully when `gh` is unavailable or unauthenticated

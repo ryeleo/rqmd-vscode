@@ -16,16 +16,17 @@ metadata:
       - rqmd --status proposed --priority p1 --json --non-interactive
 ---
 
-Use this skill when tracked requirements already exist and you need to decide what to work next.
+Use when tracked requirements exist and you need to decide what to work next.
 
-Workflow:
-- Export the current proposal queue with `rqmd-ai --json --dump-status proposed`.
-- Narrow to a domain or requirement with `--dump-file`, `--dump-id`, or targeted rqmd filters when the backlog is broad.
-- Rank candidates by priority, blocking relationships, and implementation batch size.
-- Pick the highest-value 1-3 items for the next implementation slice.
-- Re-check remaining priorities after each shipped batch so the queue stays accurate.
+## Workflow
 
-Constraints:
-- Prefer tracked requirement proposals over scratch notes once backlog entries already exist.
-- Keep selection logic explicit so future agents can understand why a batch was chosen.
-- Skills improve workflow discovery; shell and tool approvals may still be required.
+1. Export proposals: `rqmd-ai --json --dump-status proposed`
+2. Narrow with `--dump-file`, `--dump-id`, or rqmd filters if backlog is broad
+3. Rank by priority, blocking relationships, batch size
+4. Pick highest-value 1-3 items
+5. Re-check priorities after each shipped batch
+
+## Constraints
+
+- Prefer tracked proposals over scratch notes
+- Keep selection logic explicit for future agents

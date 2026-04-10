@@ -16,19 +16,17 @@ metadata:
       - rqmd-ai --json --dump-status proposed
 ---
 
-Use this skill when important context should stay easy to find after the current conversation or implementation session ends.
+Use when important context should stay findable after the session ends.
 
-Workflow:
-- Decide whether the note belongs in an existing document, a small README section, or a dedicated `docs/pins/` folder.
-- Default to `docs/pins/` with one markdown file per topic when the best location is unclear or when maintainability matters more than clever placement.
-- When using `docs/pins/`, keep a lightweight `docs/pins/README.md` index and start new notes from a simple template such as `docs/pins/pin-template.md`.
-- Give each pin a focused title and keep it readable, reviewable, and easy to update later.
-- Link pins to the relevant requirements, docs, or implementation areas when those references make the note easier to trust or revisit.
-- Add or update an index page when pin collections grow large enough that navigation would otherwise become sloppy.
-- Use `/rqmd-docs` for follow-on cleanup when a growing pin area needs better structure, headings, or cross-linking.
+## Workflow
 
-Constraints:
-- Do not let pinned notes replace the canonical requirement or changelog record when the information belongs there.
-- Prefer stable, maintainable storage over burying durable notes in transient chat transcripts or scratch files.
-- Keep the workflow flexible across repositories instead of forcing one storage layout everywhere.
-- Skills improve workflow discovery; shell and tool approvals may still be required.
+- Decide location: existing doc, README section, or `docs/pins/`
+- Default to `docs/pins/` with one file per topic when unclear
+- Keep a `docs/pins/README.md` index; use `pin-template.md` for new notes
+- Link pins to relevant requirements/docs for context
+- Use `/rqmd-docs` when pin area needs structure cleanup
+
+## Constraints
+
+- Do not replace canonical requirement or changelog records
+- Prefer stable storage over chat transcripts or scratch files

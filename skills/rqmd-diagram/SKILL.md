@@ -14,67 +14,29 @@ metadata:
       - pushd $(mktemp -d) && mmdc -i "$OLDPWD/docs/player-flows.md" 2>&1; popd
 ---
 
-Use this skill when creating, editing, or reviewing Mermaid diagrams in any markdown file.
+Use when creating, editing, or reviewing Mermaid diagrams in markdown.
 
-## Validation command
+## Validation
 
-`mmdc` has no lint-only mode — it always writes output SVGs. Run it from a temp directory
-so the generated files never land in the repo:
+`mmdc` always writes SVGs — run from a temp directory to avoid polluting the repo:
 
 ```bash
-# Bash / Git Bash (preferred)
 pushd $(mktemp -d) && mmdc -i "$OLDPWD/<path/to/file.md>" 2>&1; popd
-
-# PowerShell
-$tmp = New-TemporaryFile | Split-Path; mmdc -i "$PWD\<path\to\file.md>" 2>&1; Remove-Item $tmp -Recurse -Force
 ```
 
-Run after every edit. All charts must show ✅ before the work is done. If mmdc is not
-installed: `npm install -g @mermaid-js/mermaid-cli` (requires Node 18+).
+All charts must show ✅ before done. Install: `npm install -g @mermaid-js/mermaid-cli` (Node 18+).
 
-> **🚨 Warning:** Never run `mmdc -i <file>` from inside the repo directory without the
-> `pushd/popd` temp-dir wrapper — it will write one SVG per diagram into the current
-> working directory, polluting the workspace.
+> **🚨 Warning:** Never run `mmdc -i <file>` from inside the repo without the temp-dir wrapper.
 
-## Syntax rules (learned from VS Code + mmdc compatibility)
+## Syntax rules
 
-### Multi-line labels — use `<br>`, never `\n`
-Both the VS Code renderer and mmdc require `<br>` for line breaks inside node labels and
-transition descriptions. Literal `\n` is not rendered.
+| Rule | ✅ Correct | ❌ Wrong |
+|------|-----------|----------|
+| Line breaks | `A --> B : First<br>Second` | `A --> B : First\nSecond` |
+| Node labels | `L[awaitingScorecardAccept = true]` | `L["CHOOSE then GO"]` (no `"` inside) |
+| stateDiagram-v2 | `A --> B : implicit — no back handler` | `A --> B : (implicit: same handler)` (no second `:`) |
 
-```
-✅  A --> B : First line<br>Second line
-❌  A --> B : First line\nSecond line
-```
-
-### No double quotes inside node labels
-Double quotes inside `[]`, `()`, `{}` node labels cause a parse error in flowcharts.
-Use single quotes, backtick-style prose, or simply omit the quotes.
-
-```
-✅  K -- Yes --> L[awaitingScorecardAccept = true<br>CHOOSE then GO]
-❌  K -- Yes --> L[awaitingScorecardAccept = true<br>"CHOOSE then GO"]
-```
-
-### No second colon inside stateDiagram-v2 transition labels
-In `stateDiagram-v2`, the first `:` after a state name starts the transition label.
-A second `:` in the label body is parsed as a state-description separator and raises a
-`DESCR` parse error in the stricter VS Code renderer.
-
-```
-✅  A --> B : implicit — no back handler in rogue mode
-❌  A --> B : (implicit: same back handler not shown)
-```
-
-This restriction applies only to `stateDiagram-v2`. Flowchart (`flowchart TD/LR`) edge
-labels do not have this limitation.
-
-### Arrow style in flowcharts
-Use `-->` for normal edges and `-- label -->` or `-- label -->` for labelled edges.
-Avoid mixing `->` (single dash) with `-->`.
-
-### Note blocks in stateDiagram-v2
-Notes must reference an existing state name and use the exact keyword form:
+### Notes in stateDiagram-v2
 
 ```
 note right of StateName
@@ -82,20 +44,17 @@ note right of StateName
 end note
 ```
 
-The `note right of` / `note left of` form is required — inline note shorthand is not
-supported in `stateDiagram-v2`.
-
-## Diagram types used in this repo
+## Diagram types
 
 | Type | Keyword | Best for |
-|---|---|---|
-| State machine | `stateDiagram-v2` | Boolean flags, mode transitions, lifecycle states |
-| Call graph / flow | `flowchart TD` or `flowchart LR` | Execution paths, call chains, save/restore flows |
+|------|---------|----------|
+| State machine | `stateDiagram-v2` | Boolean flags, mode transitions, lifecycle |
+| Flow | `flowchart TD/LR` | Execution paths, call chains, save/restore |
 
-## Workflow checklist
+## Checklist
 
-- [ ] `<br>` used for all label line breaks (no `\n`)
-- [ ] No double quotes inside node label brackets
-- [ ] No second `:` inside `stateDiagram-v2` transition labels
-- [ ] `mmdc -i <file>` exits 0 with all charts showing ✅
-- [ ] Diagrams render without errors in the VS Code Mermaid preview
+- [ ] `<br>` for label line breaks (no `\n`)
+- [ ] No `"` inside node labels
+- [ ] No second `:` in stateDiagram-v2 transitions
+- [ ] `mmdc -i <file>` exits 0 with all ✅
+- [ ] VS Code Mermaid preview renders without errors

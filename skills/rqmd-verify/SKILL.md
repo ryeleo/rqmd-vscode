@@ -16,16 +16,17 @@ metadata:
       - uv run --extra dev pytest -q
 ---
 
-Use this skill when changes are already in progress and you need a disciplined finish pass.
+Use when changes are in progress and you need a disciplined finish pass.
 
-Workflow:
-- Re-run requirement summary verification with `rqmd --verify-summaries --non-interactive`.
-- Run targeted tests for the touched area first.
-- Run the full test suite with `uv run --extra dev pytest -q`.
-- If work affected backlog state, re-check `rqmd-ai --json --dump-status proposed` so priorities remain accurate.
-- Call out any residual risk, missing validation, or requirement/doc drift before finishing.
+## Workflow
 
-Constraints:
-- Prefer deterministic validation commands.
-- Report clearly when validation could not be completed.
-- Skills improve workflow discovery; shell and tool approvals may still be required.
+1. `rqmd --verify-summaries --non-interactive`
+2. Targeted tests for touched area
+3. Full suite: `uv run --extra dev pytest -q`
+4. If backlog changed, re-check `rqmd-ai --json --dump-status proposed`
+5. Call out residual risk or drift before finishing
+
+## Constraints
+
+- Prefer deterministic validation
+- Report clearly when validation incomplete

@@ -16,16 +16,17 @@ metadata:
       - rqmd --update-priority RQMD-CORE-001=p1
 ---
 
-Use this skill when the task is primarily about requirement metadata rather than product code.
+Use when the task is primarily requirement metadata, not product code.
 
-Workflow:
-- Preview requirement changes first with `rqmd-ai --json --update ID=STATUS`.
-- Apply only after review with `rqmd-ai --json --write --update ID=STATUS`.
-- Use `rqmd --update-priority ID=p1` or repeated `--update-priority` flags for priority maintenance.
-- Use rqmd filters such as `--status`, `--priority`, `--flagged`, `--has-link`, or positional tokens to build focused maintenance worklists.
-- Re-run summary verification after any requirement mutation.
+## Workflow
 
-Constraints:
-- Keep status and priority changes aligned with the actual code and test state.
-- Prefer machine-readable preview/apply flows for multi-update maintenance.
-- Skills improve workflow discovery; shell and tool approvals may still be required.
+- **Preview:** `rqmd-ai --json --update ID=STATUS`
+- **Apply:** `rqmd-ai --json --write --update ID=STATUS`
+- **Priority:** `rqmd --update-priority ID=p1`
+- **Filters:** `--status`, `--priority`, `--flagged`, `--has-link`, or positional tokens
+- Re-run `rqmd --verify-summaries --non-interactive` after mutations
+
+## Constraints
+
+- Keep status/priority aligned with code and test state
+- Prefer machine-readable preview/apply flows

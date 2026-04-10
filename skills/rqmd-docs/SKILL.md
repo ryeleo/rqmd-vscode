@@ -16,51 +16,43 @@ metadata:
       - rqmd-ai --json --dump-status proposed
 ---
 
-Use this skill when the documentation itself needs better writing, structure, or organization rather than only post-change alignment.
+Use when documentation needs better writing, structure, or organization — not just post-change alignment.
 
-Workflow:
-- Use headings consistently: start at h1 and do not skip heading levels.
-- Prefer many smaller pages over one oversized page; create brief index pages when splitting large content improves navigation.
-- Introduce acronyms and jargon on first use, and add Info-style callouts when readers may need extra context.
-- Prefer descriptive hyperlinks over raw pasted URLs or direct references to other 'docs' files in the repo.
-- Use ordered or unordered lists to break up dense prose when they improve scanning.
-  - **Nest bullet lists** when items have sub-detail, sub-steps, or grouped facets — flat lists that could benefit from hierarchy should be restructured into nested lists.
-  - Use the **Subject:** pattern (`- **Subject:** description or detail`) to call out key items within a list so readers can scan the bold lead and skip the detail if they already know it.
-- When a topic needs enough emphasis that a bold lead is not sufficient, promote it to a subheading instead — subheadings improve navigation for *all* readers (screen readers, table-of-contents generators, quick scrollers), not just those who notice bold text.
-- Use **strong** text to highlight key terms, names, or outcomes; use *emphasis* for nuance, caveats, or softer callouts; use ***strong emphasis*** sparingly for truly critical points.
-- Use emoji consistently to convey meaning at a glance (e.g., lifecycle labels like 💡 Proposed / 🔧 Implemented, callout icons like ℹ️ / ⚠️ / 🚨). Emoji should add signal, not decoration — pick a small consistent set and reuse it rather than scattering random emoji.
-- Use Info, Note, and Warning callouts deliberately to separate optional context, important reminders, and critical warnings.
-- Keep documentation technical but user-friendly, written like a web article worth reading rather than a dump of internal notes.
-- Never include secrets in documentation or code examples.
+## Workflow
 
-Callout examples:
+- **Headings:** Start at h1, do not skip levels
+- **Page size:** Prefer smaller pages; create index pages when splitting improves navigation
+- **Jargon:** Introduce acronyms on first use; add Info callouts for extra context
+- **Links:** Use descriptive hyperlinks, not raw URLs or backticked filenames
+- **Lists:** Break dense prose into lists when they improve scanning
+  - **Nest bullets** for sub-detail or grouped facets
+  - Use **Subject:** pattern for scannable bold leads
+- **Promotion:** Promote topics needing emphasis beyond bold to subheadings
+- **Text styles:** **strong** for key terms; *emphasis* for caveats; ***strong emphasis*** sparingly
+- **Emoji:** Consistent lifecycle labels (💡 🔧 ✅) and callout icons (ℹ️ ⚠️ 🚨) — signal, not decoration
+- **Secrets:** Never include in docs or examples
 
-> **ℹ️ Info:** `rqmd --verify-summaries --non-interactive` only verifies summary blocks and does not rewrite requirement files.
+## Callouts
 
-> **⚠️ Note:** If a page introduces `rqmd-ai` before `rqmd`, expand the acronym on first use and explain the relationship once rather than assuming prior context.
+Use these exact shapes:
 
-> **🚨 Warning:** Do not paste tokens, credentials, or internal-only URLs into repository documentation, even in examples.
+> **ℹ️ Info:** `rqmd --verify-summaries --non-interactive` only verifies summaries.
 
-Use that exact callout shape when you need one; avoid mixing in all-caps or multiple icon variants unless a repository already standardized on them.
+> **⚠️ Note:** Expand `rqmd-ai` on first use if introduced before `rqmd`.
 
-Constraints:
-- Do not use this skill when the real task is only keeping docs aligned with a known behavior change; use `/rqmd-doc-sync` for that.
-- Keep requirement docs, README guidance, and bundle text consistent with shipped behavior when you improve them.
-- Prefer focused improvements over needless rewrites, but do restructure or split pages when readability is clearly suffering.
-- Skills improve workflow discovery; shell and tool approvals may still be required.
+> **🚨 Warning:** Do not paste tokens or credentials into documentation.
 
 ## When to add diagrams
 
-Diagrams are valuable when *prose alone* would leave readers confused about:
-- **State machines:** mode transitions, boolean flag lifecycles, requirement status flows.
-- **Call graphs / execution paths:** which functions call which, how data flows through a pipeline, save/restore sequences.
-- **Decision trees:** branching logic that prose would over-explain.
+Diagrams help when prose alone confuses readers about:
+- State machines, mode transitions, lifecycle states
+- Call graphs, data pipelines, save/restore flows
+- Decision trees with branching logic
 
-When a topic is tricky enough to warrant a diagram, add it *inline* in the most applicable markdown file using a fenced `mermaid` code block. Inline diagrams:
-- Live with the text they explain — single source of truth.
-- Render natively in VS Code preview, GitHub, and most modern markdown viewers.
-- Require no build step or generated assets to track in git.
+Add diagrams inline using fenced `mermaid` blocks. Use `/rqmd-diagram` for syntax rules and validation.
 
-Use `/rqmd-diagram` to author and validate the diagram. Run `mmdc -i <file.md>` as a linter to catch syntax errors before committing.
+## Constraints
 
-> **ℹ️ Info:** Prefer inline Mermaid over external `.mmd` files. External files require a build step, generate assets that clutter the repo, and divorce the diagram from its context.
+- Use `/rqmd-doc-sync` when the task is only alignment
+- Keep requirement docs, README, and bundle text consistent with shipped behavior
+- Prefer focused improvements over needless rewrites

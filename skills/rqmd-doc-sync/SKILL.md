@@ -17,17 +17,18 @@ metadata:
       - rqmd-ai --json --workflow-mode implement
 ---
 
-Use this skill when code changes are done and the main remaining task is alignment, not documentation craft.
+Use when code changes are done and the main task is alignment, not documentation craft.
 
-Workflow:
-- Update the affected requirement docs in `docs/requirements/*.md`.
-- Keep `docs/requirements/README.md`, top-level `README.md`, and `CHANGELOG.md` aligned with shipped behavior.
-- Use `/rqmd-docs` instead when the real task is improving structure, headings, jargon explanations, or splitting long pages.
-- If work changed AI workflows or onboarding, update `.github/copilot-instructions.md` and any installed bundle text as needed.
-- Re-run `rqmd --verify-summaries --non-interactive`.
-- Call out any remaining drift or docs that still need manual judgment.
+## Workflow
 
-Constraints:
-- Treat requirement markdown as product surface, not optional notes.
-- Prefer small doc updates tied directly to shipped behavior.
-- Skills improve workflow discovery; shell and tool approvals may still be required.
+1. Update affected `docs/requirements/*.md`
+2. Align `docs/requirements/README.md`, top-level `README.md`, and `CHANGELOG.md`
+3. Use `/rqmd-docs` instead when the task is improving structure, headings, or page splits
+4. Update `.github/copilot-instructions.md` and bundle text if AI workflows changed
+5. Verify: `rqmd --verify-summaries --non-interactive`
+6. Call out remaining drift needing manual judgment
+
+## Constraints
+
+- Treat requirement markdown as product surface
+- Prefer small doc updates tied to shipped behavior

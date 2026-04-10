@@ -18,17 +18,16 @@ metadata:
       - rqmd-ai --update RQMD-CORE-001=implemented --write
 ---
 
-Use this skill when an agent needs precise context instead of the full repository.
+Use when an agent needs precise context instead of the full repository.
 
-Workflow:
-- Start with `rqmd-ai --json` for baseline guidance when needed.
-- For next-batch implementation handoffs, export `rqmd-ai --json --dump-status proposed` and then keep the slice narrowed to the highest-priority 1-3 requirements under discussion.
-- For a single requirement under active work, export `rqmd-ai --json --dump-id <ID> --include-requirement-body` so the implementation context includes the full body and stable metadata.
-- For architecture or domain rationale, export `rqmd-ai --json --dump-file <domain>.md --include-domain-markdown --max-domain-markdown-chars <N>` with a strict size limit.
-- Prefer one requirement, one proposal slice, or one bounded domain at a time instead of a broad multi-domain dump.
+## Workflow
 
-Constraints:
-- Keep exported context scoped and machine-readable by default.
-- Avoid dumping the whole backlog when a next-batch proposal slice is enough.
-- Avoid dumping whole domains when an ID-level export plus bounded domain markdown is enough.
-- Skills improve workflow discovery; shell and tool approvals may still be required.
+- **Baseline:** `rqmd-ai --json`
+- **Next-batch handoff:** `rqmd-ai --json --dump-status proposed` → narrow to highest-priority 1-3 items
+- **Single requirement:** `rqmd-ai --json --dump-id <ID> --include-requirement-body`
+- **Domain context:** `rqmd-ai --json --dump-file <domain>.md --include-domain-markdown --max-domain-markdown-chars <N>`
+
+## Constraints
+
+- Scope exports tightly — avoid full backlog dumps
+- One requirement or bounded domain at a time when possible

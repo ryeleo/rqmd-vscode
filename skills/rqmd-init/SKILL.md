@@ -23,16 +23,19 @@ metadata:
     max_source_areas: 4
 ---
 
-Use this skill when bringing rqmd into a repository for the first time and you want the product-default onboarding flow.
+Use when bringing rqmd into a repository for the first time.
 
-Workflow:
-- Start with `rqmd-ai init --chat --json` or simply `rqmd init`.
-- Paste the generated handoff prompt into your AI chat and let the chat agent run the grouped interview.
-- Let init choose the setup strategy automatically unless the repository clearly needs `--legacy`.
-- Review the generated requirements index, starter files, and any follow-up bundle skill previews before writing.
-- Apply only after confirmation, then run `rqmd --verify-summaries --non-interactive` and start refining the generated requirements.
+## Workflow
 
-Constraints:
-- Treat generated requirements as a starting point, not final truth.
-- Keep `rqmd-init-legacy` available as a compatibility path during migration, but teach `rqmd-init` as the primary surface.
-- Skills improve workflow discovery; shell and tool approvals may still be required.
+1. Start: `rqmd-ai init --chat --json` or `rqmd init`
+2. Paste generated handoff prompt into AI chat for grouped interview
+3. Let init choose strategy automatically unless repo clearly needs `--legacy`
+4. Review generated index, starter files, and skill previews before writing
+5. Apply only after confirmation
+6. Verify: `rqmd --verify-summaries --non-interactive`
+7. Refine generated requirements
+
+## Constraints
+
+- Treat generated requirements as starting point, not final truth
+- Keep `/rqmd-init-legacy` available as compatibility path

@@ -16,23 +16,18 @@ metadata:
       - rqmd-ai --json --workflow-mode implement
 ---
 
-Use this skill when changelog quality matters as its own task, not just as a side effect of general docs sync.
+Use when changelog quality matters as its own task, not just a docs-sync side effect.
 
-Workflow:
-- Update `CHANGELOG.md` under `Unreleased` before cutting a new version when the work has not shipped yet.
-- Lead with human-directed decisions, user-visible behavior changes, and other release-relevant outcomes.
-- When a bullet mainly records that a tracked requirement shipped, prefer wording like `Implemented RQMD-UNDO-008: size, retention, and compaction policy for persisted history` instead of `Updated requirement status to mark RQMD-UNDO-008 as Implemented ...`.
-- Keep low-signal implementation detail out of the primary bullets; if the detail matters, group it under a nested `AI Development` heading instead of mixing it into the main narrative.
-- Prefer concise bullets that a human reviewer can scan quickly during release prep.
-- Structure changelog entries with the same rich formatting from `/rqmd-docs`:
-  - **Nest bullet lists** under top-level entries when a feature has multiple sub-points, shipped components, or grouped details — avoid long flat lists that bury context.
-  - Use the **Subject:** pattern (`- **Subject:** description`) for entries that benefit from a scannable bold lead.
-  - Use subheadings (e.g., `#### Telemetry`, `#### Performance`) to group related entries when a release is large enough that a flat `### Added` list becomes hard to navigate.
-  - Use **strong**, *emphasis*, and emoji consistently to match the project’s documentation voice (see `/rqmd-docs` for the full style guide).
-- Keep the changelog aligned with the affected requirement docs, README guidance, and bundle workflow text when those surfaces changed too.
+## Workflow
 
-Constraints:
-- Preserve Keep a Changelog structure.
-- Do not turn the changelog into a commit log or exhaustive implementation diary.
-- Include AI-enabling work only when it materially explains the shipped outcome or future maintenance path.
-- Skills improve workflow discovery; shell and tool approvals may still be required.
+- Update `CHANGELOG.md` under `Unreleased` before cutting a version
+- Lead with user-visible behavior changes and human-directed decisions
+- Prefer `Implemented RQMD-UNDO-008: <description>` over `Updated status to mark ... as Implemented`
+- Keep low-signal detail under a nested `AI Development` heading
+- Format per `/rqmd-docs`: nest bullets, use **Subject:** pattern, add subheadings when releases grow large
+- Keep changelog aligned with requirement docs, README, and bundle text
+
+## Constraints
+
+- Preserve Keep a Changelog structure
+- Not a commit log — include AI work only when it explains shipped outcome
