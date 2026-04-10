@@ -1,6 +1,6 @@
 ---
 description: "Run a focused documentation pass — README polish, changelog cleanup, doc sync, or docstring alignment after behavior changes."
-name: "polish-docs"
+name: "docs-polish"
 argument-hint: "Describe what changed or which doc surface needs a pass. Can target README, changelog, requirement docs, or code docstrings."
 agent: "rqmd"
 ---

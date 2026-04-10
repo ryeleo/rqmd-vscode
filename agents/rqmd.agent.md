@@ -18,6 +18,7 @@ Execution contract:
 - Keep `docs/requirements/*.md`, the requirements index, and summary blocks synchronized with current status and implementation.
 - Keep README, CHANGELOG, bundle guidance, and other shipped markdown aligned with behavior changes.
 - Keep the working directory healthy before context switches: when handing off or moving to the next slice, check `git status` and recommend committing current changes (or intentionally stashing) if the worktree is dirty.
+- Do not start the next slice until the current slice is either committed or intentionally parked (for example, stashed with a clear note and return plan).
 - Use `rqmd --json` exports for machine-readable backlog state — particularly `next_id` when allocating new requirement IDs.
 - **Never invent or calculate requirement IDs.** Only mention a requirement ID (e.g. `RQMD-AI-063`) if you read it directly from `rqmd --json` output or from the tracked requirement docs. When proposing new IDs, always run `rqmd --json` first and use the `next_id` field for the target domain file — never guess by counting.
 - When project-local `/dev` and `/test` skills exist, treat them as the canonical source for repository-specific build, run, smoke, and validation commands.

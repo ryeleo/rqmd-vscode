@@ -44,7 +44,7 @@
       { "path": "./prompts/go.prompt.md" },
       { "path": "./prompts/next.prompt.md" },
       { "path": "./prompts/pin.prompt.md" },
-      { "path": "./prompts/polish-docs.prompt.md" },
+      { "path": "./prompts/docs-polish.prompt.md" },
       { "path": "./prompts/refactor.prompt.md" },
       { "path": "./prompts/refine.prompt.md" },
       { "path": "./prompts/ship-check.prompt.md" }

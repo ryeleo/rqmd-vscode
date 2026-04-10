@@ -20,14 +20,14 @@ Once installed, the following are immediately available in Copilot Chat.
 
 | Command | What it does |
 |---|---|
-| `/go` | Start or continue the implementation loop |
-| `/next` | Pick the highest-priority feasible slice and work it |
-| `/brainstorm` | Turn loose ideas into ranked requirement proposals |
 | `/refine` | Refine existing requirements through focused discussion |
+| `/brainstorm` | Turn loose ideas into ranked requirement proposals |
+| `/go` | Start or continue the implementation loop |
+| `/next` | Orchestrate the highest-priority next slice: recommend, hand off with `/go`, and implement only when asked |
 | `/bug` | File a tracked bug requirement from the current chat context |
 | `/commit` | Create a well-structured git commit for the current work |
 | `/commit-and-go` | Commit each validated slice and keep going |
-| `/polish-docs` | Run a documentation quality or sync pass |
+| `/docs-polish` | Run a documentation quality or sync pass |
 | `/refactor` | Improve readability, maintainability, or performance |
 | `/pin` | Capture durable context or decision notes |
 | `/ship-check` | Release readiness pass — call out blockers |
@@ -37,8 +37,7 @@ Once installed, the following are immediately available in Copilot Chat.
 
 | Agent | Role |
 |---|---|
-| `rqmd` | Requirements and project management — brainstorm, triage, refine, and hand off implementation tasks |
-| `rqmd` | Primary agent — brainstorm, refine, implement, and ship. Full range of rqmd work from planning to production. |
+| `rqmd` | Unified primary agent — brainstorm, triage, refine, hand off with `/go`, implement, and ship. |
 
 ### Skills
 
@@ -73,7 +72,7 @@ rqmd is built for requirement-first development with Copilot Chat:
 
    This sets up the project-side rqmd structure so the extension and CLI can work against the same requirement catalog.
 
-4. **Start working** with `/go`, `/next`, or `/brainstorm` in Copilot Chat.
+4. **Start working** with `/brainstorm` or `/next` to shape and select work, then use `/go` to execute implementation slices.
 
 ## How it works
 
@@ -83,7 +82,7 @@ Per-project overrides such as custom `/dev` and `/test` skills can still live al
 
 ## Version sync
 
-Extension version numbers are kept in sync with the [`rqmd` Python CLI package](https://pypi.org/project/rqmd/). Extension `0.2.2` pairs with `rqmd` CLI `0.2.2`.
+Extension version numbers are kept in sync with the [`rqmd` Python CLI package](https://pypi.org/project/rqmd/). Extension `0.2.4` pairs with `rqmd` CLI `0.2.4`.
 
 ## Links
 

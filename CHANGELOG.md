@@ -10,6 +10,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 <a id="unreleased"></a>
 ## [Unreleased]
 
+### Changed
+
+- README docs sync: `/next` is now documented as orchestration-first (recommend + `/go` handoff, implement when asked), agent table duplication is removed, and version-sync text now reflects `0.2.4`.
+- Prompt rename: `/polish-docs` is now `/docs-polish` (same behavior, clearer command naming).
+
 <a id="v0-2-4"></a>
 ## [0.2.4] - 2026-04-09
 
@@ -54,6 +59,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 - Initial extension scaffold (`RQMD-PACKAGING-013`). Distributes the rqmd AI bundle via VS Code Copilot Chat contribution points — no files written to `.github/`.
-- 12 prompts contributed via `chatPromptFiles`: `/brainstorm`, `/bug`, `/commit`, `/commit-and-go`, `/feedback`, `/go`, `/next`, `/pin`, `/polish-docs`, `/refactor`, `/refine`, `/ship-check`.
+- 12 prompts contributed via `chatPromptFiles`: `/brainstorm`, `/bug`, `/commit`, `/commit-and-go`, `/feedback`, `/go`, `/next`, `/pin`, `/docs-polish`, `/refactor`, `/refine`, `/ship-check`.
 - 16 skills contributed via `chatSkills`: `rqmd-brainstorm`, `rqmd-bundle`, `rqmd-changelog`, `rqmd-doc-sync`, `rqmd-docs`, `rqmd-export-context`, `rqmd-feedback`, `rqmd-history`, `rqmd-implement`, `rqmd-init`, `rqmd-init-legacy`, `rqmd-pin`, `rqmd-status-maintenance`, `rqmd-telemetry`, `rqmd-triage`, `rqmd-verify`.
 - 2 agents contributed via `chatAgents`: `rqmd` (primary — brainstorm, refine, implement, and ship).
