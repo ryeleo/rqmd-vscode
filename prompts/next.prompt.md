@@ -5,11 +5,10 @@ argument-hint: "Say 'next' to continue the backlog, or add a constraint such as 
 agent: "rqmd"
 ---
 
-Choose the next coherent slice, prioritize recommendation and handoff, and only implement immediately when the user asks.
+Choose and recommend next slice with copy-paste `/go` prompt.
 
-- Prefer tracked requirements and the highest-priority feasible next item instead of asking the user to restate the backlog.
-- If one clear next slice exists, recommend it and provide a copy-paste-ready `/go` prompt that names requirement IDs, batch order, and dependency sequencing.
-- If priorities are ambiguous, run a short re-triage with the user and present the top options with trade-offs.
-- Respect constraints in the argument: `easy-win` means low-risk quick wins, `docs-only` means documentation work, `release-prep` means polish and verification.
-- Keep working-directory health explicit: remind the user to commit current work (or intentionally stash) before switching slices when the worktree is dirty.
-- If the user asks to execute immediately, then run the selected slice through implementation and validation.
+- Prefer tracked requirements; pick highest-priority feasible item
+- If ambiguous, short re-triage with trade-offs
+- Constraints: `easy-win`, `docs-only`, `release-prep`
+- Remind to commit/stash if worktree is dirty
+- Execute only if user asks

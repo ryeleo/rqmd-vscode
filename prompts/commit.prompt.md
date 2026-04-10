@@ -5,18 +5,15 @@ argument-hint: "Optionally describe the focus of this commit, or leave blank to 
 agent: "rqmd"
 ---
 
-Create a clean git commit for the current working-tree changes.
+Create a clean git commit.
 
-Commit message conventions:
-- The subject line should be a concise summary driven by the human decision or request, not a list of files touched.
-- The body should clearly reflect the human inputs and decisions that motivated the change.
-- Include a separate section under a `# AI Development` heading that summarizes what the AI agent did (files changed, tests added, docs updated, etc.).
-- At the end of the body, include `AI agent: <model> <version>` (for example `AI agent: Claude Opus 4.6`) so the commit history tracks which AI contributed.
-- Human-driven decisions and key functional changes are the headline. AI implementation details are supporting context.
+**Message format:**
+- Subject: concise human decision, not file list
+- Body: human motivation + `# AI Development` section with agent work summary
+- Footer: `AI agent: <model> <version>`
 
-Workflow:
-- Review the current `git diff --staged` and `git diff` to understand what changed.
-- If nothing is staged, stage all changes that form a coherent unit of work. If the changes span unrelated concerns, ask the user which subset to commit.
-- Do not amend or force-push existing commits.
-- Do not sweep unrelated changes into the commit without asking.
-- After committing, report the commit hash and a brief summary.
+**Workflow:**
+1. Review `git diff --staged` and `git diff`
+2. Stage coherent unit; ask if changes span unrelated concerns
+3. Commit; report hash + summary
+4. No amend/force-push, no sweeping unrelated changes
