@@ -1,13 +1,13 @@
 {
   "name": "rqmd",
   "displayName": "rqmd — AI Agent Bundle",
-  "description": "Distributes the rqmd AI agent bundle (prompts, skills, agent definitions) via VS Code Copilot Chat contribution points. No files written to your project.",
-  "version": "0.2.1",
+  "description": "Brings the rqmd AI workflow to VS Code Copilot Chat with installable prompts, skills, and agent definitions.",
+  "version": "0.2.2",
   "publisher": "ryeleo",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/ryeleo/rqmd"
+    "url": "https://github.com/ryeleo/rqmd-vscode"
   },
   "engines": {
     "vscode": "^1.115.0"

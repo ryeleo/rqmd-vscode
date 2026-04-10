@@ -8,8 +8,8 @@ name: publish-marketplace
 #   - Pre-release:      push a tag matching v*rc* (e.g. v0.3.0rc1)
 #
 # Version sync: package.json version MUST be plain semver (x.y.z). For
-# rc tags (e.g. v0.3.0rc1), validation maps the tag to base semver (0.3.0)
-# and enforces that match before publish.
+# rc tags (e.g. v0.3.0rc1), ensure_release_tag.py maps the tag to base
+# semver (0.3.0) and updates package.json if needed before publish.
 #
 # Required secrets:
 #   VSCE_PAT — Personal Access Token from marketplace.visualstudio.com
@@ -45,10 +45,10 @@ jobs:
         with:
           python-version: "3.12"
 
-      - name: Validate release tag matches package.json version
+      - name: Ensure release tag and package metadata match
         env:
           RELEASE_TAG: ${{ github.event_name == 'release' && github.event.release.tag_name || github.ref_name }}
-        run: python scripts/validate_release_tag.py
+        run: python scripts/ensure_release_tag.py
 
       - name: Setup Node.js
         uses: actions/setup-node@v4

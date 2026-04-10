@@ -10,6 +10,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 <a id="unreleased"></a>
 ## [Unreleased]
 
+<a id="v0-2-2"></a>
+## [0.2.2] - 2026-04-09
+
+### Changed
+
+- Added a public extension README with installation guidance, command overview, agent/skill summary, and a clearer explanation of how the VS Code extension fits with the rqmd CLI.
+- Marketplace publish now calls `scripts/ensure_release_tag.py` (with `scripts/validate_release_tag.py` retained as a compatibility wrapper). The ensure script updates `package.json` `version` from the tag mapping before publish (`vX.Y.ZrcN` maps to `X.Y.Z`) and still enforces versioned changelog sections for stable tags.
+- Public extension metadata and README copy now focus on workflow and onboarding instead of calling out internal packaging details like whether files are written to the project.
+
 <a id="v0-2-1"></a>
 ## [0.2.1] - 2026-04-09
 
