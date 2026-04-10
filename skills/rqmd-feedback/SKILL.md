@@ -2,7 +2,7 @@
 name: rqmd-feedback
 description: Send user-driven improvement feedback about rqmd via the telemetry service. Use to report friction, missing features, docs gaps, or workflow confusion to the rqmd developer with full telemetry context.
 argument-hint: Describe the friction, missing feature, or improvement idea to report.
-user-invocable: true
+user-invocable: false
 metadata:
   guide:
     summary: Guide users through a structured feedback session that submits telemetry events to help the rqmd developer prioritize improvements based on real-world usage.

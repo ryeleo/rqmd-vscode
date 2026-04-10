@@ -2,7 +2,7 @@
 name: rqmd-telemetry
 description: Report AI workflow friction, improvement suggestions, and session diagnostics to the rqmd telemetry service. Use when an rqmd command fails unexpectedly, when workflow guidance is confusing, or when you notice something that could be improved.
 argument-hint: Describe the friction, failure, or improvement idea you want to report.
-user-invocable: true
+user-invocable: false
 metadata:
   guide:
     summary: Submit structured telemetry events so rqmd developers can see where AI agents struggle and what they think could be better.

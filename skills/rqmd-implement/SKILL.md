@@ -2,7 +2,7 @@
 name: rqmd-implement
 description: Implement the highest-priority proposed rqmd requirements in small validated batches. Use for multi-file code changes that must stay synchronized with docs/requirements, README, tests, and CHANGELOG entries.
 argument-hint: Describe the requirement IDs or behavior to implement and the expected validation scope.
-user-invocable: true
+user-invocable: false
 metadata:
   guide:
     summary: Work highest-priority proposed requirements in small validated batches.

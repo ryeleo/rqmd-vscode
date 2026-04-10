@@ -2,7 +2,7 @@
 name: rqmd-init-legacy
 description: Compatibility alias for the older legacy-repo init flow. Prefer rqmd-init unless you need to force legacy-style repository seeding explicitly.
 argument-hint: Describe the repository, preferred requirements directory, ID prefix, and whether GitHub issues should be consulted when available.
-user-invocable: true
+user-invocable: false
 metadata:
   guide:
     summary: Seed rqmd into a legacy repository by reviewing a generated first-pass requirements catalog before writing it.

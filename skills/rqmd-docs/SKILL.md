@@ -2,7 +2,7 @@
 name: rqmd-docs
 description: Improve repository documentation quality using authored standards for readability, structure, jargon handling, and page organization. Use when docs need more than simple drift correction.
 argument-hint: Describe which documentation pages need improvement and whether the work is about structure, clarity, jargon, callouts, or splitting long pages.
-user-invocable: true
+user-invocable: false
 metadata:
   guide:
     summary: Improve documentation quality as a first-class workflow, not just a sync pass.

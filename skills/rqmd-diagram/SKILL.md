@@ -2,7 +2,7 @@
 name: rqmd-diagrams
 description: Author, lint, and fix Mermaid diagrams in markdown docs so they render correctly in both VS Code and mmdc. Use whenever creating or editing stateDiagram-v2 or flowchart diagrams.
 argument-hint: Name the markdown file(s) containing diagrams to validate or describe the diagram you need to create.
-user-invocable: true
+user-invocable: false
 metadata:
   guide:
     summary: Produce Mermaid diagrams that pass mmdc validation and render cleanly in VS Code.

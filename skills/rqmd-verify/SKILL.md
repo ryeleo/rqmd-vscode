@@ -2,7 +2,7 @@
 name: rqmd-verify
 description: Verify rqmd requirement/documentation sync and post-change validation. Use after edits to re-run summary verification, targeted tests, full tests, and any final requirement-status checks before completion.
 argument-hint: Describe what changed and whether you want targeted validation, a full verification pass, or both.
-user-invocable: true
+user-invocable: false
 metadata:
   guide:
     summary: Run the finish-pass verification loop after edits land.

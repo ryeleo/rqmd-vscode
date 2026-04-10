@@ -2,7 +2,7 @@
 name: rqmd-changelog
 description: Keep CHANGELOG.md clear, human-led, and Keep a Changelog-aligned. Use when preparing Unreleased notes, tightening noisy release entries, or deciding which implementation details belong in the public changelog.
 argument-hint: Describe the release slice, recent work, or changelog section that needs to be curated.
-user-invocable: true
+user-invocable: false
 metadata:
   guide:
     summary: Curate CHANGELOG.md as a concise release narrative led by user-visible outcomes and human decisions.

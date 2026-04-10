@@ -2,7 +2,7 @@
 name: rqmd-init
 description: Initialize rqmd in a repository using the default chat-first flow, with heuristic routing between starter scaffold and legacy-style repository seeding.
 argument-hint: Describe the repository, preferred requirements directory, ID prefix, whether to force legacy mode, and whether the AI chat flow should drive the interview.
-user-invocable: true
+user-invocable: false
 metadata:
   guide:
     summary: Start rqmd with the unified init workflow, favoring the AI-chat flow and falling back to explicit compatibility paths when needed.

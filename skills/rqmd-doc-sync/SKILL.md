@@ -2,7 +2,7 @@
 name: rqmd-doc-sync
 description: Synchronize rqmd requirement docs, summaries, README guidance, and changelog entries after behavior changes. Use when shipped behavior is already understood and the main task is to close documentation drift.
 argument-hint: Describe what changed and which docs or requirement files need alignment.
-user-invocable: true
+user-invocable: false
 metadata:
   guide:
     summary: Close documentation drift after a behavior change without turning the task into a broader writing or restructure pass.

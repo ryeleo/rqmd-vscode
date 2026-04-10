@@ -2,7 +2,7 @@
 name: rqmd-export-context
 description: Export focused rqmd and rqmd-ai context for prompts, reviews, and automation handoffs. Use for next-batch proposal slices, single-requirement deep dives, or bounded domain markdown when an agent needs only the relevant context.
 argument-hint: Describe whether you need next-batch proposals, one requirement, or bounded domain context.
-user-invocable: true
+user-invocable: false
 metadata:
   guide:
     summary: Default read-only rqmd-ai workflow for context export, preview, and guarded apply.

@@ -2,7 +2,7 @@
 name: rqmd-bundle
 description: Install, refresh, and explain the rqmd AI agent and skill bundle for a workspace. Use for onboarding repositories, previewing bundle changes, preserving customized files, and clarifying how skills relate to approval prompts.
 argument-hint: Describe whether you want a dry-run preview, minimal/full install, overwrite behavior, or bundle customization.
-user-invocable: true
+user-invocable: false
 metadata:
   guide:
     summary: Preview or install the rqmd Copilot bundle while preserving workspace customizations by default.

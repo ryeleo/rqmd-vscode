@@ -2,7 +2,7 @@
 name: rqmd-pin
 description: Capture durable context, decisions, and quick-reference notes in a maintained home that stays easy to find across sessions. Use for project memory, decision logs, pinned reminders, and choosing where persistent notes should live.
 argument-hint: Describe what should be pinned, whether it is a new note or an update, and where it currently lives if a location already exists.
-user-invocable: true
+user-invocable: false
 metadata:
   guide:
     summary: Capture durable project context in a stable, reviewable home instead of leaving it buried in chat history.

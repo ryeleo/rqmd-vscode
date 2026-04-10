@@ -2,7 +2,7 @@
 name: rqmd-status-maintenance
 description: Safely update requirement statuses, priorities, and focused worklists with rqmd and rqmd-ai. Use for planned status transitions, priority triage, filter-driven maintenance, and guarded requirement doc mutations.
 argument-hint: Describe the requirement IDs, desired status or priority updates, and whether you want preview-only or apply mode.
-user-invocable: true
+user-invocable: false
 metadata:
   guide:
     summary: Preview and apply requirement metadata changes safely before mutating tracked docs.

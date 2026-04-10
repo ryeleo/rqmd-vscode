@@ -2,7 +2,7 @@
 name: rqmd-brainstorm
 description: Turn brainstorm notes or loose ideas into ranked rqmd requirement proposals before implementation. Use for docs/brainstorm.md review, backlog grooming, requirement planning, and mapping ideas into docs/requirements/*.md with suggested IDs, statuses, and priorities.
 argument-hint: Describe the brainstorm source and which requirement area it should likely affect.
-user-invocable: true
+user-invocable: false
 metadata:
   guide:
     summary: Turn loose planning notes into ranked requirement proposals before implementation starts.

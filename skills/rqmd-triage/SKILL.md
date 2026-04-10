@@ -2,7 +2,7 @@
 name: rqmd-triage
 description: Review, rank, and select the next rqmd backlog slice from tracked requirements. Use for proposal triage, next-batch selection, backlog grooming, and deciding which 1-3 requirements should move next.
 argument-hint: Describe the backlog area, status filter, or requirement domain you want to triage.
-user-invocable: true
+user-invocable: false
 metadata:
   guide:
     summary: Review and narrow the next implementation slice from tracked proposed requirements.
