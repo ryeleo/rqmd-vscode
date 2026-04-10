@@ -38,7 +38,7 @@ Once installed, the following are immediately available in Copilot Chat.
 | Agent | Role |
 |---|---|
 | `rqmd` | Requirements and project management — brainstorm, triage, refine, and hand off implementation tasks |
-| `rqmd-dev` | Implementation — code, tests, requirement status updates, and CHANGELOG entries |
+| `rqmd` | Primary agent — brainstorm, refine, implement, and ship. Full range of rqmd work from planning to production. |
 
 ### Skills
 

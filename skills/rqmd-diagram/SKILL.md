@@ -1,5 +1,5 @@
 ---
-name: rqmd-diagram
+name: rqmd-diagrams
 description: Author, lint, and fix Mermaid diagrams in markdown docs so they render correctly in both VS Code and mmdc. Use whenever creating or editing stateDiagram-v2 or flowchart diagrams.
 argument-hint: Name the markdown file(s) containing diagrams to validate or describe the diagram you need to create.
 user-invocable: true
@@ -9,76 +9,32 @@ metadata:
     workflow:
       - Author the diagram following the syntax rules below.
       - Run `mmdc -i <file.md>` to validate. Fix any parse errors and re-run until all charts show ✅.
-      - Treat mmdc as a linter — VS Code's renderer is stricter than the CLI, so CLI passes are necessary but not always sufficient.
+      - Treat mmdc as the authoritative linter — VS Code's renderer is stricter than the CLI, so CLI passes are necessary but not always sufficient.
     examples:
-      - mmdc -i docs/state-machines.md
-      - mmdc -i docs/game-flows.md
+      - pushd $(mktemp -d) && mmdc -i "$OLDPWD/docs/player-flows.md" 2>&1; popd
 ---
 
 Use this skill when creating, editing, or reviewing Mermaid diagrams in any markdown file.
 
-## Why diagrams matter
-
-Diagrams help readers — and *you* — make better decisions by visualizing relationships that prose alone struggles to convey. If you're writing prose and catch yourself saying *"then if X, we go to Y, unless Z, in which case…"* — stop and draw a diagram.
-
-## Where diagrams add the most value
-
-Proactively suggest diagrams when the problem touches any of these areas:
-
-| Category | Examples | Best diagram type |
-|---|---|---|
-| **State & lifecycle** | Boolean flags, mode toggles, requirement status, connection states, auth sessions | `stateDiagram-v2` |
-| **UI/UX flows** | Screen navigation, wizard steps, modal sequences, onboarding funnels | `stateDiagram-v2` or `flowchart` |
-| **Protocols & handshakes** | Request/response, OAuth flows, WebSocket lifecycle, API auth sequences | `sequenceDiagram` |
-| **Call graphs & dependencies** | Function call chains, module imports, service dependencies | `flowchart TD` |
-| **Data flow & pipelines** | ETL, event streams, message queues, data transformation chains | `flowchart LR` |
-| **Decision logic** | Branching business rules, validation trees, feature flag routing | `flowchart TD` |
-| **Entity relationships** | Data models, foreign keys, aggregation vs composition | `erDiagram` |
-| **Infrastructure & deployment** | Service topology, container orchestration, cloud architecture | `flowchart` or `C4` |
-| **Network topology** | LAN/WAN layout, firewall zones, load balancer routing, DNS resolution paths | `flowchart` |
-| **Distributed systems** | Consensus protocols, leader election, partition handling, replication flows, High Availability flows, CAP trade-offs | `sequenceDiagram` or `stateDiagram-v2` |
-| **Class hierarchies** | Inheritance, interfaces, mixins | `classDiagram` |
-| **Async & concurrency** | Race conditions, locks, actor message flows, promise chains | `sequenceDiagram` |
-| **Error & recovery flows** | Retry strategies, circuit breakers, fallback paths, rollback sequences | `stateDiagram-v2` |
-| **User journeys** | End-to-end workflows, happy path vs edge cases, support escalation | `flowchart` or `journey` |
-| **CI/CD & build pipelines** | Job dependencies, artifact flow, deploy gates | `flowchart LR` |
-| **Permissions & RBAC** | Role hierarchies, permission inheritance, access control matrices | `flowchart TD` |
-| **Game & turn logic** | Game loops, turn sequences, win/lose conditions | `stateDiagram-v2` |
-| **Caching & invalidation** | Cache states, TTL transitions, write-through vs write-back | `stateDiagram-v2` |
-
-> **ℹ️ Info:** State machines (`stateDiagram-v2`) are especially underused. Whenever something has "modes", "flags", or "phases", a state diagram makes implicit transitions explicit and catches impossible states early.
-
-Put diagrams in the most applicable markdown file, directly next to the text they support.
-
-## Inline Mermaid is the right default
-
-Add diagrams as fenced `mermaid` code blocks directly in markdown:
-
-~~~markdown
-```mermaid
-stateDiagram-v2
-    [*] --> Proposed
-    Proposed --> Implemented
-    Implemented --> Verified
-```
-~~~
-
-**Why inline, not external `.mmd` files?**
-- Diagrams live *with* the docs they explain — single source of truth.
-- VS Code, GitHub, and most modern viewers render them natively with no build step.
-- No generated PNG/SVG assets to track in git (noise, merge conflicts, staleness risk).
-- Portable — works anywhere that supports Mermaid.
-
-Use `mmdc` purely as a **linter** to catch syntax errors before committing, not as a build tool that produces generated assets.
-
 ## Validation command
 
+`mmdc` has no lint-only mode — it always writes output SVGs. Run it from a temp directory
+so the generated files never land in the repo:
+
 ```bash
-mmdc -i <path/to/file.md>
+# Bash / Git Bash (preferred)
+pushd $(mktemp -d) && mmdc -i "$OLDPWD/<path/to/file.md>" 2>&1; popd
+
+# PowerShell
+$tmp = New-TemporaryFile | Split-Path; mmdc -i "$PWD\<path\to\file.md>" 2>&1; Remove-Item $tmp -Recurse -Force
 ```
 
 Run after every edit. All charts must show ✅ before the work is done. If mmdc is not
 installed: `npm install -g @mermaid-js/mermaid-cli` (requires Node 18+).
+
+> **🚨 Warning:** Never run `mmdc -i <file>` from inside the repo directory without the
+> `pushd/popd` temp-dir wrapper — it will write one SVG per diagram into the current
+> working directory, polluting the workspace.
 
 ## Syntax rules (learned from VS Code + mmdc compatibility)
 
