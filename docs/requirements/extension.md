@@ -1,9 +1,9 @@
 # Extension Infrastructure Requirements
 
-Scope: VS Code extension packaging and distribution — Marketplace publication, command palette integration, chat participant registration, and prompt/skill surface contributions.
+Scope: VS Code extension packaging and distribution — Marketplace publication, command palette integration, chat participant registration, prompt/skill surface contributions, and self-healing rqmd bootstrap.
 
 <!-- acceptance-status-summary:start -->
-Summary: 2💡 2🔧 1✅ 0⚠️ 0⛔ 0🗑️
+Summary: 7💡 2🔧 1✅ 0⚠️ 0⛔ 0🗑️
 <!-- acceptance-status-summary:end -->
 
 ### RQMD-EXT-051: Distribute rqmd AI bundle as a VS Code extension
@@ -71,3 +71,73 @@ Summary: 2💡 2🔧 1✅ 0⚠️ 0⛔ 0🗑️
 - When a user types `/rqmd-` in Copilot Chat
 - Then no skill completions appear.
 - And agents can still reference `/rqmd-brainstorm` internally and load the skill.
+
+### RQMD-EXT-056: Same-major rqmd auto-install version policy
+- **Status:** 💡 Proposed
+- **Priority:** 🟠 P1 - High
+- As the rqmd extension
+- When installing or updating the rqmd CLI tool automatically
+- I want to install the newest version within the currently-installed major line
+- So that minor and patch upgrades are applied automatically without user action.
+- So that major version upgrades are blocked and require explicit user action, because major bumps may break compatibility per SemVer.
+- So that the first-ever install records the installed major in VS Code persisted state as the expected-major anchor.
+- Given no prior rqmd install exists
+- When bootstrap installs rqmd for the first time
+- Then the installed major is persisted to VS Code workspace/global state.
+- And subsequent auto-upgrades stay within that major.
+
+### RQMD-EXT-057: Missing-rqmd bootstrap notification flow
+- **Status:** 💡 Proposed
+- **Priority:** 🟠 P1 - High
+- **Blocked by:** RQMD-EXT-056
+- As a user who opens a workspace with the rqmd extension but without rqmd installed on the workstation
+- I want the extension to show a VS Code notification and immediately bootstrap rqmd (and uv if needed) without requiring me to approve each individual install command
+- So that the painful flow of approving many commands just to run rqmd is eliminated.
+- So that one notification covers the entire install chain.
+- So that after bootstrap completes, the original rqmd command reruns automatically without user prompting.
+- Given rqmd is not installed when an rqmd command is first invoked
+- When the bootstrap begins
+- Then the notification reads: "Installing rqmd (and uv if it is not available) so this workspace can run rqmd commands."
+- And on success: "rqmd is ready. Re-running your command now."
+- And on failure: "Could not install rqmd automatically. Check network, permissions, or Python toolchain and try again."
+
+### RQMD-EXT-058: Unified shim bootstrap entrypoint for all rqmd invocations
+- **Status:** 💡 Proposed
+- **Priority:** 🟠 P1 - High
+- **Blocked by:** RQMD-EXT-057
+- As a user invoking rqmd from the extension, command palette, or any agent tool call
+- I want every rqmd invocation to route through a single shared bootstrap shim
+- So that missing-tool recovery happens consistently regardless of how rqmd is triggered.
+- So that the bootstrap flow is: check rqmd → if missing, check uv → if uv missing, install uv → install rqmd (same-major pin) → exec original command.
+- So that per-invocation inline fallbacks are never needed in individual command handlers.
+- Given an agent or user invokes rqmd from any call site
+- When the shim handles the invocation
+- Then only the shim contains install logic — no individual call site does.
+
+### RQMD-EXT-059: Bootstrap install lock and session debounce
+- **Status:** 💡 Proposed
+- **Priority:** 🟡 P2 - Medium
+- **Blocked by:** RQMD-EXT-058
+- As the rqmd extension when multiple rqmd commands are queued simultaneously
+- I want a concurrency lock on the bootstrap install process
+- So that only one install attempt runs at a time and subsequent calls wait for it to complete rather than spawning duplicate installs.
+- So that after a successful bootstrap, all queued calls proceed with the now-installed rqmd.
+- So that the VS Code notification is debounced to appear at most once per session.
+- Given two rqmd commands fire concurrently while rqmd is not yet installed
+- When the first triggers bootstrap
+- Then the second waits rather than launching a parallel install.
+- And both complete after the single install finishes.
+
+### RQMD-EXT-060: Bootstrap reason-code telemetry and diagnostics
+- **Status:** 💡 Proposed
+- **Priority:** 🟢 P3 - Low
+- **Blocked by:** RQMD-EXT-058
+- As the rqmd maintainer diagnosing workstation setup failures
+- I want the bootstrap shim to emit a structured reason code for every invocation path
+- So that telemetry captures how often users need auto-install versus already having rqmd present.
+- So that debug logs surface actionable context when bootstrap fails.
+- Reason codes: `already-present` | `installed-rqmd` | `installed-uv-and-rqmd` | `install-failed` | `major-mismatch`
+- Major-mismatch user message: "Installed rqmd major X, but this workflow expects major Y. Please update manually."
+- Given bootstrap completes with any outcome
+- When a reason code is emitted
+- Then it is sent to the telemetry service and written to the extension debug log.

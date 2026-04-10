@@ -10,6 +10,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 <a id="unreleased"></a>
 ## [Unreleased]
 
+### Added
+
+- Requirements RQMD-EXT-056–060: self-healing rqmd bootstrap proposals — same-major version policy, VS Code notification flow, unified shim entrypoint, install lock + session debounce, and reason-code telemetry.
+
 ### Changed
 
 - README docs sync: `/next` is now documented as orchestration-first (recommend + `/go` handoff, implement when asked), agent table duplication is removed, and version-sync text now reflects `0.2.4`.
