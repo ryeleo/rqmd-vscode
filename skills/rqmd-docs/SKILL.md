@@ -22,7 +22,7 @@ Workflow:
 - Use headings consistently: start at h1 and do not skip heading levels.
 - Prefer many smaller pages over one oversized page; create brief index pages when splitting large content improves navigation.
 - Introduce acronyms and jargon on first use, and add Info-style callouts when readers may need extra context.
-- Prefer descriptive hyperlinks over raw pasted URLs.
+- Prefer descriptive hyperlinks over raw pasted URLs or direct references to other 'docs' files in the repo.
 - Use ordered or unordered lists to break up dense prose when they improve scanning.
   - **Nest bullet lists** when items have sub-detail, sub-steps, or grouped facets — flat lists that could benefit from hierarchy should be restructured into nested lists.
   - Use the **Subject:** pattern (`- **Subject:** description or detail`) to call out key items within a list so readers can scan the bold lead and skip the detail if they already know it.

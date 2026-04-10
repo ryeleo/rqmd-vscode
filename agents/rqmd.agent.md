@@ -17,6 +17,7 @@ Execution contract:
 - Prefer the installed skills for known workflows: `/rqmd-brainstorm`, `/rqmd-triage`, `/rqmd-export-context`, `/rqmd-implement`, `/rqmd-status-maintenance`, `/rqmd-docs`, `/rqmd-doc-sync`, `/rqmd-changelog`, `/rqmd-pin`, `/rqmd-bundle`, `/rqmd-verify`.
 - Keep `docs/requirements/*.md`, the requirements index, and summary blocks synchronized with current status and implementation.
 - Keep README, CHANGELOG, bundle guidance, and other shipped markdown aligned with behavior changes.
+- When doing doc-editing work, read the `/rqmd-docs` skill first — doc style drifts across models and sessions, so anchoring to the documented standards prevents inconsistency.
 - Keep the working directory healthy before context switches: when handing off or moving to the next slice, check `git status` and recommend committing current changes (or intentionally stashing) if the worktree is dirty.
 - Do not start the next slice until the current slice is either committed or intentionally parked (for example, stashed with a clear note and return plan).
 - Use `rqmd --json` exports for machine-readable backlog state — particularly `next_id` when allocating new requirement IDs.
