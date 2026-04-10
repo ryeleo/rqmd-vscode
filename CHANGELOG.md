@@ -10,6 +10,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 <a id="unreleased"></a>
 ## [Unreleased]
 
+<a id="v0-2-4"></a>
+## [0.2.4] - 2026-04-09
+
+### Changed
+
+- `/next` prompt reworked to prefer planning and `/go` handoff over immediate implementation; reminds users to commit before switching slices when the worktree is dirty.
+- Agent-level worktree-health rule added to `rqmd.agent.md`: check `git status` and recommend committing (or stashing) before handing off to the next slice.
+
 <a id="v0-2-3"></a>
 ## [0.2.3] - 2026-04-09
 
