@@ -10,6 +10,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 <a id="unreleased"></a>
 ## [Unreleased]
 
+<a id="v0-2-4"></a>
+## [0.2.4] - 2026-04-10
+
 ### Added
 
 - Requirements RQMD-EXT-056–060: self-healing rqmd bootstrap proposals — same-major version policy, VS Code notification flow, unified shim entrypoint, install lock + session debounce, and reason-code telemetry.
@@ -26,12 +29,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `extension.js`: `rqmd.initProject` now calls `runRqmd()` instead of raw terminal open, so bootstrap + rerun is handled automatically.
 - README docs sync: `/next` is now documented as orchestration-first (recommend + `/go` handoff, implement when asked), agent table duplication is removed, and version-sync text now reflects `0.2.4`.
 - Prompt rename: `/polish-docs` is now `/docs-polish` (same behavior, clearer command naming).
-
-<a id="v0-2-4"></a>
-## [0.2.4] - 2026-04-09
-
-### Changed
-
 - `/next` prompt reworked to prefer planning and `/go` handoff over immediate implementation; reminds users to commit before switching slices when the worktree is dirty.
 - Agent-level worktree-health rule added to `rqmd.agent.md`: check `git status` and recommend committing (or stashing) before handing off to the next slice.
 
