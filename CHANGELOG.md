@@ -13,9 +13,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 - Requirements RQMD-EXT-056–060: self-healing rqmd bootstrap proposals — same-major version policy, VS Code notification flow, unified shim entrypoint, install lock + session debounce, and reason-code telemetry.
+- `bootstrap.js`: extension-host bootstrap module — checks for rqmd at startup and command invocation, installs uv and/or rqmd if missing, persists installed major to VS Code global state for same-major version pinning (RQMD-EXT-056, RQMD-EXT-058).
+- `scripts/rqmd-bootstrap.sh`: shell shim for terminal and CI fallback — same bootstrap flow as `bootstrap.js`, state persisted to `$XDG_STATE_HOME/rqmd/installed-major` (RQMD-EXT-058).
+- `bootstrap.js`: `_log()` + Output channel (`rqmd bootstrap`) emits structured reason codes (`already-present`, `installed-rqmd`, `installed-uv-and-rqmd`, `install-failed`, `major-mismatch`) on every bootstrap invocation (RQMD-EXT-060).
+- `tests/bootstrap.test.js`: 6 unit tests covering all bootstrap paths — rqmd present, rqmd missing + uv present, both missing, major mismatch, offline failure, concurrent calls (RQMD-EXT-060).
+- `package.json`: added `"test": "node --test tests/bootstrap.test.js"` script.
 
 ### Changed
 
+- `bootstrap.js`: added concurrency lock (`_bootstrapInFlight` Promise) so concurrent `ensureRqmd()` callers share one in-flight install instead of racing; added session debounce so the “Installing rqmd…” notification fires at most once per extension-host lifetime; extracted `runRqmd(context, args, opts)` helper that bootstraps then opens a terminal and replays the original command automatically (RQMD-EXT-059).
+- `scripts/rqmd-bootstrap.sh`: added `flock`-based filesystem lock so concurrent terminal launches wait rather than racing to install.
+- `extension.js`: `rqmd.initProject` now calls `runRqmd()` instead of raw terminal open, so bootstrap + rerun is handled automatically.
 - README docs sync: `/next` is now documented as orchestration-first (recommend + `/go` handoff, implement when asked), agent table duplication is removed, and version-sync text now reflects `0.2.4`.
 - Prompt rename: `/polish-docs` is now `/docs-polish` (same behavior, clearer command naming).
 

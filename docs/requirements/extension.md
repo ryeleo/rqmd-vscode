@@ -3,7 +3,7 @@
 Scope: VS Code extension packaging and distribution — Marketplace publication, command palette integration, chat participant registration, prompt/skill surface contributions, and self-healing rqmd bootstrap.
 
 <!-- acceptance-status-summary:start -->
-Summary: 7💡 2🔧 1✅ 0⚠️ 0⛔ 0🗑️
+Summary: 3💡 6🔧 1✅ 0⚠️ 0⛔ 0🗑️
 <!-- acceptance-status-summary:end -->
 
 ### RQMD-EXT-051: Distribute rqmd AI bundle as a VS Code extension
@@ -73,7 +73,7 @@ Summary: 7💡 2🔧 1✅ 0⚠️ 0⛔ 0🗑️
 - And agents can still reference `/rqmd-brainstorm` internally and load the skill.
 
 ### RQMD-EXT-056: Same-major rqmd auto-install version policy
-- **Status:** 💡 Proposed
+- **Status:** 🔧 Implemented
 - **Priority:** 🟠 P1 - High
 - As the rqmd extension
 - When installing or updating the rqmd CLI tool automatically
@@ -102,7 +102,7 @@ Summary: 7💡 2🔧 1✅ 0⚠️ 0⛔ 0🗑️
 - And on failure: "Could not install rqmd automatically. Check network, permissions, or Python toolchain and try again."
 
 ### RQMD-EXT-058: Unified shim bootstrap entrypoint for all rqmd invocations
-- **Status:** 💡 Proposed
+- **Status:** 🔧 Implemented
 - **Priority:** 🟠 P1 - High
 - **Blocked by:** RQMD-EXT-057
 - As a user invoking rqmd from the extension, command palette, or any agent tool call
@@ -115,7 +115,7 @@ Summary: 7💡 2🔧 1✅ 0⚠️ 0⛔ 0🗑️
 - Then only the shim contains install logic — no individual call site does.
 
 ### RQMD-EXT-059: Bootstrap install lock and session debounce
-- **Status:** 💡 Proposed
+- **Status:** 🔧 Implemented
 - **Priority:** 🟡 P2 - Medium
 - **Blocked by:** RQMD-EXT-058
 - As the rqmd extension when multiple rqmd commands are queued simultaneously
@@ -129,7 +129,7 @@ Summary: 7💡 2🔧 1✅ 0⚠️ 0⛔ 0🗑️
 - And both complete after the single install finishes.
 
 ### RQMD-EXT-060: Bootstrap reason-code telemetry and diagnostics
-- **Status:** 💡 Proposed
+- **Status:** 🔧 Implemented
 - **Priority:** 🟢 P3 - Low
 - **Blocked by:** RQMD-EXT-058
 - As the rqmd maintainer diagnosing workstation setup failures

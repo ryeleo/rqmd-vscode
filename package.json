@@ -9,6 +9,9 @@
     "type": "git",
     "url": "https://github.com/ryeleo/rqmd-vscode"
   },
+  "scripts": {
+    "test": "node --test tests/bootstrap.test.js"
+  },
   "engines": {
     "vscode": "^1.115.0"
   },
@@ -24,6 +27,7 @@
     "ai"
   ],
   "activationEvents": [
+    "onStartupFinished",
     "onCommand:rqmd.initProject"
   ],
   "main": "./extension.js",
