@@ -2,7 +2,7 @@
   "name": "rqmd",
   "displayName": "rqmd — AI Agent Bundle",
   "description": "Brings the rqmd AI workflow to VS Code Copilot Chat with installable prompts, skills, and agent definitions.",
-  "version": "0.2.4",
+  "version": "0.2.5",
   "publisher": "ryeleo",
   "license": "MIT",
   "repository": {
@@ -28,7 +28,8 @@
   ],
   "activationEvents": [
     "onStartupFinished",
-    "onCommand:rqmd.initProject"
+    "onCommand:rqmd.initProject",
+    "onChatParticipant:rqmd.rqmd"
   ],
   "main": "./extension.js",
   "contributes": {
@@ -55,17 +56,14 @@
     ],
     "chatSkills": [
       { "path": "./skills/rqmd-brainstorm/SKILL.md" },
-      { "path": "./skills/rqmd-bundle/SKILL.md" },
       { "path": "./skills/rqmd-changelog/SKILL.md" },
       { "path": "./skills/rqmd-diagram/SKILL.md" },
       { "path": "./skills/rqmd-doc-sync/SKILL.md" },
       { "path": "./skills/rqmd-docs/SKILL.md" },
       { "path": "./skills/rqmd-export-context/SKILL.md" },
       { "path": "./skills/rqmd-feedback/SKILL.md" },
-      { "path": "./skills/rqmd-history/SKILL.md" },
       { "path": "./skills/rqmd-implement/SKILL.md" },
       { "path": "./skills/rqmd-init/SKILL.md" },
-      { "path": "./skills/rqmd-init-legacy/SKILL.md" },
       { "path": "./skills/rqmd-pin/SKILL.md" },
       { "path": "./skills/rqmd-status-maintenance/SKILL.md" },
       { "path": "./skills/rqmd-telemetry/SKILL.md" },
@@ -74,6 +72,27 @@
     ],
     "chatAgents": [
       { "path": "./agents/rqmd.agent.md" }
+    ],
+    "chatParticipants": [
+      {
+        "id": "rqmd.rqmd",
+        "name": "rqmd",
+        "fullName": "rqmd",
+        "description": "rqmd AI workflow assistant — brainstorm, implement, and ship with tracked requirements.",
+        "isSticky": true,
+        "commands": [
+          { "name": "brainstorm", "description": "Explore ideas and promote them into tracked requirement proposals" },
+          { "name": "triage",    "description": "Review and rank backlog items; select the next-batch slice" },
+          { "name": "go",        "description": "Implement the highest-priority proposed requirements" },
+          { "name": "next",      "description": "Suggest the next best slice with a copy-paste /go prompt" },
+          { "name": "refine",    "description": "Sharpen requirement language, criteria, or priority" },
+          { "name": "commit",    "description": "Commit current work with a structured human-narrative message" },
+          { "name": "verify",    "description": "Re-run summary verification and targeted tests after changes" },
+          { "name": "pin",       "description": "Capture durable context, decisions, and quick-reference notes" },
+          { "name": "feedback",  "description": "Send improvement feedback about rqmd to the developer" },
+          { "name": "docs",      "description": "Improve repository documentation quality and structure" }
+        ]
+      }
     ]
   }
 }

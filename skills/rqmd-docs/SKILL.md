@@ -6,19 +6,23 @@ user-invocable: false
 metadata:
   guide:
     summary: Improve documentation quality as a first-class workflow, not just a sync pass.
-    workflow:
-      - Start from the active documentation standards and the audience for the page.
-      - Improve headings, page structure, hyperlinks, jargon explanations, and list formatting so the doc is faster to scan and easier to trust.
-      - Split oversized pages into smaller linked pages or index pages when that meaningfully improves navigation.
-    examples:
-      - rqmd --verify-summaries --non-interactive
-      - rqmd-ai --json --dump-id RQMD-AI-040 --include-requirement-body
-      - rqmd-ai --json --dump-status proposed
+
 ---
 
-Use when documentation needs better writing, structure, or organization — not just post-change alignment.
+Improve documentation writing, structure, and organization. Use when docs need more than mechanical post-change alignment (that's `/rqmd-doc-sync`).
 
-## Workflow
+## Done when
+
+- Headings, structure, and formatting follow the style guide below
+- `rqmd --verify-summaries --non-interactive` passes
+- No secrets or credentials in docs or examples
+
+## Edge cases
+
+- Use `/rqmd-doc-sync` when the task is only alignment, not quality improvement
+- Prefer focused improvements over needless rewrites
+
+## Style guide
 
 - **Headings:** Start at h1, do not skip levels
 - **Page size:** Prefer smaller pages; create index pages when splitting improves navigation
@@ -38,7 +42,7 @@ Use these exact shapes:
 
 > **ℹ️ Info:** `rqmd --verify-summaries --non-interactive` only verifies summaries.
 
-> **⚠️ Note:** Expand `rqmd-ai` on first use if introduced before `rqmd`.
+> **⚠️ Note:** Introduce project-specific jargon on first use.
 
 > **🚨 Warning:** Do not paste tokens or credentials into documentation.
 
@@ -51,8 +55,3 @@ Diagrams help when prose alone confuses readers about:
 
 Add diagrams inline using fenced `mermaid` blocks. Use `/rqmd-diagram` for syntax rules and validation.
 
-## Constraints
-
-- Use `/rqmd-doc-sync` when the task is only alignment
-- Keep requirement docs, README, and bundle text consistent with shipped behavior
-- Prefer focused improvements over needless rewrites

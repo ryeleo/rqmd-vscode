@@ -1,33 +1,24 @@
 ---
 name: rqmd-changelog
-description: Keep CHANGELOG.md clear, human-led, and Keep a Changelog-aligned. Use when preparing Unreleased notes, tightening noisy release entries, or deciding which implementation details belong in the public changelog.
+description: Keep CHANGELOG.md clear, human-led, and Keep a Changelog-aligned.
 argument-hint: Describe the release slice, recent work, or changelog section that needs to be curated.
 user-invocable: false
 metadata:
   guide:
-    summary: Curate CHANGELOG.md as a concise release narrative led by user-visible outcomes and human decisions.
-    workflow:
-      - Start from the shipped behavior, requirement updates, and recent user-directed changes.
-      - Write the primary changelog bullets for end-user impact, release-relevant decisions, and notable workflow shifts.
-      - Keep supporting AI implementation detail subordinate under a nested heading such as `AI Development` when it adds useful context.
-    examples:
-      - rqmd --verify-summaries --non-interactive
-      - rqmd-ai --json --dump-status proposed
-      - rqmd-ai --json --workflow-mode implement
+    summary: Curate CHANGELOG.md as a concise narrative led by user-visible outcomes and human decisions.
 ---
 
-Use when changelog quality matters as its own task, not just a docs-sync side effect.
+Maintain `CHANGELOG.md` as a clear release record. Lead with user impact and human decisions; AI implementation detail is subordinate, not absent.
 
-## Workflow
+## Done when
 
-- Update `CHANGELOG.md` under `Unreleased` before cutting a version
-- Lead with user-visible behavior changes and human-directed decisions
-- Prefer `Implemented RQMD-UNDO-008: <description>` over `Updated status to mark ... as Implemented`
-- Keep low-signal detail under a nested `AI Development` heading
-- Format per `/rqmd-docs`: nest bullets, use **Subject:** pattern, add subheadings when releases grow large
-- Keep changelog aligned with requirement docs, README, and bundle text
+- `[Unreleased]` reflects all shipped changes
+- Bullets lead with user-visible outcomes, not file names
+- AI work is subordinate under a nested `## AI Development` heading when included
+- Keep a Changelog structure (`### Added`, `### Changed`, `### Removed`) intact
 
-## Constraints
+## Edge cases
 
-- Preserve Keep a Changelog structure
-- Not a commit log — include AI work only when it explains shipped outcome
+- Not a commit log — include AI work only when it explains a shipped outcome
+- Prefer `Implemented RQMD-EXT-025: <description>` reference style over restating the requirement in prose
+- Use `/rqmd-doc-sync` when the main task is requirement-doc alignment, not changelog quality

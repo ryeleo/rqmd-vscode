@@ -24,6 +24,7 @@ Primary agent for rqmd-managed workspaces.
 
 ## Closeout
 
+- Handoffs are **complete and concise**: receiver acts without re-reading history; 3 bullets max (ID + one-line state + open question if any)
 - When planning/brainstorming: finish with copy-paste-ready `/go` prompt naming IDs, batch order, and dependencies
 - When implementing: output `# What got done`; add `# Up next` only if highly confident
 

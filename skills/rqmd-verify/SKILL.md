@@ -1,32 +1,23 @@
 ---
 name: rqmd-verify
-description: Verify rqmd requirement/documentation sync and post-change validation. Use after edits to re-run summary verification, targeted tests, full tests, and any final requirement-status checks before completion.
-argument-hint: Describe what changed and whether you want targeted validation, a full verification pass, or both.
+description: Run post-change validation — summaries, targeted tests, full tests, and residual risk.
+argument-hint: Describe what changed and whether you want targeted or full verification.
 user-invocable: false
 metadata:
   guide:
-    summary: Run the finish-pass verification loop after edits land.
-    workflow:
-      - Re-run summary verification first.
-      - Run targeted tests for the touched area.
-      - Run the full test suite before calling the batch complete.
-    examples:
-      - rqmd --verify-summaries --non-interactive
-      - uv run --extra dev pytest tests/test_ai_cli.py -q
-      - uv run --extra dev pytest -q
+    summary: Disciplined finish-pass verification after edits land.
 ---
 
-Use when changes are in progress and you need a disciplined finish pass.
+Run the verification loop after changes land. Catch drift between code, requirement docs, and summaries before declaring a batch done.
 
-## Workflow
+## Done when
 
-1. `rqmd --verify-summaries --non-interactive`
-2. Targeted tests for touched area
-3. Full suite: `uv run --extra dev pytest -q`
-4. If backlog changed, re-check `rqmd-ai --json --dump-status proposed`
-5. Call out residual risk or drift before finishing
+- `rqmd --verify-summaries --non-interactive` passes
+- Targeted tests for touched area pass
+- Full test suite passes (use project `/test` skill for repo-specific commands)
+- Residual risk or remaining drift explicitly called out
 
-## Constraints
+## Edge cases
 
-- Prefer deterministic validation
-- Report clearly when validation incomplete
+- Don't hardcode test commands — delegate to the project's `/test` skill
+- If backlog changed, re-check proposal priorities before handing off

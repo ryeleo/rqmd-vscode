@@ -1,32 +1,22 @@
 ---
 name: rqmd-triage
-description: Review, rank, and select the next rqmd backlog slice from tracked requirements. Use for proposal triage, next-batch selection, backlog grooming, and deciding which 1-3 requirements should move next.
-argument-hint: Describe the backlog area, status filter, or requirement domain you want to triage.
+description: Review, rank, and select the next backlog slice from tracked requirements.
+argument-hint: Describe the backlog area, status filter, or domain you want to triage.
 user-invocable: false
 metadata:
   guide:
-    summary: Review and narrow the next implementation slice from tracked proposed requirements.
-    workflow:
-      - Export the current proposal queue with --dump-status proposed.
-      - Narrow broad backlogs with --dump-file, --dump-id, or targeted rqmd filters.
-      - Pick the highest-value 1-3 items using priority, blocking relationships, and batch size.
-    examples:
-      - rqmd-ai --json --dump-status proposed
-      - rqmd-ai --json --dump-file core-engine.md
-      - rqmd --status proposed --priority p1 --json --non-interactive
+    summary: Narrow the backlog to the highest-value 1–3 items for the next implementation batch.
 ---
 
-Use when tracked requirements exist and you need to decide what to work next.
+Pick what to work next from tracked proposed requirements. Rank by priority and blocking relationships, not recency. Output a ready-to-paste `/go` prompt naming the selected IDs.
 
-## Workflow
+## Done when
 
-1. Export proposals: `rqmd-ai --json --dump-status proposed`
-2. Narrow with `--dump-file`, `--dump-id`, or rqmd filters if backlog is broad
-3. Rank by priority, blocking relationships, batch size
-4. Pick highest-value 1-3 items
-5. Re-check priorities after each shipped batch
+- 1–3 highest-priority items selected with explicit rationale
+- `/go` handoff prompt provided (complete and concise: ID + one-line state per item)
+- Remaining backlog acknowledged — no silent drops
 
-## Constraints
+## Edge cases
 
-- Prefer tracked proposals over scratch notes
-- Keep selection logic explicit for future agents
+- Prefer tracked proposals over brainstorm scratch notes
+- When backlog is broad, narrow by domain token or `--priority` filter before ranking

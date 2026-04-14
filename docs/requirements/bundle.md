@@ -3,7 +3,7 @@
 Scope: installed AI bundle content — agents, skills, prompts, and workflow guidance contributed by the VS Code extension to every workspace where the extension is active.
 
 <!-- acceptance-status-summary:start -->
-Summary: 7💡 41🔧 2✅ 0⚠️ 0⛔ 0🗑️
+Summary: 7💡 39🔧 2✅ 0⚠️ 0⛔ 2🗑️
 <!-- acceptance-status-summary:end -->
 
 ### RQMD-EXT-001: Installable AI agent/skill instruction bundle
@@ -127,14 +127,20 @@ Summary: 7💡 41🔧 2✅ 0⚠️ 0⛔ 0🗑️
 - **Summary:** The installed default agent instructions to prefer a concise markdown closeout structure such as `# What got done`, `# Up next`, and `# Direction` so that implementation updates are easier to scan quickly in AI chat transcripts and review handoffs.
 
 ### RQMD-EXT-025: Long-running priority-first development agent
-- **Status:** 🔧 Implemented
+- **Status:** �️ Deprecated
 - **Priority:** 🟠 P1 - High
+- **Superseded by:** RQMD-EXT-034
 - **Summary:** Rqmd to ship a `rqmd-dev-longrunning` agent variant that explicitly tries to continue making progress for as long as feasible so that the agent works proposed requirements in priority order, keeps reassessing the backlog after each validated batch, and stops only when it reaches a real blocker, exhausts feasible work, or completes the active slice.
 
+> Behavior absorbed into unified `rqmd` agent via `/go N` (slice count argument). No separate agent variant needed.
+
 ### RQMD-EXT-026: Easy-first low-hanging-fruit development agent
-- **Status:** 🔧 Implemented
+- **Status:** �️ Deprecated
 - **Priority:** 🟡 P2 - Medium
+- **Superseded by:** RQMD-EXT-034
 - **Summary:** Rqmd to ship a `rqmd-dev-easy` agent variant that focuses on low-risk, high-confidence requirement slices first so that the agent preferentially picks low-hanging-fruit proposed requirements where it can make clean progress with minimal exploratory risk.
+
+> Behavior absorbed into unified `rqmd` agent via `/go easy-win` (constraint argument). No separate agent variant needed.
 
 ### RQMD-EXT-027: Legacy-init installs local schema guidance into generated requirement indexes
 - **Status:** 🔧 Implemented
@@ -282,12 +288,12 @@ Summary: 7💡 41🔧 2✅ 0⚠️ 0⛔ 0🗑️
 ### RQMD-EXT-046: Auto-draft requirements during brainstorm and refine sessions
 - **Status:** 💡 Proposed
 - **Priority:** 🟠 P1 - High
-- **Summary:** The agent to automatically write solidified ideas into `docs/requirements/` as 💡 Proposed entries rather than asking me for permission each time so that when I copy-paste a `/go` handoff prompt into a cheaper agent, the requirements it references already exist in the tracked docs and the implementation agent has a clear contract to work from.
+- **Summary:** The agent to automatically write solidified ideas into `docs/requirements/` as 💡 Proposed entries rather than asking me for permission each time so that when any session picks up the `/go` handoff prompt, the requirements it references already exist in the tracked docs and the implementation session has a clear contract to work from.
 
 ### RQMD-EXT-047: Brainstorm and refine modes resist jumping to implementation
 - **Status:** 💡 Proposed
 - **Priority:** 🟡 P2 - Medium
-- **Summary:** The agent to actively resist writing code, tests, or implementation changes and instead focus on shaping, clarifying, and tracking requirements so that the brainstorm/refine workflow stays focused on *what* to build and *why*, with implementation deferred to a `/go` handoff in a separate (typically cheaper) agent session.
+- **Summary:** The agent to actively resist writing code, tests, or implementation changes and instead focus on shaping, clarifying, and tracking requirements so that the brainstorm/refine workflow stays focused on *what* to build and *why*, with implementation deferred to a `/go` handoff in a focused implementation session.
 
 ### RQMD-EXT-048: Brainstorm and refine skills detect bug reports and offer bug template
 - **Status:** 💡 Proposed

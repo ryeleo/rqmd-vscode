@@ -10,6 +10,44 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 <a id="unreleased"></a>
 ## [Unreleased]
 
+<a id="v0-2-5"></a>
+## [0.2.5] - 2026-04-14
+
+### Added
+
+- `@rqmd` chat participant registered (`RQMD-PACKAGING-017`). Subcommands `brainstorm`, `triage`, `go`, `next`, `refine`, `commit`, `verify`, `pin`, `feedback`, and `docs` appear in Copilot Chat autocomplete. Each subcommand loads its skill or prompt file as system instructions and forwards the request to the Copilot-selected model.
+
+### Changed
+
+- Deleted `agents/rqmd-dev.agent.md` — `rqmd.agent.md` is the single agent covering all work modes. The dev sub-agent was vestigial since RQMD-EXT-045.
+- Removed `rqmd-history` skill reference from `package.json` — file did not exist.
+- All skills: purged all `rqmd-ai` CLI command references (the `rqmd-ai` entrypoint was removed from the CLI in rqmd-cli `980fd5e`). Replaced with current `rqmd` equivalents: `rqmd --json --non-interactive`, `rqmd --status proposed --json --non-interactive`, `rqmd --update ID=STATUS`, `rqmd --scaffold`.
+- `rqmd-bundle` skill: deleted — no user-facing bundle install or management workflow exists in the extension-native model; extension ships content automatically.
+- `rqmd-init` skill: rewritten as AI-driven structured interview — agent explores repo context, conducts multi-choice interview with smart defaults pre-selected, generates `/dev` and `/test` skills, and seeds requirements catalog; existing-repo guidance merged in from `rqmd-init-legacy`.
+- `rqmd-init-legacy` skill: deleted — guidance merged into `rqmd-init`.
+- `rqmd-telemetry` skill: updated command discovery example and test pipeline to reference `rqmd` instead of `rqmd-ai`.
+- `prompts/refine.prompt.md`: removed "recommend cheaper implementation agent" — handoffs target a capable fork of the same agent.
+- `docs/requirements/bundle.md` RQMD-EXT-046: removed "cheaper agent" framing from summary.
+- `docs/requirements/bundle.md` RQMD-EXT-047: removed "(typically cheaper)" from handoff session description.
+- `agents/rqmd.agent.md`: added "complete and concise" handoff standard to Closeout — handoffs are 3 bullets max (ID + one-line state + open question if any).
+- Skills `rqmd-implement`, `rqmd-triage`, `rqmd-verify`, `rqmd-changelog`, `rqmd-doc-sync`, `rqmd-status-maintenance`, `rqmd-pin`, `rqmd-brainstorm`: converted to focus-contract format per `docs/skill-format.md` — charter + `## Done when` + `## Edge cases` replaces `## Workflow` + `## Constraints`.
+- `rqmd-brainstorm` skill: fixed `section_targets` and `default_target_file` to use rqmd-vscode domain files (`bundle.md`, `extension.md`) instead of rqmd-cli files (`ai-cli.md`, `core-engine.md`, etc.).
+- Skills `rqmd-telemetry`, `rqmd-docs`, `rqmd-feedback`: trimmed `metadata.workflow` and `examples` arrays; reference body content kept.
+- `rqmd-docs` skill: restructured body — added `## Done when` + `## Edge cases` preamble; renamed `## Workflow` to `## Style guide`; removed `## Constraints`.
+- `docs/requirements/bundle.md` RQMD-EXT-025: marked 🗑️ Deprecated — behavior absorbed into unified `rqmd` agent via `/go N`. Superseded by RQMD-EXT-034.
+- `docs/requirements/bundle.md` RQMD-EXT-026: marked 🗑️ Deprecated — behavior absorbed into unified `rqmd` agent via `/go easy-win`. Superseded by RQMD-EXT-034.
+- `rqmd-export-context` skill: converted to focus-contract format — charter, `## Done when`, `## Edge cases`; current `rqmd` CLI commands documented (`rqmd --json --non-interactive`, `rqmd --status proposed --json --non-interactive`).
+
+### Added (batch 3)
+
+- `docs/skill-format.md`: focus-contract format specification — canonical reference for the charter + done-when + edge-cases skill structure, with before/after examples for 5 skills.
+- `docs/brainstorm.md`: single-smart-agent refactor planning notes for rqmd-vscode.
+
+### Removed
+
+- `skills/rqmd-bundle/` — deleted; bundle content ships with the VS Code extension automatically, no workspace install step needed.
+- `skills/rqmd-init-legacy/` — deleted; existing-repo guidance merged into `rqmd-init`.
+
 <a id="v0-2-4"></a>
 ## [0.2.4] - 2026-04-10
 

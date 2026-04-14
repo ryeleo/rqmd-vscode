@@ -41,7 +41,7 @@ Once installed, the following are immediately available in Copilot Chat.
 
 ### Skills
 
-16 domain skills available in agent mode, including `rqmd-implement`, `rqmd-triage`, `rqmd-brainstorm`, `rqmd-verify`, `rqmd-changelog`, `rqmd-doc-sync`, and more.
+14 domain skills available in agent mode, including `rqmd-implement`, `rqmd-triage`, `rqmd-brainstorm`, `rqmd-verify`, `rqmd-changelog`, `rqmd-doc-sync`, and more.
 
 ## What rqmd is for
 

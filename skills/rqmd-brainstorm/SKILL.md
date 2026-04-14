@@ -1,46 +1,22 @@
 ---
 name: rqmd-brainstorm
-description: Turn brainstorm notes or loose ideas into ranked rqmd requirement proposals before implementation. Use for docs/brainstorm.md review, backlog grooming, requirement planning, and mapping ideas into docs/requirements/*.md with suggested IDs, statuses, and priorities.
+description: Turn brainstorm notes or loose ideas into ranked requirement proposals before implementation.
 argument-hint: Describe the brainstorm source and which requirement area it should likely affect.
 user-invocable: false
 metadata:
   guide:
     summary: Turn loose planning notes into ranked requirement proposals before implementation starts.
-    workflow:
-      - Start from raw planning notes such as docs/brainstorm.md or targeted requirement exports.
-      - Promote brainstorm items into tracked requirement proposals with target docs, IDs, statuses, and priorities.
-      - Keep the output read-only so requirement changes can be reviewed before any implementation work begins.
-    examples:
-      - rqmd-ai --json --workflow-mode brainstorm
-      - rqmd-ai --json --dump-file ai-cli.md --include-domain-markdown
-      - rqmd-ai --json --dump-status proposed
   brainstorm:
-    default_target_file: ai-cli.md
+    default_target_file: bundle.md
     default_priority_rank: -1
     proposal_title:
       max_words: 10
       max_chars: 96
-    proposal_sort:
-      priority_source: runtime-catalog
     section_targets:
-      - tokens: [ai workflow, agent, skill]
-        target_file: ai-cli.md
-      - tokens: [ux, interactive, ctrl + z]
-        target_file: interactive-ux.md
-      - tokens: [screen write, scroll]
-        target_file: screen-write.md
-      - tokens: [priority]
-        target_file: priority.md
-      - tokens: [filter, schema version]
-        target_file: automation-api.md
-      - tokens: [readme, rename key, external links, blocking]
-        target_file: core-engine.md
-      - tokens: [reqmd, rename, pypi]
-        target_file: packaging.md
-      - tokens: [debug why rqmd fails, desktop-verified, user story]
-        target_file: portability.md
-      - tokens: [performance, rust, native]
-        target_file: core-engine.md
+      - tokens: [agent, skill, prompt, workflow, init, bundle]
+        target_file: bundle.md
+      - tokens: [extension, vscode, marketplace, bootstrap, install, chat participant]
+        target_file: extension.md
     priority_hints:
       - tokens: [critical, p0, must, crash, fails, regression, broken, bug]
         priority_rank: 0
@@ -50,19 +26,16 @@ metadata:
         priority_rank: 2
 ---
 
-Use when work starts as notes instead of tracked requirements.
+Turn brainstorm notes in `docs/brainstorm.md` into tracked 💡 Proposed entries. Don't write code — shape ideas until they're ready to hand off via `/go`.
 
-## Workflow
+## Done when
 
-1. Export planning guidance: `rqmd-ai --json --workflow-mode brainstorm`
-2. Read `docs/brainstorm.md` and cross-check `rqmd-ai --json --dump-status proposed`
-3. Convert viable ideas into tracked proposals:
-   - Target requirement doc, suggested ID, `💡 Proposed` status, priority from project catalog
-   - **Use `next_id` from JSON output** — never calculate IDs manually
-4. **Bug detection:** If an item describes broken behavior or regression, use `- **Type:** bug` and `- **Affects:** <ID>` metadata with Steps/Expected/Actual/Root Cause template
-5. Update requirement docs, index, and `CHANGELOG.md` before code
+- Viable ideas promoted to requirement entries with IDs, statuses, priorities, and target domain files
+- `docs/brainstorm.md` trimmed of promoted items
+- Ready-to-paste `/go` prompt provided when items are ready for implementation
 
-## Constraints
+## Edge cases
 
-- Do not skip tracking for net-new behavior
-- Keep output read-only until reviewed
+- Never calculate IDs — use `next_id` from `rqmd --json` output
+- Bug-shaped ideas get `- **Type:** bug` + Steps/Expected/Actual/Root Cause template, not user-story
+- Keep output read-only until reviewed; no code changes in brainstorm phase

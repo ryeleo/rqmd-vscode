@@ -1,32 +1,22 @@
 ---
 name: rqmd-pin
-description: Capture durable context, decisions, and quick-reference notes in a maintained home that stays easy to find across sessions. Use for project memory, decision logs, pinned reminders, and choosing where persistent notes should live.
-argument-hint: Describe what should be pinned, whether it is a new note or an update, and where it currently lives if a location already exists.
+description: Capture durable context, decisions, or notes in a stable location.
+argument-hint: Describe what to pin and where it should live if known.
 user-invocable: false
 metadata:
   guide:
-    summary: Capture durable project context in a stable, reviewable home instead of leaving it buried in chat history.
-    workflow:
-      - Decide whether the note belongs in an existing nearby doc, a README section, or a dedicated `docs/pins/` area.
-      - Prefer one focused note per topic, defaulting to `docs/pins/` when the best location is unclear.
-      - Keep pin collections navigable with an index page and hand broader organization cleanup to `/rqmd-docs` when needed.
-    examples:
-      - rqmd-ai --json --dump-id RQMD-AI-042 --include-requirement-body
-      - rqmd --verify-summaries --non-interactive
-      - rqmd-ai --json --dump-status proposed
+    summary: Capture durable project context in a stable, reviewable home.
 ---
 
-Use when important context should stay findable after the session ends.
+Save important context, decisions, or reminders where they stay findable after the session ends. Default to `docs/pins/` when the best home isn't obvious.
 
-## Workflow
+## Done when
 
-- Decide location: existing doc, README section, or `docs/pins/`
-- Default to `docs/pins/` with one file per topic when unclear
-- Keep a `docs/pins/README.md` index; use `pin-template.md` for new notes
-- Link pins to relevant requirements/docs for context
-- Use `/rqmd-docs` when pin area needs structure cleanup
+- Note exists in a reviewable, permanent location (not just chat history)
+- `docs/pins/README.md` index updated if pin lives there
+- Linked to relevant requirements or docs for context
 
-## Constraints
+## Edge cases
 
-- Do not replace canonical requirement or changelog records
-- Prefer stable storage over chat transcripts or scratch files
+- Don't replace canonical requirement or changelog records with pins
+- If pin area needs structural cleanup, hand off to `/rqmd-docs`

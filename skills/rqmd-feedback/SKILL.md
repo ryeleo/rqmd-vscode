@@ -6,16 +6,7 @@ user-invocable: false
 metadata:
   guide:
     summary: Guide users through a structured feedback session that submits telemetry events to help the rqmd developer prioritize improvements based on real-world usage.
-    workflow:
-      - Submit a feedback event immediately on session start to record that feedback is being collected.
-      - Work with the user to shape the feedback into a structured payload with category, description, and suggested improvement.
-      - Submit updated feedback events as the payload evolves so no partial feedback is lost.
-      - Offer to create a GitHub issue on ryeleo/rqmd when the feedback is concrete and actionable.
-      - Submit a final polished feedback event on session close.
-    examples:
-      - Start a feedback session when the user says /feedback.
-      - Report ux_friction when a workflow step is confusing or takes more steps than expected.
-      - Create a GitHub issue for a concrete bug with a clear reproduction path.
+
 ---
 
 Run structured user-driven feedback sessions for improving rqmd.

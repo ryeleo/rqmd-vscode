@@ -1,34 +1,22 @@
 ---
 name: rqmd-doc-sync
-description: Synchronize rqmd requirement docs, summaries, README guidance, and changelog entries after behavior changes. Use when shipped behavior is already understood and the main task is to close documentation drift.
-argument-hint: Describe what changed and which docs or requirement files need alignment.
+description: Synchronize requirement docs, summaries, README, and changelog after behavior changes.
+argument-hint: Describe what changed and which docs need alignment.
 user-invocable: false
 metadata:
   guide:
-    summary: Close documentation drift after a behavior change without turning the task into a broader writing or restructure pass.
-    workflow:
-      - Update the affected requirement docs first.
-      - Keep README, changelog, and bundle guidance aligned with the shipped behavior.
-      - Hand broader readability, structure, or page-splitting work to `/rqmd-docs` when needed.
-      - Re-run summary verification before finishing.
-    examples:
-      - rqmd --verify-summaries --non-interactive
-      - rqmd-ai --json --dump-id RQMD-CORE-001 --include-requirement-body
-      - rqmd-ai --json --workflow-mode implement
+    summary: Close documentation drift after a behavior change without turning it into a broader writing pass.
 ---
 
-Use when code changes are done and the main task is alignment, not documentation craft.
+Align docs with shipped behavior. Scope narrowly — this is not a writing-quality pass (that's `/rqmd-docs`).
 
-## Workflow
+## Done when
 
-1. Update affected `docs/requirements/*.md`
-2. Align `docs/requirements/README.md`, top-level `README.md`, and `CHANGELOG.md`
-3. Use `/rqmd-docs` instead when the task is improving structure, headings, or page splits
-4. Update `.github/copilot-instructions.md` and bundle text if AI workflows changed
-5. Verify: `rqmd --verify-summaries --non-interactive`
-6. Call out remaining drift needing manual judgment
+- Affected `docs/requirements/*.md` entries match shipped behavior
+- README and CHANGELOG reflect the change
+- `rqmd --verify-summaries --non-interactive` passes
 
-## Constraints
+## Edge cases
 
-- Treat requirement markdown as product surface
-- Prefer small doc updates tied to shipped behavior
+- If task is improving structure, clarity, or page splits — use `/rqmd-docs` instead
+- Update skill files if agent workflow behavior changed

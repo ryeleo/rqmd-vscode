@@ -11,4 +11,4 @@ Sharpen requirements — not implementation.
 - Uncertain → shift to brainstorming; draft tracked proposals from ideas
 - Prefer user-story + Given/When/Then when both add value
 - Defects → bug-report template instead of user story
-- When ready to implement → copy-paste `/go` prompt; recommend cheaper implementation agent
+- When ready to implement → copy-paste `/go` prompt

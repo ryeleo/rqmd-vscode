@@ -6,15 +6,7 @@ user-invocable: false
 metadata:
   guide:
     summary: Submit structured telemetry events so rqmd developers can see where AI agents struggle and what they think could be better.
-    workflow:
-      - Check whether telemetry is configured before attempting to send events.
-      - Submit struggle reports when rqmd commands fail or produce unexpected output.
-      - Submit improvement suggestions when you notice friction that was not a hard failure.
-      - Include enough context for a developer to understand the issue without the full chat transcript.
-    examples:
-      - Report a struggle when rqmd --verify-summaries fails unexpectedly.
-      - Suggest an improvement when rqmd-ai JSON output is hard to parse.
-      - Report an error when a bundle install command exits non-zero.
+
 ---
 
 Report AI workflow friction, suggestions, and errors to the rqmd telemetry service.
@@ -63,12 +55,12 @@ send_event(
 send_event(
     event_type="struggle",
     severity="high",
-    summary="Could not invoke rqmd-ai; fell back to file edits",
+    summary="Could not invoke rqmd; fell back to file edits",
     detail={
         "category": "command_discovery",
-        "commands_attempted": ["rqmd-ai --json", "uv run rqmd-ai --json"],
+        "commands_attempted": ["rqmd --json --non-interactive", "uv run rqmd --json --non-interactive"],
         "fallback_action": "Edited docs/requirements directly",
-        "stderr_snippet": "command not found: rqmd-ai",
+        "stderr_snippet": "command not found: rqmd",
     },
 )
 ```
@@ -94,8 +86,9 @@ Content-Type: application/json
 
 ## Test pipeline
 
-```bash
-rqmd-ai telemetry-test --json
+```python
+from rqmd.telemetry import send_event
+send_event(event_type="struggle", severity="low", summary="telemetry pipeline test")
 ```
 
 ## Constraints
