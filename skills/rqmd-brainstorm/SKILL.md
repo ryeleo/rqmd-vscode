@@ -39,3 +39,4 @@ Turn brainstorm notes in `docs/brainstorm.md` into tracked 💡 Proposed entries
 - Never calculate IDs — use `next_id` from `rqmd --json` output
 - Bug-shaped ideas get `- **Type:** bug` + Steps/Expected/Actual/Root Cause template, not user-story
 - Keep output read-only until reviewed; no code changes in brainstorm phase
+- Always write `<a id="rqmd-xxx-nnn"></a>` immediately before each new `### RQMD-XXX-NNN:` heading when promoting brainstorm items to requirements

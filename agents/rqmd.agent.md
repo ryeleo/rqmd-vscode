@@ -37,3 +37,5 @@ Proactively offer for: state/lifecycle, UI flows, protocols, call graphs, pipeli
 - Technical but readable; smaller sections over oversized blocks
 - Lifecycle emoji: 💡 Proposed, 🔧 Implemented, ✅ Verified, ⛔ Blocked, 🗑️ Deprecated
 - Callouts: `> **ℹ️ Info:**`, `> **⚠️ Note:**`, `> **🚨 Warning:**`
+- **Requirement IDs are always links** — whenever the source file is known, emit `[RQMD-EXT-063](docs/requirements/bundle.md#rqmd-ext-063)` format; bare IDs only as fallback when file is unknown
+- ID→file: use `rqmd --json --status <status>` output, or from context when the file was recently read

@@ -6,6 +6,7 @@ Scope: VS Code extension packaging and distribution — Marketplace publication,
 Summary: 3💡 6🔧 1✅ 0⚠️ 0⛔ 0🗑️
 <!-- acceptance-status-summary:end -->
 
+<a id="rqmd-ext-051"></a>
 ### RQMD-EXT-051: Distribute rqmd AI bundle as a VS Code extension
 - **Status:** 🔧 Implemented
 - **Priority:** 🟠 P1 - High
@@ -15,6 +16,7 @@ Summary: 3💡 6🔧 1✅ 0⚠️ 0⛔ 0🗑️
 - Then Copilot discovers the extension-contributed prompts, skills, and agent definitions without any files in `.github/`.
 - And `rqmd-ai install` is no longer needed — the extension replaces the file-based bundle entirely.
 
+<a id="rqmd-ext-052"></a>
 ### RQMD-EXT-052: VS Code extension project scaffolding via command palette
 - **Status:** 🔧 Implemented
 - **Priority:** 🟡 P2 - Medium
@@ -25,6 +27,7 @@ Summary: 3💡 6🔧 1✅ 0⚠️ 0⛔ 0🗑️
 - Then only project-specific files are written to `.github/` (e.g., `/dev` and `/test` skills, project copilot-instructions overrides).
 - And shared rqmd defaults (prompts, skills, agent defs) remain in the extension, not written to the workspace.
 
+<a id="rqmd-ext-053"></a>
 ### RQMD-EXT-053: Register @rqmd chat participant for unified command surface
 - **Status:** 💡 Proposed
 - **Priority:** 🟠 P1 - High
@@ -35,6 +38,7 @@ Summary: 3💡 6🔧 1✅ 0⚠️ 0⛔ 0🗑️
 - Then subcommands like `brainstorm`, `go`, `next`, `commit`, `refine` are shown.
 - And invoking `@rqmd brainstorm` loads the `/rqmd-brainstorm` skill internally and runs the workflow.
 
+<a id="rqmd-ext-054"></a>
 ### RQMD-EXT-054: Migrate /prompts to @rqmd subcommands
 - **Status:** 💡 Proposed
 - **Priority:** 🟡 P2 - Medium
@@ -45,6 +49,7 @@ Summary: 3💡 6🔧 1✅ 0⚠️ 0⛔ 0🗑️
 - When autocomplete appears
 - Then no rqmd prompts appear (only `@rqmd` in the `@` namespace).
 
+<a id="rqmd-ext-055"></a>
 ### RQMD-EXT-055: Skills hidden from user autocomplete via user-invocable flag
 - **Status:** ✅ Verified
 - **Priority:** 🟠 P1 - High
@@ -54,6 +59,7 @@ Summary: 3💡 6🔧 1✅ 0⚠️ 0⛔ 0🗑️
 - Then no skill completions appear.
 - And agents can still reference `/rqmd-brainstorm` internally and load the skill.
 
+<a id="rqmd-ext-056"></a>
 ### RQMD-EXT-056: Same-major rqmd auto-install version policy
 - **Status:** 🔧 Implemented
 - **Priority:** 🟠 P1 - High
@@ -65,6 +71,7 @@ Summary: 3💡 6🔧 1✅ 0⚠️ 0⛔ 0🗑️
 - Then the installed major is persisted to VS Code workspace/global state.
 - And subsequent auto-upgrades stay within that major.
 
+<a id="rqmd-ext-057"></a>
 ### RQMD-EXT-057: Missing-rqmd bootstrap notification flow
 - **Status:** 💡 Proposed
 - **Priority:** 🟠 P1 - High
@@ -76,6 +83,7 @@ Summary: 3💡 6🔧 1✅ 0⚠️ 0⛔ 0🗑️
 - And on success: "rqmd is ready. Re-running your command now."
 - And on failure: "Could not install rqmd automatically. Check network, permissions, or Python toolchain and try again."
 
+<a id="rqmd-ext-058"></a>
 ### RQMD-EXT-058: Unified shim bootstrap entrypoint for all rqmd invocations
 - **Status:** 🔧 Implemented
 - **Priority:** 🟠 P1 - High
@@ -85,6 +93,7 @@ Summary: 3💡 6🔧 1✅ 0⚠️ 0⛔ 0🗑️
 - When the shim handles the invocation
 - Then only the shim contains install logic — no individual call site does.
 
+<a id="rqmd-ext-059"></a>
 ### RQMD-EXT-059: Bootstrap install lock and session debounce
 - **Status:** 🔧 Implemented
 - **Priority:** 🟡 P2 - Medium
@@ -96,6 +105,7 @@ Summary: 3💡 6🔧 1✅ 0⚠️ 0⛔ 0🗑️
 - Then the second waits rather than launching a parallel install.
 - And both complete after the single install finishes.
 
+<a id="rqmd-ext-060"></a>
 ### RQMD-EXT-060: Bootstrap reason-code telemetry and diagnostics
 - **Status:** 🔧 Implemented
 - **Priority:** 🟢 P3 - Low

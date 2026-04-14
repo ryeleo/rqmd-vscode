@@ -10,6 +10,22 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 <a id="unreleased"></a>
 ## [Unreleased]
 
+<a id="v0-2-6"></a>
+## [0.2.6] - 2026-04-14
+
+### Added
+
+- `extension.js` ([RQMD-EXT-066](docs/requirements/bundle.md#rqmd-ext-066)): DocumentLinkProvider makes every known requirement ID clickable in any open file. Clicking `RQMD-EXT-063` opens the requirement in markdown preview scrolled to its stable `<a id>` anchor; falls back to the editor at the heading line if preview is unavailable. The ID→file index is built by scanning `docs/requirements/*.md` in all workspace folders and refreshed via a file watcher.
+- `package.json` ([RQMD-EXT-066](docs/requirements/bundle.md#rqmd-ext-066)): registered `rqmd.openRequirement` internal command (DocumentLink click handler; `enablement: false` hides it from the command palette).
+- `docs/requirements/bundle.md`, `docs/requirements/extension.md` ([RQMD-EXT-068](docs/requirements/bundle.md#rqmd-ext-068)): backfilled stable `<a id="rqmd-xxx-nnn"></a>` anchors before all 70 requirement headings (60 in bundle.md, 10 in extension.md). Anchors survive title renames and resolve correctly in VS Code markdown preview, GitHub rendered markdown, and the DocumentLinkProvider.
+
+### Changed
+
+- `prompts/refine.prompt.md` ([RQMD-EXT-063](docs/requirements/bundle.md#rqmd-ext-063)): `/refine` is now an iterative shaping loop — Pass 1 pre-fills acceptance criteria from brainstorm notes, adjacent requirements, and codebase context; Pass 2+ tightens through conversation; agent actively invites first-person narratives ("Walk me through what happens to you right now…"); agent declares "shaped" and offers `/go` when no open questions remain. Shaping confirmation includes a clickable link to the requirement. Features use Given/When/Then; bugs use Steps/Expected/Actual/Root Cause. Subsequent `/refine` calls continue tightening rather than restarting.
+- `prompts/go.prompt.md` ([RQMD-EXT-061](docs/requirements/bundle.md#rqmd-ext-061)): `/go` shaping check now reads the requirement body and checks for acceptance criteria (Given/When/Then, Steps/Expected/Actual, `## Done when`). Unshaped requirements get one nudge — "This hasn't been shaped yet — want me to `/refine` it first, or proceed anyway?" — with an offer to start an interactive shaping loop; proceeds immediately on explicit confirmation. Requirements with acceptance criteria skip the nudge entirely.
+- `agents/rqmd.agent.md`, `prompts/go.prompt.md`, `prompts/refine.prompt.md` ([RQMD-EXT-067](docs/requirements/bundle.md#rqmd-ext-067)): agent now always emits requirement IDs as markdown links (`[RQMD-EXT-063](docs/requirements/bundle.md#rqmd-ext-063)`); bare ID only when the source file is unknown.
+- `skills/rqmd-implement/SKILL.md`, `skills/rqmd-brainstorm/SKILL.md` ([RQMD-EXT-068](docs/requirements/bundle.md#rqmd-ext-068)): added anchor convention — always write `<a id="rqmd-xxx-nnn"></a>` on its own line immediately before new `### RQMD-XXX-NNN:` headings.
+
 <a id="v0-2-5"></a>
 ## [0.2.5] - 2026-04-14
 

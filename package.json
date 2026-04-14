@@ -2,7 +2,7 @@
   "name": "rqmd",
   "displayName": "rqmd — AI Agent Bundle",
   "description": "Brings the rqmd AI workflow to VS Code Copilot Chat with installable prompts, skills, and agent definitions.",
-  "version": "0.2.5",
+  "version": "0.2.6",
   "publisher": "ryeleo",
   "license": "MIT",
   "repository": {
@@ -38,6 +38,12 @@
         "command": "rqmd.initProject",
         "title": "rqmd: Initialize Project",
         "category": "rqmd"
+      },
+      {
+        "command": "rqmd.openRequirement",
+        "title": "rqmd: Open Requirement",
+        "category": "rqmd",
+        "enablement": "false"
       }
     ],
     "chatPromptFiles": [

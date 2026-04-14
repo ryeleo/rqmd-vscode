@@ -113,6 +113,113 @@ function activate(context) {
     participant.isSticky = true;
     context.subscriptions.push(participant);
 
+    // RQMD-EXT-066: DocumentLinkProvider — makes requirement IDs clickable in any file.
+    // Builds an ID→{absPath, anchor, lineNum} index by scanning docs/requirements/ in each
+    // workspace folder, then registers a provider that turns every known RQMD-XXX-NNN
+    // occurrence into a one-click link that opens markdown preview at the stable anchor.
+
+    /** @type {Map<string, {absPath: string, anchor: string, lineNum: number}>} */
+    const requirementIndex = new Map();
+
+    function buildRequirementIndex() {
+        requirementIndex.clear();
+        const folders = vscode.workspace.workspaceFolders;
+        if (!folders) return;
+        const HEADING_RE = /^### (RQMD-[A-Z]+-\d+):/;
+        for (const folder of folders) {
+            const reqDir = path.join(folder.uri.fsPath, 'docs', 'requirements');
+            if (!fs.existsSync(reqDir)) continue;
+            let files;
+            try {
+                files = fs.readdirSync(reqDir).filter(f => f.endsWith('.md') && f !== 'README.md');
+            } catch {
+                continue;
+            }
+            for (const file of files) {
+                const absPath = path.join(reqDir, file);
+                let lines;
+                try {
+                    lines = fs.readFileSync(absPath, 'utf8').split('\n');
+                } catch {
+                    continue;
+                }
+                for (let i = 0; i < lines.length; i++) {
+                    const m = lines[i].match(HEADING_RE);
+                    if (m) {
+                        const reqId = m[1];
+                        requirementIndex.set(reqId, {
+                            absPath,
+                            anchor: reqId.toLowerCase(),
+                            lineNum: i,
+                        });
+                    }
+                }
+            }
+        }
+    }
+
+    // RQMD-EXT-066: Command invoked when a requirement link is clicked.
+    // Opens the requirement file in markdown preview scrolled to its stable anchor.
+    // Falls back to the editor at the heading line if preview is unavailable.
+    const openRequirementDisposable = vscode.commands.registerCommand(
+        'rqmd.openRequirement',
+        async (args) => {
+            const { absPath, anchor, lineNum } = typeof args === 'string' ? JSON.parse(args) : args;
+            const fileUri = vscode.Uri.file(absPath).with({ fragment: anchor });
+            try {
+                await vscode.commands.executeCommand('markdown.showPreview', fileUri);
+            } catch {
+                // Fallback: open in editor and scroll to the heading line
+                const doc = await vscode.workspace.openTextDocument(vscode.Uri.file(absPath));
+                const editor = await vscode.window.showTextDocument(doc);
+                const pos = new vscode.Position(Math.max(0, lineNum), 0);
+                editor.selection = new vscode.Selection(pos, pos);
+                editor.revealRange(new vscode.Range(pos, pos), vscode.TextEditorRevealType.AtTop);
+            }
+        }
+    );
+
+    // RQMD-EXT-066: DocumentLinkProvider for all files in the workspace.
+    // Only IDs present in the index get links — unknown IDs produce no link.
+    const ID_REGEX = /\bRQMD-[A-Z]+-\d+\b/g;
+    const linkProvider = vscode.languages.registerDocumentLinkProvider(
+        { scheme: 'file' },
+        {
+            provideDocumentLinks(document) {
+                const links = [];
+                const text = document.getText();
+                const re = new RegExp(ID_REGEX.source, 'g');
+                let match;
+                while ((match = re.exec(text)) !== null) {
+                    const entry = requirementIndex.get(match[0]);
+                    if (!entry) continue;
+                    const startPos = document.positionAt(match.index);
+                    const endPos = document.positionAt(match.index + match[0].length);
+                    const range = new vscode.Range(startPos, endPos);
+                    const cmdArgs = encodeURIComponent(JSON.stringify({
+                        absPath: entry.absPath,
+                        anchor: entry.anchor,
+                        lineNum: entry.lineNum,
+                    }));
+                    const target = vscode.Uri.parse(`command:rqmd.openRequirement?${cmdArgs}`);
+                    links.push(new vscode.DocumentLink(range, target));
+                }
+                return links;
+            },
+        }
+    );
+
+    // RQMD-EXT-066: Rebuild the index when requirement files change.
+    const reqWatcher = vscode.workspace.createFileSystemWatcher('**/docs/requirements/**/*.md');
+    reqWatcher.onDidChange(() => buildRequirementIndex());
+    reqWatcher.onDidCreate(() => buildRequirementIndex());
+    reqWatcher.onDidDelete(() => buildRequirementIndex());
+
+    // Initial index build
+    buildRequirementIndex();
+
+    context.subscriptions.push(openRequirementDisposable, linkProvider, reqWatcher);
+
     console.log('rqmd extension activated');
 }
 

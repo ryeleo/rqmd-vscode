@@ -22,3 +22,5 @@ Move proposed requirements to implemented. Work 1–3 items per batch, updating 
 - Never invent IDs — use `next_id` from `rqmd --json` output
 - Max 3 items per batch; re-check priorities before taking another
 - Prefer user-story + Given/When/Then when both clarify the behavior
+- 💡 Proposed requirement with no acceptance criteria → nudge once ("shape this first with `/refine`, or proceed?"); do not implement without confirmation
+- Always write `<a id="rqmd-xxx-nnn"></a>` on its own line immediately before each new `### RQMD-XXX-NNN:` heading — ID is lowercase and hyphenated (e.g. `rqmd-ext-063`)
