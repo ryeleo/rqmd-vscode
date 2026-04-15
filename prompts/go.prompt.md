@@ -16,4 +16,4 @@ Implementation loop.
 - Requirements with acceptance criteria skip the nudge — trust that shaping happened
 - Focused edits; keep docs/README/CHANGELOG aligned; verify before finishing
 - No commits unless explicitly requested (`/commit`, `/commit-and-go`)
-- **Emit requirement IDs as links:** `[RQMD-EXT-063](docs/requirements/bundle.md#rqmd-ext-063)` — bare ID only when file is unknown
+- **Emit requirement IDs as links:** `RQMD-EXT-063 [spec](docs/requirements/bundle.md#L<line>)` — bare ID only when file is unknown

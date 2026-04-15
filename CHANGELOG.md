@@ -10,6 +10,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 <a id="unreleased"></a>
 ## [Unreleased]
 
+### Added
+
+- `docs/glossary.md` ([RQMD-EXT-076](docs/requirements/bundle.md#rqmd-ext-076)): canonical glossary of rqmd domain terms with one-line definitions and capitalisation rules.
+- `prompts/retro.prompt.md` ([RQMD-EXT-071](docs/requirements/bundle.md#rqmd-ext-071)): `/retro` structured post-work retrospective — gathers git diff, requirement statuses, and session tree; classifies drift into four categories (untracked changes, skipped refinement, scope expansion, stalled work); writes a `retro` node to the session file; reports Inbox count.
+- `prompts/catchup.prompt.md` ([RQMD-EXT-072](docs/requirements/bundle.md#rqmd-ext-072)): `/catchup` re-orientation prompt — reads previous session file, `git status`, and backlog summary; presents last session retro, in-progress items, uncommitted changes, and top 3 next actions; writes a `catchup` session node; reports Inbox count.
+
+### Changed
+
+- `prompts/brainstorm.prompt.md`, `skills/rqmd-brainstorm/SKILL.md` ([RQMD-EXT-077](docs/requirements/bundle.md#rqmd-ext-077)): `/brainstorm` now detects short input (single sentence, "quick note:", "inbox:") and appends to `docs/inbox.md` instead of running a full exploration; responds with single-line `📥 Added to inbox (N items pending triage)` confirmation.
+- `skills/rqmd-triage/SKILL.md` ([RQMD-EXT-077](docs/requirements/bundle.md#rqmd-ext-077)): triage gains inbox-first mode — checks `docs/inbox.md` before backlog triage and offers to sweep items.
+- `agents/rqmd.agent.md` ([RQMD-EXT-076](docs/requirements/bundle.md#rqmd-ext-076)): agent instructions now reference `docs/glossary.md` domain term convention for consistent capitalisation in chat output.
+- `docs/doc-standards.md` (rqmd-cli) ([RQMD-EXT-076](docs/requirements/bundle.md#rqmd-ext-076)): added "Introduce Domain Terms Consistently" section alongside existing acronym/jargon rule.
+
 <a id="v0-2-6"></a>
 ## [0.2.6] - 2026-04-14
 

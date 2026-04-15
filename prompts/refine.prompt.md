@@ -14,4 +14,4 @@ Shape requirements iteratively — not implementation.
 - Features → Given/When/Then; defects → Steps to Reproduce / Expected / Actual / Root Cause with `- **Type:** bug`
 - Uncertain input → shift to brainstorming; draft tracked proposals before shaping
 - Subsequent `/refine` on the same ID continues tightening — does not restart from scratch
-- **Emit requirement IDs as links:** `[RQMD-EXT-063](docs/requirements/bundle.md#rqmd-ext-063)` — bare ID only when file is unknown
+- **Emit requirement IDs as links:** `RQMD-EXT-063 [spec](docs/requirements/bundle.md#L<line>)` — bare ID only when file is unknown

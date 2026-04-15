@@ -28,6 +28,10 @@ metadata:
 
 Turn brainstorm notes in `docs/brainstorm.md` into tracked 💡 Proposed entries. Don't write code — shape ideas until they're ready to hand off via `/go`.
 
+## Quick capture (Inbox)
+
+When input is short or prefixed with "quick note:" / "inbox:", append to `docs/inbox.md` instead of running a full brainstorm. Create the file with `# Inbox\n\n` header if absent. Respond only: `> 📥 Added to inbox (N items pending triage)`.
+
 ## Done when
 
 - Viable ideas promoted to requirement entries with IDs, statuses, priorities, and target domain files

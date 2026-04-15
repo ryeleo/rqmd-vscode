@@ -27,6 +27,7 @@ Primary agent for rqmd-managed workspaces.
 - Handoffs are **complete and concise**: receiver acts without re-reading history; 3 bullets max (ID + one-line state + open question if any)
 - When planning/brainstorming: finish with copy-paste-ready `/go` prompt naming IDs, batch order, and dependencies
 - When implementing: output `# What got done`; add `# Up next` only if highly confident
+- **`# Up next` always includes a `> **Links:**` callout** with `RQMD-ID [spec](file.md#L<line>)` entries for every ID in the `/go` command — the command itself can't carry links, so the callout is the only place they appear
 
 ## Diagrams
 
@@ -35,7 +36,8 @@ Proactively offer for: state/lifecycle, UI flows, protocols, call graphs, pipeli
 ## Output style
 
 - Technical but readable; smaller sections over oversized blocks
+- **Domain terms:** follow `docs/glossary.md` — first use on a page/conversation is double-quoted Title Case ("Done-When"); subsequent uses drop quotes (Done-When). CLI/JSON keys stay snake_case.
 - Lifecycle emoji: 💡 Proposed, 🔧 Implemented, ✅ Verified, ⛔ Blocked, 🗑️ Deprecated
 - Callouts: `> **ℹ️ Info:**`, `> **⚠️ Note:**`, `> **🚨 Warning:**`
-- **Requirement IDs are always links** — whenever the source file is known, emit `[RQMD-EXT-063](docs/requirements/bundle.md#rqmd-ext-063)` format; bare IDs only as fallback when file is unknown
-- ID→file: use `rqmd --json --status <status>` output, or from context when the file was recently read
+- **Requirement IDs are always links** — emit `RQMD-EXT-063 [spec](docs/requirements/bundle.md#L<line>)` format: bare ID then `[spec]` link with `#L<line>` pointing to the heading. In tables, merge into Req column. Bare IDs only as fallback when file/line is unknown. VS Code chat does NOT support `#anchor` fragments — only `#L<number>` works.
+- ID→file+line: read the requirement file to find the `### RQMD-` heading line number, or use `rqmd --json --status <status>` output, or from context when the file was recently read

@@ -3,7 +3,7 @@
 Scope: installed AI bundle content — agents, skills, prompts, and workflow guidance contributed by the VS Code extension to every workspace where the extension is active.
 
 <!-- acceptance-status-summary:start -->
-Summary: 19💡 44🔧 2✅ 0⚠️ 0⛔ 3🗑️
+Summary: 15💡 48🔧 2✅ 0⚠️ 0⛔ 3🗑️
 <!-- acceptance-status-summary:end -->
 
 <a id="rqmd-ext-001"></a>
@@ -472,12 +472,17 @@ Summary: 19💡 44🔧 2✅ 0⚠️ 0⛔ 3🗑️
 ### RQMD-EXT-067: Agent always emits requirement IDs as clickable markdown links
 - **Status:** 🔧 Implemented
 - **Priority:** 🟡 P2 - Medium
-- **Summary:** As a developer reading agent output in VS Code chat, I want **every** requirement ID the agent mentions to be a clickable markdown link to the requirement's rendered preview, so that I can jump to the spec with one click from any agent response — shaping confirmations, `/go` handoffs, `/retro` summaries, triage lists, everything.
+- **Summary:** As a developer reading agent output in VS Code chat, I want **every** requirement ID the agent mentions to be a clickable link to the requirement source, so that I can jump to the spec with one click from any agent response — shaping confirmations, `/go` handoffs, `/retro` summaries, triage lists, everything.
+- **VS Code chat constraint:** VS Code chat renders file links as button widgets, NOT blue hyperlinks. HTML anchor fragments (`#rqmd-ext-063`) produce NO link at all — only `#L<number>` line references work. The agent must look up the heading line number and use that.
+- **Format — Option F (inline):** `RQMD-EXT-067 [spec](docs/requirements/bundle.md#L472)` — bare ID followed by a `[spec]` link with `#L<line>` fragment
+- **Format — tables:** merge ID and link in one column: `RQMD-EXT-067 [spec](file.md#L<n>) | Title | Pri`
 - Given the agent references a requirement ID anywhere in chat output
-- When the agent knows the source file for that ID (from `rqmd --json` or from having just read the file)
-- Then it **always** uses markdown link syntax: `[RQMD-EXT-063](docs/requirements/bundle.md#rqmd-ext-063)`
-- And the anchor targets the stable `<a id="rqmd-ext-063"></a>` tag (see RQMD-EXT-068)
-- And when the agent does not know the source file, it emits the bare ID as fallback (graceful degradation)
+- When the agent knows the source file and line number for that ID (from reading the file or from `rqmd --json`)
+- Then it emits: `RQMD-EXT-063 [spec](docs/requirements/bundle.md#L<line>)` — the ID as plain text, then a `[spec]` link with a `#L<line>` fragment pointing to the heading line
+- And in tables, the ID and `[spec]` link share the Req column: `RQMD-EXT-063 [spec](file.md#L<n>)`
+- And the agent determines the line number by reading the file (the `<a id>` tag or `###` heading line)
+- And when the agent does not know the source file or line number, it emits the bare ID as fallback (graceful degradation)
+- And the `<a id>` anchor tags (RQMD-EXT-068) are kept for GitHub, VS Code markdown preview, and DocumentLinkProvider — they serve all link surfaces except chat
 - And the convention is encoded in the `rqmd.agent.md` instructions and the `/refine`, `/go`, and `/retro` skill files so all agent modes follow it
 
 <a id="rqmd-ext-068"></a>
@@ -496,7 +501,7 @@ Summary: 19💡 44🔧 2✅ 0⚠️ 0⛔ 3🗑️
 
 <a id="rqmd-ext-071"></a>
 ### RQMD-EXT-071: `/retro` prompt — structured post-work retrospective
-- **Status:** 💡 Proposed
+- **Status:** � Implemented
 - **Priority:** 🟠 P1 - High
 - **Summary:** As a developer who just finished a `/go` batch or a working session, I want a `/retro` prompt that reviews what happened, classifies session drift, and writes a retro node to the session tree, so that I build awareness of where my process worked or slipped and leave a clean handoff for the next session.
 
@@ -553,7 +558,7 @@ Summary: 19💡 44🔧 2✅ 0⚠️ 0⛔ 3🗑️
 
 <a id="rqmd-ext-072"></a>
 ### RQMD-EXT-072: `/catchup` prompt — re-orientation when returning
-- **Status:** 💡 Proposed
+- **Status:** � Implemented
 - **Priority:** 🟠 P1 - High
 - **Summary:** As a developer returning to a project after an absence (hours or days), I want a `/catchup` prompt that reads the previous session tree, `git status`, and backlog health and gives me a concise "here's where you left off" orientation, so that I can resume productively without re-reading chat history.
 - Given a developer invokes `/catchup` or the agent detects a prolonged absence and suggests it
@@ -650,7 +655,7 @@ Summary: 19💡 44🔧 2✅ 0⚠️ 0⛔ 3🗑️
 
 <a id="rqmd-ext-076"></a>
 ### RQMD-EXT-076: Domain Term Introduction Convention
-- **Status:** 💡 Proposed
+- **Status:** � Implemented
 - **Priority:** 🟠 P1 - High
 - **Summary:** As a developer reading rqmd docs, requirement text, or agent chat output, I want domain-specific terms ("Done-When", "Session Tree", "User Story", "Smoke Path", etc.) introduced and capitalised consistently, so that I can recognise terms of art at a glance and distinguish them from plain English.
 - Given a new rqmd domain term appears for the first time on a page or in a conversation
@@ -667,7 +672,7 @@ Summary: 19💡 44🔧 2✅ 0⚠️ 0⛔ 3🗑️
 
 <a id="rqmd-ext-077"></a>
 ### RQMD-EXT-077: Inbox file convention and `/brainstorm` quick-capture mode
-- **Status:** 💡 Proposed
+- **Status:** � Implemented
 - **Priority:** 🟠 P1 - High
 - **Summary:** As a developer with a fleeting idea — especially late at night or mid-flow — I want a zero-ceremony way to capture it into a git-tracked "Inbox" so that I can dump ideas without context-switching into organise mode, and triage them later when I'm sharp.
 - Given an rqmd-managed project
