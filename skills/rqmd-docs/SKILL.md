@@ -24,7 +24,7 @@ Improve documentation writing, structure, and organization. Use when docs need m
 
 ## Style guide
 
-- **Headings:** Start at h1, do not skip levels
+- **Headings:** Start at h1, do not skip levels. **Always leave a blank line before and after every heading** — without surrounding blank lines, markdown parsers may treat the heading as a paragraph continuation instead of a block element. This applies to all heading levels (`#` through `######`).
 - **Page size:** Prefer smaller pages; create index pages when splitting improves navigation
 - **Jargon:** Introduce acronyms on first use; add Info callouts for extra context
 - **Links:** Use descriptive hyperlinks, not raw URLs or backticked filenames

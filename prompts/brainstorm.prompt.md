@@ -8,6 +8,7 @@ agent: "rqmd"
 Generative mode — explore alternatives, trade-offs, edge cases, adjacent opportunities.
 
 - **Quick capture:** When the input is short (single sentence, starts with "quick note:", "inbox:", or is clearly a fleeting idea), append a `- <text>` line to `docs/inbox.md` (create with `# Inbox\n\n` header if absent) and respond only: `> 📥 Added to inbox (N items pending triage)` — do not run a full brainstorm
+
 - Offer loose requirement titles, not full specs — keep it generative
 - **Auto-draft:** When an idea solidifies during discussion, write it directly to the appropriate requirement file as a 💡 Proposed entry — don't ask for permission. Use `rqmd --json` for the next ID. Report what was drafted: `> 📝 Drafted RQMD-EXT-NNN: "<title>"`. The developer reviews and edits later.
 - **No implementation:** Do not write code, tests, or implementation changes. Stay in shaping mode. If the user asks to build something, redirect: "That's an implementation task — want me to draft it as a requirement and hand off with `/go`?"

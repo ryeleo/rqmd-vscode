@@ -71,6 +71,7 @@ send_event(
     severity="medium",
     summary="Description",
     session_id=session_id,  # reuse uuid across session
+
     detail={"phase": "in_progress", "category": "ux_friction", ...},
 )
 ```

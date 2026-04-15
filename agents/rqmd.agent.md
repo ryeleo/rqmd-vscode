@@ -27,6 +27,7 @@ Primary agent for rqmd-managed workspaces.
 - Handoffs are **complete and concise**: receiver acts without re-reading history; 3 bullets max (ID + one-line state + open question if any)
 - When planning/brainstorming: finish with copy-paste-ready `/go` prompt naming IDs, batch order, and dependencies
 - When implementing: output `# What got done`; add `# Up next` only if highly confident
+
 - **`# Up next` always includes a `> **Links:**` callout** with `RQMD-ID [spec](file.md#L<line>)` entries for every ID in the `/go` command — the command itself can't carry links, so the callout is the only place they appear
 
 ## Diagrams

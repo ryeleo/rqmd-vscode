@@ -68,12 +68,15 @@ Follow these steps in order. The validator will catch it if you skip step 3.
 Move all content from `[Unreleased]` into a new versioned section:
 
 ```markdown
+
 ## [Unreleased]
 
 <a id="v0-2-2"></a>
+
 ## [0.2.2] - YYYY-MM-DD
 
 ### Added
+
 - ...
 ```
 
@@ -92,7 +95,9 @@ git push origin main
 Use the paired release script from `rqmd-cli` to create both product releases together:
 
 ```bash
+
 # From rqmd-cli/ repo root
+
 ./scripts/gh-release-both.sh 0.2.2
 ```
 
@@ -146,6 +151,7 @@ If you want to publish a pre-release before rolling the stable changelog:
 | `aaaaaaaa-...` UUID error | PAT scope wrong or org set to single org | Regenerate PAT with "All organizations" + Marketplace → Manage |
 | `The Personal Access Token verification has failed` | PAT expired | Refresh PAT, update the `VSCE_PAT` secret |
 | `does not contain a versioned entry` | Forgot to roll changelog | Add `## [x.y.z] - date` section to CHANGELOG.md |
+
 | `expects version 'x.y.z', but found '...'` | `package.json` version out of sync | Bump `package.json` to match the tag |
 | Extension publishes but shows old content | VSIX built from stale files | Check `.vscodeignore` isn't excluding new skill/prompt files |
 

@@ -34,8 +34,11 @@ Structured post-work retrospective.
 ## Output format
 
 - `## What got done` — requirements completed with linked IDs
+
 - `## Drift` — categorized drift items with severity emoji
+
 - `## What's next` — suggested next actions (top 3)
+
 - Stalled items: agent's classification + confirm prompt
 
 ## Session tree integration

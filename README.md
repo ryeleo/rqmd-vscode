@@ -59,6 +59,7 @@ rqmd is built for requirement-first development with Copilot Chat:
    ```bash
    uv tool install rqmd
    # or
+
    pipx install rqmd
    ```
 

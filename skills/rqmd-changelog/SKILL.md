@@ -15,6 +15,7 @@ Maintain `CHANGELOG.md` as a clear release record. Lead with user impact and hum
 - `[Unreleased]` reflects all shipped changes
 - Bullets lead with user-visible outcomes, not file names
 - AI work is subordinate under a nested `## AI Development` heading when included
+
 - Keep a Changelog structure (`### Added`, `### Changed`, `### Removed`) intact
 
 ## Edge cases

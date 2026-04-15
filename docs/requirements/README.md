@@ -3,9 +3,6 @@
 This directory tracks requirements for the `rqmd` VS Code extension. The extension provides the AI bundle and IDE integration surface for rqmd-managed workspaces.
 
 
-
-
-
 ## Project Tooling Metadata
 
 This section records the rqmd tooling versions currently expected by this repository.
@@ -15,8 +12,6 @@ Refresh it after upgrading rqmd by running `rqmd --sync-index-metadata --force-y
 - `rqmd_version`: `0.2.4`
 - `json_schema_version`: `1.1.0`
 <!-- rqmd-project-metadata:end -->
-
-
 
 
 ## Files

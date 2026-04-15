@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 > **⚠️ Note:** Version numbers are intended to stay in sync with the `rqmd` Python CLI package.
 
 <a id="unreleased"></a>
+
 ## [Unreleased]
 
 ### Changed
@@ -29,6 +30,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `docs/doc-standards.md` (rqmd-cli) ([RQMD-EXT-076](docs/requirements/bundle.md#rqmd-ext-076)): added "Introduce Domain Terms Consistently" section alongside existing acronym/jargon rule.
 
 <a id="v0-2-6"></a>
+
 ## [0.2.6] - 2026-04-14
 
 ### Added
@@ -41,10 +43,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - `prompts/refine.prompt.md` ([RQMD-EXT-063](docs/requirements/bundle.md#rqmd-ext-063)): `/refine` is now an iterative shaping loop — Pass 1 pre-fills acceptance criteria from brainstorm notes, adjacent requirements, and codebase context; Pass 2+ tightens through conversation; agent actively invites first-person narratives ("Walk me through what happens to you right now…"); agent declares "shaped" and offers `/go` when no open questions remain. Shaping confirmation includes a clickable link to the requirement. Features use Given/When/Then; bugs use Steps/Expected/Actual/Root Cause. Subsequent `/refine` calls continue tightening rather than restarting.
 - `prompts/go.prompt.md` ([RQMD-EXT-061](docs/requirements/bundle.md#rqmd-ext-061)): `/go` shaping check now reads the requirement body and checks for acceptance criteria (Given/When/Then, Steps/Expected/Actual, `## Done when`). Unshaped requirements get one nudge — "This hasn't been shaped yet — want me to `/refine` it first, or proceed anyway?" — with an offer to start an interactive shaping loop; proceeds immediately on explicit confirmation. Requirements with acceptance criteria skip the nudge entirely.
+
 - `agents/rqmd.agent.md`, `prompts/go.prompt.md`, `prompts/refine.prompt.md` ([RQMD-EXT-067](docs/requirements/bundle.md#rqmd-ext-067)): agent now always emits requirement IDs as markdown links (`[RQMD-EXT-063](docs/requirements/bundle.md#rqmd-ext-063)`); bare ID only when the source file is unknown.
 - `skills/rqmd-implement/SKILL.md`, `skills/rqmd-brainstorm/SKILL.md` ([RQMD-EXT-068](docs/requirements/bundle.md#rqmd-ext-068)): added anchor convention — always write `<a id="rqmd-xxx-nnn"></a>` on its own line immediately before new `### RQMD-XXX-NNN:` headings.
 
 <a id="v0-2-5"></a>
+
 ## [0.2.5] - 2026-04-14
 
 ### Added
@@ -65,9 +69,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `docs/requirements/bundle.md` RQMD-EXT-047: removed "(typically cheaper)" from handoff session description.
 - `agents/rqmd.agent.md`: added "complete and concise" handoff standard to Closeout — handoffs are 3 bullets max (ID + one-line state + open question if any).
 - Skills `rqmd-implement`, `rqmd-triage`, `rqmd-verify`, `rqmd-changelog`, `rqmd-doc-sync`, `rqmd-status-maintenance`, `rqmd-pin`, `rqmd-brainstorm`: converted to focus-contract format per `docs/skill-format.md` — charter + `## Done when` + `## Edge cases` replaces `## Workflow` + `## Constraints`.
+
 - `rqmd-brainstorm` skill: fixed `section_targets` and `default_target_file` to use rqmd-vscode domain files (`bundle.md`, `extension.md`) instead of rqmd-cli files (`ai-cli.md`, `core-engine.md`, etc.).
 - Skills `rqmd-telemetry`, `rqmd-docs`, `rqmd-feedback`: trimmed `metadata.workflow` and `examples` arrays; reference body content kept.
 - `rqmd-docs` skill: restructured body — added `## Done when` + `## Edge cases` preamble; renamed `## Workflow` to `## Style guide`; removed `## Constraints`.
+
 - `docs/requirements/bundle.md` RQMD-EXT-025: marked 🗑️ Deprecated — behavior absorbed into unified `rqmd` agent via `/go N`. Superseded by RQMD-EXT-034.
 - `docs/requirements/bundle.md` RQMD-EXT-026: marked 🗑️ Deprecated — behavior absorbed into unified `rqmd` agent via `/go easy-win`. Superseded by RQMD-EXT-034.
 - `rqmd-export-context` skill: converted to focus-contract format — charter, `## Done when`, `## Edge cases`; current `rqmd` CLI commands documented (`rqmd --json --non-interactive`, `rqmd --status proposed --json --non-interactive`).
@@ -83,6 +89,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `skills/rqmd-init-legacy/` — deleted; existing-repo guidance merged into `rqmd-init`.
 
 <a id="v0-2-4"></a>
+
 ## [0.2.4] - 2026-04-10
 
 ### Added
@@ -105,6 +112,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Agent-level worktree-health rule added to `rqmd.agent.md`: check `git status` and recommend committing (or stashing) before handing off to the next slice.
 
 <a id="v0-2-3"></a>
+
 ## [0.2.3] - 2026-04-09
 
 ### Changed
@@ -114,6 +122,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Anti-hallucination rule added to `rqmd.agent.md`: agents must never invent or calculate requirement IDs — always read `next_id` from `rqmd --json` output.
 
 <a id="v0-2-2"></a>
+
 ## [0.2.2] - 2026-04-09
 
 ### Changed
@@ -123,6 +132,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Public extension metadata and README copy now focus on workflow and onboarding instead of calling out internal packaging details like whether files are written to the project.
 
 <a id="v0-2-1"></a>
+
 ## [0.2.1] - 2026-04-09
 
 ### Added
@@ -135,6 +145,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Both `rqmd` and `rqmd-dev` agents now include compact "When to suggest diagrams" guidance with array-list notation pointing to the full use-case table in `/rqmd-diagram`. Agents will proactively offer diagrams whenever the problem touches state machines, protocols, data pipelines, or any of the catalogued scenarios.
 
 <a id="v0-2-0"></a>
+
 ## [0.2.0] - 2026-04-09
 
 ### Added

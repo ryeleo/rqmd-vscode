@@ -12,6 +12,7 @@ Implementation loop.
 - `N` in argument = slice cap
 - Requirement-first when tracked requirements exist
 - **Shaping check:** When given a specific requirement ID with 💡 Proposed status, read the requirement body. If it has no acceptance criteria (no Given/When/Then, no Steps/Expected/Actual, no `## Done when`), it is **unshaped** — say once: “This hasn’t been shaped yet — want me to `/refine` it first, or proceed anyway?” One question, not a wall; proceed immediately with explicit confirmation.
+
 - If user accepts the nudge, start an interactive `/refine` shaping loop before implementing
 - Requirements with acceptance criteria skip the nudge — trust that shaping happened
 - Focused edits; keep docs/README/CHANGELOG aligned; verify before finishing
