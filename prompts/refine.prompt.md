@@ -1,5 +1,5 @@
 ---
-description: "Refine existing requirements or help shape new ones through focused discussion. Adapts to the user's certainty level — from targeted fix-ups to exploratory brainstorming."
+description: "rqmd (v0.2.6): Refine or shape requirements through focused discussion."
 name: "refine"
 argument-hint: "Name a requirement ID to refine, or describe what you want to work on."
 agent: "rqmd"

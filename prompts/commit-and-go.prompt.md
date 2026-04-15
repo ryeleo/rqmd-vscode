@@ -1,5 +1,5 @@
 ---
-description: "Work through one or more validated slices and create a clean git commit after each. A numeric argument such as /commit-and-go 10 means keep going for up to 10 committed slices."
+description: "rqmd (v0.2.6): Work through validated slices and commit after each. /commit-and-go 10 = up to 10 committed slices."
 name: "commit-and-go"
 argument-hint: "Describe the task, or provide a count such as '10' to keep going and commit each validated slice."
 agent: "rqmd"

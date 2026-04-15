@@ -1,5 +1,5 @@
 ---
-description: "Commit the current work with a clear, human-narrative git commit message that distinguishes human decisions from AI-driven implementation."
+description: "rqmd (v0.2.6): Commit current work with a clear, human-narrative git message."
 name: "commit"
 argument-hint: "Optionally describe the focus of this commit, or leave blank to auto-summarize from the diff."
 agent: "rqmd"

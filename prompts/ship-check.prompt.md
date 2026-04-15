@@ -1,5 +1,5 @@
 ---
-description: "Run a release or handoff readiness pass covering verification, docs state, changelog quality, and remaining blockers."
+description: "rqmd (v0.2.6): Release readiness pass — verification, docs, changelog, blockers."
 name: "ship-check"
 argument-hint: "Describe what is about to ship, or say what kind of final verification you want."
 agent: "rqmd"

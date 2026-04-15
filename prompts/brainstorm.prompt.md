@@ -1,5 +1,5 @@
 ---
-description: "Think broadly and creatively about the project — explore ideas, generate proposals, and promote the best ones into tracked requirements."
+description: "rqmd (v0.2.6): Think broadly and creatively — explore ideas, generate proposals, promote the best into tracked requirements."
 name: "brainstorm"
 argument-hint: "Describe the idea set, point at notes, or just say what area you want to explore."
 agent: "rqmd"

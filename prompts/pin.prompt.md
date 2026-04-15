@@ -1,5 +1,5 @@
 ---
-description: "Capture durable context, decisions, or quick-reference notes in a maintainable pinned note instead of leaving them in chat history."
+description: "rqmd (v0.2.6): Capture durable context, decisions, or notes in a pinned file."
 name: "pin"
 argument-hint: "Describe what should be pinned and, if known, where it should live."
 agent: "rqmd"

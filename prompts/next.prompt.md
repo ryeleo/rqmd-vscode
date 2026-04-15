@@ -1,5 +1,5 @@
 ---
-description: "Suggest the highest-priority feasible next slice, prefer handoff via /go, and keep worktree health explicit."
+description: "rqmd (v0.2.6): Suggest the highest-priority feasible next slice."
 name: "next"
 argument-hint: "Say 'next' to continue the backlog, or add a constraint such as 'easy-win', 'docs-only', or 'release-prep'."
 agent: "rqmd"

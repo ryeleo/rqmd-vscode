@@ -1,5 +1,5 @@
 ---
-description: "Send improvement feedback about rqmd to the project's telemetry service. Works iteratively — submits telemetry on start, refines the payload through conversation, and finalizes on close."
+description: "rqmd (v0.2.6): Send improvement feedback about rqmd to the telemetry service."
 name: "feedback"
 argument-hint: "Describe the friction, missing feature, or idea you want to report, or leave blank to start interactively."
 agent: "rqmd"

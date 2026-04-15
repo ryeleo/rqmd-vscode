@@ -1,5 +1,5 @@
 ---
-description: "Quickly file a bug from the current chat context — drafts a tracked bug requirement from the conversation so a frustrated user can just type /bug and move on."
+description: "rqmd (v0.2.6): Quickly file a bug — drafts a tracked bug requirement from chat context."
 name: "bug"
 argument-hint: "Optionally describe the bug, or leave blank to draft from chat context."
 agent: "rqmd"

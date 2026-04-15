@@ -28,8 +28,7 @@
   ],
   "activationEvents": [
     "onStartupFinished",
-    "onCommand:rqmd.initProject",
-    "onChatParticipant:rqmd.rqmd"
+    "onCommand:rqmd.initProject"
   ],
   "main": "./extension.js",
   "contributes": {
@@ -78,27 +77,6 @@
     ],
     "chatAgents": [
       { "path": "./agents/rqmd.agent.md" }
-    ],
-    "chatParticipants": [
-      {
-        "id": "rqmd.rqmd",
-        "name": "rqmd",
-        "fullName": "rqmd",
-        "description": "rqmd AI workflow assistant — brainstorm, implement, and ship with tracked requirements.",
-        "isSticky": true,
-        "commands": [
-          { "name": "brainstorm", "description": "Explore ideas and promote them into tracked requirement proposals" },
-          { "name": "triage",    "description": "Review and rank backlog items; select the next-batch slice" },
-          { "name": "go",        "description": "Implement the highest-priority proposed requirements" },
-          { "name": "next",      "description": "Suggest the next best slice with a copy-paste /go prompt" },
-          { "name": "refine",    "description": "Sharpen requirement language, criteria, or priority" },
-          { "name": "commit",    "description": "Commit current work with a structured human-narrative message" },
-          { "name": "verify",    "description": "Re-run summary verification and targeted tests after changes" },
-          { "name": "pin",       "description": "Capture durable context, decisions, and quick-reference notes" },
-          { "name": "feedback",  "description": "Send improvement feedback about rqmd to the developer" },
-          { "name": "docs",      "description": "Improve repository documentation quality and structure" }
-        ]
-      }
     ]
   }
 }
