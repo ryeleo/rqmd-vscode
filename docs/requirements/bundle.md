@@ -3,7 +3,7 @@
 Scope: installed AI bundle content — agents, skills, prompts, and workflow guidance contributed by the VS Code extension to every workspace where the extension is active.
 
 <!-- acceptance-status-summary:start -->
-Summary: 15💡 48🔧 2✅ 0⚠️ 0⛔ 3🗑️
+Summary: 12💡 51🔧 2✅ 0⚠️ 0⛔ 3🗑️
 <!-- acceptance-status-summary:end -->
 
 <a id="rqmd-ext-001"></a>
@@ -332,19 +332,19 @@ Summary: 15💡 48🔧 2✅ 0⚠️ 0⛔ 3🗑️
 
 <a id="rqmd-ext-046"></a>
 ### RQMD-EXT-046: Auto-draft requirements during brainstorm and refine sessions
-- **Status:** 💡 Proposed
+- **Status:** � Implemented
 - **Priority:** 🟠 P1 - High
 - **Summary:** The agent to automatically write solidified ideas into `docs/requirements/` as 💡 Proposed entries rather than asking me for permission each time so that when any session picks up the `/go` handoff prompt, the requirements it references already exist in the tracked docs and the implementation session has a clear contract to work from.
 
 <a id="rqmd-ext-047"></a>
 ### RQMD-EXT-047: Brainstorm and refine modes resist jumping to implementation
-- **Status:** 💡 Proposed
+- **Status:** � Implemented
 - **Priority:** 🟡 P2 - Medium
 - **Summary:** The agent to actively resist writing code, tests, or implementation changes and instead focus on shaping, clarifying, and tracking requirements so that the brainstorm/refine workflow stays focused on *what* to build and *why*, with implementation deferred to a `/go` handoff in a focused implementation session.
 
 <a id="rqmd-ext-048"></a>
 ### RQMD-EXT-048: Brainstorm and refine skills detect bug reports and offer bug template
-- **Status:** 💡 Proposed
+- **Status:** � Implemented
 - **Priority:** 🟡 P2 - Medium
 - **Summary:** The agent to recognize that I am describing a bug (keywords like "broken", "regression", "doesn't work", "used to work") and offer the Steps to Reproduce / Expected / Actual / Root Cause template from RQMD-CORE-043 instead of the user-story template so that bugs are drafted with the right shape from the start, with `type: bug` and an `affects:` cross-reference pre-filled when the parent requirement is identifiable.
 

@@ -32,6 +32,14 @@ Turn brainstorm notes in `docs/brainstorm.md` into tracked 💡 Proposed entries
 
 When input is short or prefixed with "quick note:" / "inbox:", append to `docs/inbox.md` instead of running a full brainstorm. Create the file with `# Inbox\n\n` header if absent. Respond only: `> 📥 Added to inbox (N items pending triage)`.
 
+## Auto-draft
+
+When an idea solidifies, write it directly to the appropriate requirement file as a 💡 Proposed entry without asking permission. Use `next_id` from `rqmd --json` output. Report: `> 📝 Drafted RQMD-EXT-NNN: "<title>"`. The developer reviews and edits later.
+
+## Bug detection
+
+When input contains bug signals ("broken", "regression", "doesn't work", "used to work"), offer the bug template: "This sounds like a bug — want me to file it with `/bug`?" If confirmed, use Steps/Expected/Actual/Root Cause with `- **Type:** bug` and `affects:` cross-reference when identifiable.
+
 ## Done when
 
 - Viable ideas promoted to requirement entries with IDs, statuses, priorities, and target domain files
@@ -42,5 +50,5 @@ When input is short or prefixed with "quick note:" / "inbox:", append to `docs/i
 
 - Never calculate IDs — use `next_id` from `rqmd --json` output
 - Bug-shaped ideas get `- **Type:** bug` + Steps/Expected/Actual/Root Cause template, not user-story
-- Keep output read-only until reviewed; no code changes in brainstorm phase
+- **No implementation:** do not write code, tests, or implementation changes in brainstorm phase — redirect to `/go`
 - Always write `<a id="rqmd-xxx-nnn"></a>` immediately before each new `### RQMD-XXX-NNN:` heading when promoting brainstorm items to requirements

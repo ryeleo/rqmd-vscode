@@ -10,6 +10,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 <a id="unreleased"></a>
 ## [Unreleased]
 
+### Changed
+
+- `prompts/brainstorm.prompt.md`, `skills/rqmd-brainstorm/SKILL.md` ([RQMD-EXT-046](docs/requirements/bundle.md#rqmd-ext-046), [RQMD-EXT-047](docs/requirements/bundle.md#rqmd-ext-047), [RQMD-EXT-048](docs/requirements/bundle.md#rqmd-ext-048)): brainstorm now auto-drafts solidified ideas as 💡 Proposed entries without asking permission; actively resists writing code/tests and redirects to `/go`; detects bug signals and offers `/bug` template.
+- `prompts/refine.prompt.md` ([RQMD-EXT-046](docs/requirements/bundle.md#rqmd-ext-046), [RQMD-EXT-047](docs/requirements/bundle.md#rqmd-ext-047), [RQMD-EXT-048](docs/requirements/bundle.md#rqmd-ext-048)): refine now auto-drafts new requirements during shaping; resists implementation; detects bug patterns and offers to switch to bug template.
+
 ### Added
 
 - `docs/glossary.md` ([RQMD-EXT-076](docs/requirements/bundle.md#rqmd-ext-076)): canonical glossary of rqmd domain terms with one-line definitions and capitalisation rules.
