@@ -11,6 +11,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+<a id="v0-2-7"></a>
+
+## [0.2.7] - 2026-04-15
+
 ### Added
 
 - `docs/requirements/bundle.md`: 💡 Proposed RQMD-EXT-079 (`/tech-debt-sweep`), RQMD-EXT-080 (`/archive` file-level), RQMD-EXT-081 (`/retro` tech-debt drift), RQMD-EXT-082 (`/archive` per-requirement), RQMD-EXT-083 (`/refine` drafts into tracker early).
