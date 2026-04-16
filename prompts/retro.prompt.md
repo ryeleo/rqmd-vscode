@@ -23,6 +23,7 @@ Structured post-work retrospective.
   - **Blocked:** hit a dependency
   - **Cancelled:** decided not to do it
   - **Unknown:** ask: "You started EXT-NNN but it's still 💡. Looks deferred — sound right?"
+- **Tech debt accrual** (🧹 actionable): Deprecated requirements still referenced by active code, dead modules kept alive, or infrastructure that no longer serves a tracked requirement. Detected via `rqmd --staleness --deprecated-only` (when available) or by scanning for 🗑️ Deprecated IDs with live callers. Tag each item `[tech-debt]` and append to `docs/inbox.md` for the next `/tech-debt-sweep` to pick up. Include a debt count in the retro summary: `> 🧹 Tech debt: N items tagged [tech-debt] → inbox`
 
 ## Classification protocol
 

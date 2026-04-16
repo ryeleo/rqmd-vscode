@@ -17,6 +17,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- `prompts/refine.prompt.md` ([RQMD-EXT-083](docs/requirements/bundle.md#rqmd-ext-083)): Pass 1 now writes the requirement to the tracker file immediately as 💡 Proposed; Pass 2+ edits in-place in the file; chat references the file link, not a duplicated spec; interrupted sessions survive because the requirement is already persisted.
+- `prompts/retro.prompt.md` ([RQMD-EXT-081](docs/requirements/bundle.md#rqmd-ext-081)): added 5th drift category "Tech debt accrual" — surfaces dead code, workarounds, and deprecated-but-wired modules; tags findings `[tech-debt]` in `docs/inbox.md` for `/tech-debt-sweep` pickup; includes debt count in retro summary.
 - `prompts/brainstorm.prompt.md`, `skills/rqmd-brainstorm/SKILL.md` ([RQMD-EXT-046](docs/requirements/bundle.md#rqmd-ext-046), [RQMD-EXT-047](docs/requirements/bundle.md#rqmd-ext-047), [RQMD-EXT-048](docs/requirements/bundle.md#rqmd-ext-048)): brainstorm now auto-drafts solidified ideas as 💡 Proposed entries without asking permission; actively resists writing code/tests and redirects to `/go`; detects bug signals and offers `/bug` template.
 - `prompts/refine.prompt.md` ([RQMD-EXT-046](docs/requirements/bundle.md#rqmd-ext-046), [RQMD-EXT-047](docs/requirements/bundle.md#rqmd-ext-047), [RQMD-EXT-048](docs/requirements/bundle.md#rqmd-ext-048)): refine now auto-drafts new requirements during shaping; resists implementation; detects bug patterns and offers to switch to bug template.
 

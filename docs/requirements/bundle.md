@@ -3,7 +3,7 @@
 Scope: installed AI bundle content — agents, skills, prompts, and workflow guidance contributed by the VS Code extension to every workspace where the extension is active.
 
 <!-- acceptance-status-summary:start -->
-Summary: 17💡 51🔧 2✅ 0⚠️ 0⛔ 3🗑️
+Summary: 15💡 53🔧 2✅ 0⚠️ 0⛔ 3🗑️
 <!-- acceptance-status-summary:end -->
 
 <a id="rqmd-ext-001"></a>
@@ -918,7 +918,7 @@ Summary: 17💡 51🔧 2✅ 0⚠️ 0⛔ 3🗑️
 
 ### RQMD-EXT-081: `/retro` tech-debt drift category
 
-- **Status:** 💡 Proposed
+- **Status:** � Implemented
 - **Priority:** 🟡 P2 - Medium
 - **Summary:** As a developer running `/retro` after a work session, I want the retrospective to include a "Tech debt accrual" drift category that surfaces hacks, workarounds, and dead code noticed during the session so that debt observations feed automatically into the next `/tech-debt-sweep`.
 
@@ -958,7 +958,7 @@ Summary: 17💡 51🔧 2✅ 0⚠️ 0⛔ 3🗑️
 
 ### RQMD-EXT-083: `/refine` drafts requirements into tracker early, refines in-place
 
-- **Status:** 💡 Proposed
+- **Status:** � Implemented
 - **Priority:** 🔴 P1 - High
 - **Summary:** As a developer shaping requirements with `/refine`, I want the agent to write draft requirements into the tracker file as early as Pass 1 and perform all subsequent refinement via in-place edits so that requirements always live in their canonical location — not only in chat history — and I can click through to read, compare, and edit them in my editor at any point during shaping.
 
