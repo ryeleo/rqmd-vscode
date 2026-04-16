@@ -973,3 +973,34 @@ Summary: 15💡 53🔧 2✅ 0⚠️ 0⛔ 3🗑️
 - Given a `/refine` session is interrupted or the conversation is lost
 - When the developer returns
 - Then the latest state of the requirement is in the tracker file, not lost with the chat history
+
+<a id="rqmd-ext-084"></a>
+
+### RQMD-EXT-084: Agent instructions auto-fix metadata mismatch
+
+- **Status:** 💡 Proposed
+- **Priority:** 🟠 P1 - High
+- **Summary:** As a developer using rqmd agents after upgrading the CLI tool, I want the agent to detect metadata version mismatch and automatically run `rqmd --sync-index-metadata --force-yes --non-interactive` so that I don't accumulate version drift or get nagged by warnings throughout the session.
+
+- Given the `rqmd` agent runs any `rqmd` CLI command during a session
+- When the CLI stderr or JSON output (see RQMD-CORE-049) indicates a metadata mismatch between the recorded and running rqmd versions
+- Then the agent automatically runs `rqmd --sync-index-metadata --force-yes --non-interactive` to fix it
+- And the agent reports the fix with a one-line notice: `"> ℹ️ Synced index metadata (rqmd 0.2.6 → 0.2.7)"`
+- And the fix happens at most once per session (not repeated on every command)
+- And the convention is encoded in `copilot-instructions.md` and the `rqmd` agent instructions so all agent modes follow it
+- And `/catchup` proactively checks for the mismatch as part of its session-start orientation
+
+<a id="rqmd-ext-085"></a>
+
+### RQMD-EXT-085: Preflight step auto-syncs stale index metadata
+
+- **Status:** 💡 Proposed
+- **Priority:** 🟡 P2 - Medium
+- **Summary:** As a developer using the `agent-workflow.sh preflight` readiness check, I want preflight to detect and auto-fix stale index metadata so that version drift is resolved before an agent starts working rather than surfacing as a mid-session warning.
+
+- Given the repository has an `agent-workflow.sh` with a `preflight` subcommand (RQMD-EXT-038/040)
+- When preflight runs its readiness checks
+- Then it checks whether `rqmd --json --non-interactive` output contains a `"metadata_mismatch"` key (RQMD-CORE-049)
+- And if a mismatch is detected, preflight runs `rqmd --sync-index-metadata --force-yes --non-interactive` and reports: `"✓ Synced index metadata (rqmd X.Y.Z → A.B.C)"`
+- And if no mismatch, preflight reports: `"✓ Index metadata current"`
+- And the check runs after rqmd availability verification but before any validation steps

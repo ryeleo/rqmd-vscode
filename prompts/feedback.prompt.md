@@ -1,5 +1,5 @@
 ---
-description: "rqmd (v0.2.7): Send improvement feedback about rqmd to the telemetry service."
+description: "rqmd (v0.2.8): Send improvement feedback about rqmd to the telemetry service."
 name: "feedback"
 argument-hint: "Describe the friction, missing feature, or idea you want to report, or leave blank to start interactively."
 agent: "rqmd"

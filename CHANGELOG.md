@@ -11,6 +11,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+<a id="v0-2-8"></a>
+
+## [0.2.8] - 2026-04-16
+
+### Added
+
+- `scripts/bump-prompt-versions.sh`: stamps `rqmd (vX.Y.Z)` in every prompt description from `package.json` or an explicit argument.
+
+### Changed
+
+- All prompt descriptions now include `rqmd (v0.2.8)` version annotations for disambiguation when multiple rqmd extensions are installed.
+
 <a id="v0-2-7"></a>
 
 ## [0.2.7] - 2026-04-15
