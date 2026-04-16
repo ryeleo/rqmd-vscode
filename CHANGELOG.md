@@ -11,6 +11,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- `docs/requirements/bundle.md`: 💡 Proposed RQMD-EXT-079 (`/tech-debt-sweep`), RQMD-EXT-080 (`/archive` file-level), RQMD-EXT-081 (`/retro` tech-debt drift), RQMD-EXT-082 (`/archive` per-requirement), RQMD-EXT-083 (`/refine` drafts into tracker early).
+
 ### Changed
 
 - `prompts/brainstorm.prompt.md`, `skills/rqmd-brainstorm/SKILL.md` ([RQMD-EXT-046](docs/requirements/bundle.md#rqmd-ext-046), [RQMD-EXT-047](docs/requirements/bundle.md#rqmd-ext-047), [RQMD-EXT-048](docs/requirements/bundle.md#rqmd-ext-048)): brainstorm now auto-drafts solidified ideas as 💡 Proposed entries without asking permission; actively resists writing code/tests and redirects to `/go`; detects bug signals and offers `/bug` template.

@@ -1,6 +1,8 @@
 # rqmd — AI Agent Bundle
 
-**Requirements Driven Development for Copilot Chat.** The rqmd extension brings the rqmd workflow into VS Code as installable prompts, skills, and agent modes for GitHub Copilot Chat.
+**Local-First Requirements Driven Development for Copilot Chat.** The rqmd extension brings the rqmd workflow into VS Code as installable prompts, skills, and agent modes for GitHub Copilot Chat.
+
+> See also [Local-First Software: You Own Your Data, in spite of the Cloud](https://martin.kleppmann.com/papers/local-first.pdf)
 
 [![Visual Studio Marketplace](https://img.shields.io/visual-studio-marketplace/v/ryeleo.rqmd?label=VS%20Marketplace&logo=visual-studio-code)](https://marketplace.visualstudio.com/items?itemName=ryeleo.rqmd)
 [![PyPI](https://img.shields.io/pypi/v/rqmd?label=PyPI&logo=pypi)](https://pypi.org/project/rqmd/)
