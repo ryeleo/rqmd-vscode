@@ -3,7 +3,7 @@
 Scope: installed AI bundle content — agents, skills, prompts, and workflow guidance contributed by the VS Code extension to every workspace where the extension is active.
 
 <!-- acceptance-status-summary:start -->
-Summary: 15💡 53🔧 2✅ 0⚠️ 0⛔ 3🗑️
+Summary: 18💡 53🔧 2✅ 0⚠️ 0⛔ 3🗑️
 <!-- acceptance-status-summary:end -->
 
 <a id="rqmd-ext-001"></a>
@@ -614,9 +614,7 @@ Summary: 15💡 53🔧 2✅ 0⚠️ 0⛔ 3🗑️
 - **Priority:** 🟡 P2 - Medium
 - **Summary:** As a developer or agent linking to a specific requirement, I want each requirement heading to have a stable `<a id="rqmd-ext-nnn"></a>` anchor that survives title edits, so that cross-references from chat, brainstorm.md, CHANGELOG, and other files never break when a requirement's title is reworded.
 - **Anchor authorship:** Dual approach — **(a)** agent convention writes anchors when creating/updating requirements, **(b)** `rqmd --verify-summaries` (or future `--fix-anchors`) heals any that were missed. Agent convention ships first; CLI healing can be deferred.
-- Given a requirement heading like `
-
-### RQMD-EXT-063: /refine is an interactive shaping loop`
+- Given a requirement heading like `### RQMD-EXT-063: /refine is an interactive shaping loop`
 
 - When the requirement is created or updated (by agent or human)
 - Then an anchor tag `<a id="rqmd-ext-063"></a>` is present immediately before the heading
@@ -918,7 +916,7 @@ Summary: 15💡 53🔧 2✅ 0⚠️ 0⛔ 3🗑️
 
 ### RQMD-EXT-081: `/retro` tech-debt drift category
 
-- **Status:** � Implemented
+- **Status:** 🔧 Implemented
 - **Priority:** 🟡 P2 - Medium
 - **Summary:** As a developer running `/retro` after a work session, I want the retrospective to include a "Tech debt accrual" drift category that surfaces hacks, workarounds, and dead code noticed during the session so that debt observations feed automatically into the next `/tech-debt-sweep`.
 
@@ -958,7 +956,7 @@ Summary: 15💡 53🔧 2✅ 0⚠️ 0⛔ 3🗑️
 
 ### RQMD-EXT-083: `/refine` drafts requirements into tracker early, refines in-place
 
-- **Status:** � Implemented
+- **Status:** 🔧 Implemented
 - **Priority:** 🔴 P1 - High
 - **Summary:** As a developer shaping requirements with `/refine`, I want the agent to write draft requirements into the tracker file as early as Pass 1 and perform all subsequent refinement via in-place edits so that requirements always live in their canonical location — not only in chat history — and I can click through to read, compare, and edit them in my editor at any point during shaping.
 
@@ -1004,3 +1002,38 @@ Summary: 15💡 53🔧 2✅ 0⚠️ 0⛔ 3🗑️
 - And if a mismatch is detected, preflight runs `rqmd --sync-index-metadata --force-yes --non-interactive` and reports: `"✓ Synced index metadata (rqmd X.Y.Z → A.B.C)"`
 - And if no mismatch, preflight reports: `"✓ Index metadata current"`
 - And the check runs after rqmd availability verification but before any validation steps
+
+<a id="rqmd-ext-086"></a>
+
+### RQMD-EXT-086: `/rqmd-release` skill — universal release guardrails
+
+- **Status:** 💡 Proposed
+- **Priority:** 🟠 P1 - High
+- **Summary:** As a developer using rqmd agents to cut a release, I want a bundled `/rqmd-release` skill that drives the universal release ceremony (stamp changelog, confirm versions, validate, tag the right commit) so that every rqmd-managed project gets release discipline without writing a custom skill from scratch.
+
+- Given a repository has rqmd installed and a CHANGELOG following Keep a Changelog format
+- When the agent invokes `/rqmd-release <version>`
+- Then the skill runs `rqmd release --preflight` (RQMD-CORE-052) and stops if any check fails
+- And the skill runs `rqmd release --stamp <version> --write` (RQMD-CORE-053) to roll the changelog and bump version files
+- And the skill bumps prompt description versions if `prompts/*.prompt.md` are present
+- And the skill runs the repo's validation (`agent-workflow.sh validate` or equivalent) and stops if it fails
+- And the skill commits, tags, and pushes (with user confirmation for the push)
+- And the skill defers to a repo-specific `/release` skill for any additional steps (paired repos, registry publishing, etc.) when one exists
+- And the skill can be run as a dry-run (`/rqmd-release 0.3.0 --dry-run`) that previews all steps without writing
+
+<a id="rqmd-ext-087"></a>
+
+### RQMD-EXT-087: `/rqmd-staleness` skill and `/tech-debt` prompt — surface tech-debt hotspots
+
+- **Status:** � Implemented
+- **Priority:** 🟡 P2 - Medium
+- **Summary:** As a developer wanting to clean up stale requirements and dead code references, I want a bundled `/rqmd-staleness` skill and `/tech-debt` prompt that wrap `rqmd --staleness --json` output into categorized findings and actionable cleanup batches, so that tech-debt triage is a single command away in any rqmd-managed project.
+
+- Given a repository has rqmd installed with staleness support (RQMD-CORE-045) and git history available
+- When the agent invokes `/tech-debt` (or the skill `/rqmd-staleness` is called internally)
+- Then the skill runs `rqmd --staleness --json` and parses the structured output
+- And findings are categorized into three buckets: **deprecated-but-alive** (🗑️ status with code xrefs > 0), **implemented-but-unreferenced** (🔧 status with zero code xrefs), and **high-staleness** (score ≥ 70)
+- And the output is a summary line, a detail table sorted by staleness score, and a recommended cleanup `/go` prompt targeting the top 3–5 items
+- And the `deprecated-only` argument runs `rqmd --staleness --deprecated-only --json` for CI-style checks (non-zero exit on findings)
+- And domain and threshold arguments allow filtering and tuning the report
+- And the skill integrates with `/rqmd-triage` — when staleness data is available, triage can factor staleness scores into backlog ranking

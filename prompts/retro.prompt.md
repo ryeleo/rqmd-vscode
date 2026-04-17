@@ -1,5 +1,5 @@
 ---
-description: "rqmd (v0.2.8): Review the session — what got done, what drifted, what's next."
+description: "rqmd (v0.2.9): Review the session — what got done, what drifted, what's next."
 name: "retro"
 argument-hint: "Run after a /go batch or work session to review drift and leave a clean handoff."
 agent: "rqmd"

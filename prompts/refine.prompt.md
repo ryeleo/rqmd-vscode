@@ -1,5 +1,5 @@
 ---
-description: "rqmd (v0.2.8): Refine or shape requirements through focused discussion."
+description: "rqmd (v0.2.9): Refine or shape requirements through focused discussion."
 name: "refine"
 argument-hint: "Name a requirement ID to refine, or describe what you want to work on."
 agent: "rqmd"

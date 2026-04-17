@@ -11,6 +11,21 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+<a id="v0-2-9"></a>
+
+## [0.2.9] - 2026-04-17
+
+### Added
+
+- `/rqmd-staleness` skill: wraps `rqmd --staleness --json` to categorize findings into deprecated-but-alive, unreferenced, and high-staleness buckets with cleanup recommendations.
+- `/tech-debt` prompt: user-facing entry point for staleness analysis with support for `deprecated-only`, domain filter, threshold, and `explain` arguments.
+
+### Changed
+
+- Release skill: rewrote preflight as ordered steps; CHANGELOG stamping is now an explicit Step 1 with a hard-fail warning before tagging.
+- Agent file: promoted requirement ID linking rule to mandatory blockquote at top of file.
+- All prompt descriptions now include `rqmd (v0.2.9)` version annotations.
+
 <a id="v0-2-8"></a>
 
 ## [0.2.8] - 2026-04-16

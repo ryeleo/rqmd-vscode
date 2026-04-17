@@ -1,5 +1,5 @@
 ---
-description: "rqmd (v0.2.8): Where was I? — quick orientation when returning to a project."
+description: "rqmd (v0.2.9): Where was I? — quick orientation when returning to a project."
 name: "catchup"
 argument-hint: "Run when returning after an absence to see where you left off."
 agent: "rqmd"
