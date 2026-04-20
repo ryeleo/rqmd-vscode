@@ -11,6 +11,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+<a id="v0-2-10"></a>
+
+## [0.2.10] - 2026-04-19
+
+### Added
+
+- `/bootstrap` prompt (`prompts/bootstrap.prompt.md`): user-facing slash command that triggers the `rqmd-init` structured interview for bootstrapping rqmd in a new or existing repo. Registered in `package.json` `chatPromptFiles`. Replaces the missing `/init` that was shadowed by a VS Code built-in and never wired as a prompt file.
+
+### Changed
+
+- Split `bundle.md` (76-req monolith) into 9 focused domain files: `init.md`, `bundle-lifecycle.md`, `shaping.md`, `prompts.md`, `feedback.md`, `agent-execution.md`, `sessions.md`, `tech-debt.md`, `docs-ux.md`. No requirement IDs changed.
+- Fixed corrupted status emoji on RQMD-EXT-087.
+
 <a id="v0-2-9"></a>
 
 ## [0.2.9] - 2026-04-17

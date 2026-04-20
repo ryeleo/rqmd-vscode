@@ -16,6 +16,7 @@ Canonical rqmd domain terms. First use on any page or conversation: double-quote
 | Inbox | The `docs/inbox.md` append-only capture file for fleeting ideas awaiting triage. |
 | Init Interview | The guided `/rqmd-init` chat that bootstraps rqmd in a new or existing repo. |
 | Lifecycle Emoji | Status markers: 💡 Proposed, 🔧 Implemented, ✅ Verified, ⛔ Blocked, 🗑️ Deprecated. |
+| Orphaned Requirement | A requirement marked 🔧 Implemented or ✅ Verified whose implementing code has been deleted or never existed — the spec describes behavior that is genuinely absent from the codebase. Contrast with Unannotated Requirement. |
 | Pin | A durable context note stored in `docs/pins/` for decisions, reminders, or reference. |
 | Proposal | A requirement in 💡 Proposed status — shaped enough to track but not yet implemented. |
 | Quick Capture | The lowest-friction path to append an idea to the Inbox (VS Code command or `/brainstorm` short input). |
@@ -27,5 +28,7 @@ Canonical rqmd domain terms. First use on any page or conversation: double-quote
 | Slice | A small coherent batch of 1–3 requirements worked in a single `/go` pass. |
 | Smoke Path | The minimal manual or automated check that confirms basic functionality after a change. |
 | Triage | The `/triage` ranking pass that selects the next Slice from the Backlog. |
+| Unannotated Requirement | A requirement marked 🔧 Implemented or ✅ Verified whose code exists but lacks a `# RQMD-*` cross-reference comment linking back to the requirement ID. `--staleness` flags these separately from Orphaned Requirements so the fix is "add an annotation" not "consider deprecating." |
 | User Story | A requirement written as "As a …, I want … so that …" to clarify who benefits and why. |
 | Verify | Post-implementation validation: summaries, targeted tests, full suite, residual risk. |
+| Xref | Cross-reference — a `# RQMD-*` comment in source or test code that links back to the requirement it implements. Used by `--staleness` to detect whether a requirement has living code behind it. JSON key: `xref_count`. |

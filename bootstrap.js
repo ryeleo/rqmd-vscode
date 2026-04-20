@@ -179,8 +179,19 @@ async function _doEnsureRqmd(context) {
         _deps.vscode?.window.showInformationMessage(MSG_SUCCESS);
         return { ok: true, reasonCode };
     } catch (err) {
+        const subOut = err?.stdout ? String(err.stdout).trim() : '';
+        const subErr = err?.stderr ? String(err.stderr).trim() : '';
         _log(`reason-code: install-failed — ${err?.message ?? err}`);
-        _deps.vscode?.window.showErrorMessage(MSG_FAILURE);
+        if (subOut) _log(`subprocess stdout:\n${subOut}`);
+        if (subErr) _log(`subprocess stderr:\n${subErr}`);
+        const hasChannel = Boolean(_outputChannel);
+        const notifMsg = hasChannel
+            ? MSG_FAILURE + ' See the "rqmd bootstrap" output channel for details.'
+            : MSG_FAILURE;
+        const notif = _deps.vscode?.window.showErrorMessage(notifMsg, ...(hasChannel ? ['Show Logs'] : []));
+        if (hasChannel && notif) {
+            notif.then(choice => { if (choice === 'Show Logs') _outputChannel.show(); });
+        }
         return { ok: false, reasonCode: 'install-failed' };
     }
 }

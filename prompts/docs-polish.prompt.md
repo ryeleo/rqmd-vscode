@@ -1,5 +1,5 @@
 ---
-description: "rqmd (v0.2.9): Focused documentation pass — README, changelog, doc sync, or docstrings."
+description: "rqmd (v0.2.10): Focused documentation pass — README, changelog, doc sync, or docstrings."
 name: "docs-polish"
 argument-hint: "Describe what changed or which doc surface needs a pass. Can target README, changelog, requirement docs, or code docstrings."
 agent: "rqmd"

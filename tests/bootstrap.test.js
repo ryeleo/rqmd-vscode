@@ -202,4 +202,39 @@ describe('bootstrap.ensureRqmd', () => {
         assert.equal(installingCount, 1, 'install notification shown exactly once');
     });
 
+    // -- Scenario 7: RQMD-BUG-006 — subprocess output surfaced on failure ---
+    test('RQMD-BUG-006: install-failed logs subprocess stdout/stderr to output channel', async () => {
+        const logged = [];
+        const { vscode } = makeVscode();
+        const mockChannel = { appendLine: (line) => logged.push(line), show: () => {} };
+        vscode.window.createOutputChannel = () => mockChannel;
+
+        const ctx = makeContext();
+        _resetForTesting({
+            vscode,
+            toolAvailable: (name) => name === 'uv',
+            getRqmdMajor: () => null,
+            execSync: () => {
+                const err = new Error('install failed');
+                err.stdout = Buffer.from('pip: command not found\n');
+                err.stderr = Buffer.from('error: process exited with code 1\n');
+                throw err;
+            },
+            refreshUvPath: () => {},
+        });
+
+        // Init the output channel so _outputChannel is populated before the install.
+        const { initOutputChannel } = require('../bootstrap');
+        initOutputChannel(ctx);
+
+        const result = await ensureRqmd(ctx);
+
+        assert.equal(result.ok, false);
+        assert.equal(result.reasonCode, 'install-failed');
+        assert.ok(logged.some(l => l.includes('pip: command not found')),
+            'subprocess stdout must appear in the output channel');
+        assert.ok(logged.some(l => l.includes('error: process exited with code 1')),
+            'subprocess stderr must appear in the output channel');
+    });
+
 });

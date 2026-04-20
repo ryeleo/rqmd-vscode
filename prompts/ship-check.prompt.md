@@ -1,5 +1,5 @@
 ---
-description: "rqmd (v0.2.9): Release readiness pass — verification, docs, changelog, blockers."
+description: "rqmd (v0.2.10): Release readiness pass — verification, docs, changelog, blockers."
 name: "ship-check"
 argument-hint: "Describe what is about to ship, or say what kind of final verification you want."
 agent: "rqmd"

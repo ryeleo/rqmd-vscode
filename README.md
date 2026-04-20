@@ -67,6 +67,8 @@ rqmd is built for requirement-first development with Copilot Chat:
 
 2. **Install this extension** from the VS Code Marketplace.
 
+   > **⚠️ After updating:** VS Code resets the chat mode to "Agent" when extensions reload. Re-select **rqmd** in the chat mode picker after updating or reloading — otherwise you'll be chatting without rqmd context and wondering why nothing works right.
+
 3. **Initialize a project** via the Command Palette (`⇧⌘P`):
 
    ```

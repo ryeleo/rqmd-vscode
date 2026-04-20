@@ -3,7 +3,7 @@
 Scope: VS Code extension packaging and distribution — Marketplace publication, command palette integration, chat participant registration, prompt/skill surface contributions, and self-healing rqmd bootstrap.
 
 <!-- acceptance-status-summary:start -->
-Summary: 3💡 6🔧 1✅ 0⚠️ 0⛔ 0🗑️
+Summary: 4💡 6🔧 1✅ 0⚠️ 0⛔ 0🗑️
 <!-- acceptance-status-summary:end -->
 
 <a id="rqmd-ext-051"></a>
@@ -137,3 +137,19 @@ Summary: 3💡 6🔧 1✅ 0⚠️ 0⛔ 0🗑️
 - Given bootstrap completes with any outcome
 - When a reason code is emitted
 - Then it is sent to the telemetry service and written to the extension debug log.
+
+<a id="rqmd-ext-088"></a>
+
+### RQMD-EXT-088: Extension icon for marketplace and chat mode picker
+
+- **Status:** 💡 Proposed
+- **Priority:** 🟡 P2 - Medium
+- **Summary:** Add a custom icon to `package.json` (`"icon": "assets/rqmd-icon.png"`, 128×128 PNG) so that rqmd is visually distinct in the VS Code Marketplace listing, extension sidebar, and — critically — the chat mode picker where it currently appears as a generic entry alongside "Agent", "Ask", and "Plan" which all have branded icons.
+- Given the rqmd extension is installed
+- When the user opens the chat mode picker dropdown
+- Then rqmd appears with a distinctive, recognizable icon rather than the generic default.
+- And the same icon is used in the Marketplace listing and extension sidebar.
+- **Notes:**
+  - AI-generated initial draft is acceptable, but the icon must be human-reviewed and refined before shipping to the Marketplace.
+  - Track whether VS Code's `chatAgents` contribution point gains a per-agent `icon` property in future API — currently only the top-level extension `icon` is supported.
+  - Design direction: keep it simple and legible at 16×16 (sidebar) through 128×128 (Marketplace). Consider the "📋" requirement-doc motif or a stylized `rq` mark.
