@@ -3,7 +3,7 @@
 Scope: Agent workflow entry points, preflight readiness checks, `/dev` and `/test` skill scaffolding and delegation.
 
 <!-- acceptance-status-summary:start -->
-Summary: 3💡 4🔧 0✅ 0⚠️ 0⛔ 0🗑️
+Summary: 4💡 5🔧 0✅ 0⚠️ 0⛔ 0🗑️
 <!-- acceptance-status-summary:end -->
 
 <a id="rqmd-ext-008"></a>
@@ -88,4 +88,42 @@ Summary: 3💡 4🔧 0✅ 0⚠️ 0⛔ 0🗑️
 - And rqmd should allow repositories to omit separate `/dev` and `/test` skills entirely when the unified entry point is sufficient and explicitly chosen
 - And the bundle guidance should make clear when those skills remain useful as thin wrappers or discovery aids versus when they should be treated as redundant
 - And the guidance should remain technology-neutral, supporting shell scripts, Makefiles, justfiles, or other task-runner conventions without forcing one choice.
+
+<a id="rqmd-ext-089"></a>
+
+### RQMD-EXT-089: Mandatory slice closeout checklist — CHANGELOG, docs, and status sync
+
+- **Status:** 💡 Proposed
+- **Priority:** 🟠 P1 - High
+- **Summary:** As a developer who relies on rqmd agents to keep the repo in sync, I want every implementation slice to complete a mandatory before-done checklist (requirement status → CHANGELOG → README → smoke check) so that agents never silently skip changelog entries or leave docs stale after making code changes.
+- Given an agent completes any implementation change — code, prompt, skill, agent file, or config
+- When the agent considers the slice done
+- Then it must complete these steps before writing its closeout handoff, in order:
+  1. **Requirement status** — update the `### RQMD-` heading in `docs/requirements/*.md` to 🔧 Implemented; re-run `rqmd --verify-summaries --non-interactive`
+  2. **CHANGELOG** — add an entry under `## [Unreleased]` in `CHANGELOG.md`; use Added/Changed/Fixed/Removed categories; include requirement ID `[spec]` links for any tracked change
+  3. **README** — if user-visible or agent-visible behavior changed, update README
+  4. **Smoke check** — run the project's smoke path
+- And if any step is skipped, the slice is explicitly **not done** — the agent must say so rather than delivering a partial closeout
+- And this checklist is codified in the `rqmd` agent definition (`agents/rqmd.agent.md`) as a named section separate from handoff-format instructions, so it cannot be confused with output style guidance
+- And the checklist applies to both `rqmd-cli` and `rqmd-vscode` when working in a multi-root workspace — each repo gets its own CHANGELOG entry
+
+<a id="rqmd-ext-090"></a>
+
+### RQMD-EXT-090: Prefer VS Code-native execution surfaces over raw shell
+
+- **Status:** 🔧 Implemented
+- **Priority:** 🟠 P1 - High
+- **Summary:** As a developer using rqmd inside VS Code, I want the agent to prefer VS Code's native execution surfaces — Test Explorer, `tasks.json`, and `launch.json` — over shelling out to raw CLI commands, so that runs happen in the editor's normal output channels (with debugging, problem matchers, and one-click rerun) instead of disposable terminal sessions, and so that what the agent learns about a project is recorded back into the project-local `/dev` and `/test` skills.
+- **Tool preference order** (highest to lowest):
+  1. **Tests:** VS Code Test Explorer (the `runTests` tool) when the project has a discoverable test framework (pytest, vitest, jest, mocha, go test, etc.).
+  2. **Run / build / smoke / launch:** `tasks.json` entries via the `run_task` tool when a matching label exists.
+  3. **Debug-attach style requests:** `launch.json` configurations, surfaced as a suggestion ("there's a `launch.json` entry `debug rqmd CLI` — run that instead?") rather than silently shelling out.
+  4. **Raw shell** via `run_in_terminal` only when none of the above match, or when the user explicitly asks for the shell command.
+- Given a developer asks the rqmd agent to run tests, run a build, start a dev server, or debug something
+- When the workspace contains a relevant VS Code-native surface (Test Explorer-discoverable tests, a `tasks.json` label that matches the request, or a `launch.json` config that matches)
+- Then the agent prefers that surface over `run_in_terminal`, and names the surface it picked in one short line ("running via Test Explorer", "running task `local smoke`", "matching `launch.json` config: `debug rqmd CLI` — run it?")
+- And when the agent uses a VS Code-native surface for the first time on a given repo, it records the discovery in the project-local `/dev` or `/test` skill so the next session does not have to re-discover it
+- And the agent does not silently fall back to a raw shell command when a matching task or launch config exists — falling back is a deliberate choice the agent calls out
+- And the convention is encoded in the `rqmd` agent definition (`agents/rqmd.agent.md`) and surfaced in the `rqmd-init` skill so generated `/dev` and `/test` skills mention any discovered `tasks.json` and `launch.json` entries
+- And `rqmd-init` scans `.vscode/tasks.json` and `.vscode/launch.json` during the interview and includes the relevant labels in the generated `/dev` and `/test` skill bodies
 

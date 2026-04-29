@@ -29,8 +29,8 @@ Conduct as a structured multi-choice conversation with smart defaults pre-select
 1. **Repo context** — language, framework, build system; run `gh issue list --limit 20` when `gh` is available
 2. **ID prefix** — suggest a short project-specific prefix (3-5 chars); avoid generic fallbacks like `REQ` or `RQMD`
 3. **Requirement domains** — propose up to `max_domain_files` domain files from discovered source areas; let user confirm/remove/add
-4. **Dev skill** — discover build and run commands; draft `skills/dev/SKILL.md` with confirmed commands
-5. **Test skill** — discover test commands and smoke path; draft `skills/test/SKILL.md`
+4. **Dev skill** — discover build and run commands; **read `.vscode/tasks.json` and `.vscode/launch.json` if present** and surface their labels in the generated `skills/dev/SKILL.md` so the agent prefers them over raw shell
+5. **Test skill** — discover test commands and smoke path; **note whether the project has a Test Explorer-discoverable framework (pytest, vitest, jest, mocha, go test, …)** and instruct the agent in `skills/test/SKILL.md` to prefer the `runTests` tool over raw shell invocations
 6. **Seed requirements** — draft P2 stubs for discovered features and open issues (max `max_issue_requirements` from issues; max `max_source_areas` source areas)
 
 Then write: run `rqmd --scaffold` (or command palette "rqmd: Initialize Project") for the requirements index; write `/dev`, `/test` skills and domain seed files directly.

@@ -3,7 +3,7 @@
 Scope: Documentation quality skills, clickable requirement links, stable anchors, domain term conventions, and VS Code UX commands.
 
 <!-- acceptance-status-summary:start -->
-Summary: 1💡 8🔧 1✅ 0⚠️ 0⛔ 0🗑️
+Summary: 2💡 8🔧 1✅ 0⚠️ 0⛔ 0🗑️
 <!-- acceptance-status-summary:end -->
 
 <a id="rqmd-ext-024"></a>
@@ -132,4 +132,23 @@ Summary: 1💡 8🔧 1✅ 0⚠️ 0⛔ 0🗑️
 
 - And a brief VS Code information message confirms: "📥 Added to inbox"
 - And pressing Escape cancels without writing
+
+<a id="rqmd-ext-091"></a>
+
+### RQMD-EXT-091: Sentence-per-line markdown convention for diff-friendly docs
+
+- **Status:** 💡 Proposed
+- **Priority:** 🟡 P2 - Medium
+- **Summary:** As a developer reviewing doc changes in `git diff`, I want rqmd's authored markdown (requirement files, READMEs, skill files, agent instructions, brainstorm notes, changelogs) to follow a "one sentence per line" convention with no hard-wrapping at fixed column widths, so that diffs highlight the *single sentence* that actually changed instead of repainting an entire reflowed paragraph.
+- **Affects:** `skills/rqmd-docs/SKILL.md`, `docs/doc-standards.md` (or equivalent style guide), `agents/rqmd.agent.md`, `prompts/*.prompt.md` (where they instruct doc authoring), bootstrap defaults installed by the extension
+- Given any markdown file authored or edited by the rqmd agent or human under rqmd's docs standards
+- When prose is written or modified
+- Then each sentence ends with a newline (the sentence boundary *is* the line boundary)
+- And paragraphs are still separated by a blank line, so rendered output is unchanged
+- And lines are **not** hard-wrapped at fixed column widths (no "wrap at 80/100 chars" rules)
+- And list items, callouts, and table cells follow the same rule when they contain multiple sentences
+- And the `rqmd-docs` skill style guide explicitly documents this convention with a short rationale ("git diff readability — only the changed sentence shows as changed")
+- And the `rqmd` agent instructions (and any prompt that authors docs) reference the convention so AI agents stop reflowing prose to arbitrary widths
+- And a contrasting "do / don't" example is included in the style guide (one sentence per line vs. column-wrapped paragraph)
+- **Related principle (out of scope, capture only):** the same diff-friendly motivation argues for generous vertical spacing in source code so that small logic changes diff as small line changes rather than as edits to dense one-liners — track separately if/when promoted to code-style requirement.
 

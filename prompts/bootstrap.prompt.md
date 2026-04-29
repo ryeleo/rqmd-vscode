@@ -1,5 +1,5 @@
 ---
-description: "rqmd (v0.2.10): Bootstrap rqmd in a new or existing repo — structured interview, /dev + /test skills, seeded requirements catalog."
+description: "rqmd (v0.2.11): Bootstrap rqmd in a new or existing repo — structured interview, /dev + /test skills, seeded requirements catalog."
 name: "bootstrap"
 argument-hint: "Describe the repo (new project vs. existing codebase), preferred ID prefix, and whether to consult GitHub issues."
 agent: "rqmd"

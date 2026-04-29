@@ -11,6 +11,27 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+<a id="v0-2-11"></a>
+
+## [0.2.11] - 2026-04-28
+
+### Added
+
+- `prompts/triage.prompt.md`: `/triage` slash command — ranks the backlog, sweeps inbox-first, and outputs a copy-paste `/go` prompt with rationale (RQMD-EXT-088 [spec](docs/requirements/prompts.md#L82))
+- `docs/requirements/prompts.md`: RQMD-EXT-088 [spec](docs/requirements/prompts.md#L82) — `/triage` prompt requirement, 🔧 Implemented
+- `docs/requirements/agent-execution.md`: RQMD-EXT-089 [spec](docs/requirements/agent-execution.md#L95) — mandatory slice closeout checklist (CHANGELOG, docs, status sync)
+- `docs/requirements/agent-execution.md`: RQMD-EXT-090 [spec](docs/requirements/agent-execution.md#L113) — prefer VS Code-native execution surfaces (Test Explorer, `tasks.json`, `launch.json`) over raw shell; agent records discoveries back into project-local `/dev` and `/test` skills.
+- `agents/rqmd.agent.md`: new "Tool preference — VS Code-native first" section codifying the run-tests-via-Test-Explorer / use-tasks.json / surface-launch.json / fallback-to-shell preference order.
+- `skills/rqmd-init/SKILL.md`: interview now scans `.vscode/tasks.json` and `.vscode/launch.json` and surfaces them in the generated `/dev` and `/test` skills; `/test` instructs the agent to prefer the `runTests` tool when a Test Explorer-discoverable framework is detected.
+- `docs/requirements/docs-ux.md`: RQMD-EXT-091 [spec](docs/requirements/docs-ux.md#L138) — sentence-per-line markdown convention for diff-friendly docs (one sentence per line, no fixed-column hard-wrapping). Captures the rationale that git diff highlights only the changed sentence instead of repainting an entire reflowed paragraph.
+- `docs/requirements/bugs.md`: new domain file tracking VS Code extension bugs (e.g. `/catchup` not registered as a contributed prompt).
+- `.gitignore`: `tmp/` excluded.
+
+### Changed
+
+- `agents/rqmd.agent.md`: replaced vague "Update CHANGELOG for every change" execution bullet with an explicit numbered **Slice closeout** section (requirement status → CHANGELOG → README → smoke check); removed redundant execution bullets now covered by the checklist. Fixes agents silently skipping changelog entries after code changes.
+- `agents/rqmd.agent.md`: promoted **Cohesion** to the lead guiding principle (domain-modelling discipline — let things that belong together stick together; prefer simple visualisable structures like layers and hub-and-spoke; split anything that crosses a boundary). Repositioned **Complete & Concise** as the communication-style pair for how the agent talks to the developer. Generalised the linking-rule example and slice-closeout language to be project-agnostic — no longer hard-codes `RQMD-EXT-` prefix or assumes a specific lifecycle label set.
+- `prompts/tech-debt.prompt.md`: bumped stale `v0.2.9` description tag to match current version.
 <a id="v0-2-10"></a>
 
 ## [0.2.10] - 2026-04-19
