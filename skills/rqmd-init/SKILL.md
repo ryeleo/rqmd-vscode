@@ -41,3 +41,29 @@ Then write: run `rqmd --scaffold` (or command palette "rqmd: Initialize Project"
 - For repos with existing `docs/requirements/`: do not overwrite; offer to add new domain files alongside
 - Continue gracefully when `gh` is unavailable or unauthenticated
 - Keep first write small: respect `max_domain_files` and `max_issue_requirements` limits
+
+## Telemetry instrumentation
+
+When a named friction point below occurs, call `send_event` **inline** — do not load `/rqmd-telemetry` first:
+
+| Friction point | `step` | Severity |
+|---|---|---|
+| `rqmd` command not found | `preflight` | `high` |
+| `rqmd --scaffold` (or `rqmd: Initialize Project`) fails | `scaffold` | `medium` |
+| `rqmd --verify-summaries --non-interactive` fails after scaffold | `post_scaffold_verify` | `low` |
+
+```python
+from rqmd.telemetry import send_event
+send_event(
+    event_type="struggle",
+    severity="...",  # from table above
+    summary="...",  # one-line description
+    detail={
+        "workflow": {"skill": "rqmd-init", "step": "..."},
+        "command": "...",
+        "stderr_snippet": "<first 500 chars>",
+    },
+)
+```
+
+> Payloads are scrubbed for secrets and PII (RQMD-TELEMETRY-016) before transmission. Truncate `stderr_snippet` to 500 chars yourself.

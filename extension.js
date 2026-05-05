@@ -6,10 +6,10 @@ const { ensureRqmd, runRqmd, initOutputChannel } = require('./bootstrap');
 function activate(context) {
     // rqmd contributes prompts, skills, and agents declaratively via package.json.
 
-    // RQMD-EXT-060: create the Output channel for bootstrap diagnostics.
+    // RQMD-VSCODE-010: create the Output channel for bootstrap diagnostics.
     initOutputChannel(context);
 
-    // RQMD-EXT-057/058: Check that rqmd is installed at extension startup.
+    // RQMD-VSCODE-007/008: Check that rqmd is installed at extension startup.
     // If missing, the bootstrap will install it (and uv if needed) and notify
     // the user.  This avoids the painful flow of approving 10 individual commands
     // just to run rqmd when it isn't installed on the workstation.
@@ -22,7 +22,7 @@ function activate(context) {
     // files (.github/skills/dev, .github/skills/test, starter requirement docs).
     // Shared rqmd defaults (prompts, skills, agents) stay in the extension.
     const initDisposable = vscode.commands.registerCommand('rqmd.initProject', async () => {
-        // RQMD-EXT-058/059: bootstrap + rerun-original-command via runRqmd.
+        // RQMD-VSCODE-008/009: bootstrap + rerun-original-command via runRqmd.
         // If rqmd is missing it installs first (concurrency-safe, debounced),
         // then execs the command in the terminal automatically.
         const workspaceFolders = vscode.workspace.workspaceFolders;
@@ -45,7 +45,7 @@ function activate(context) {
 
     context.subscriptions.push(initDisposable);
 
-    // RQMD-EXT-066: DocumentLinkProvider — makes requirement IDs clickable in any file.
+    // RQMD-DOCS-006: DocumentLinkProvider — makes requirement IDs clickable in any file.
     // Builds an ID→{absPath, anchor, lineNum} index by scanning docs/requirements/ in each
     // workspace folder, then registers a provider that turns every known RQMD-XXX-NNN
     // occurrence into a one-click link that opens markdown preview at the stable anchor.
@@ -90,7 +90,7 @@ function activate(context) {
         }
     }
 
-    // RQMD-EXT-066: Command invoked when a requirement link is clicked.
+    // RQMD-DOCS-006: Command invoked when a requirement link is clicked.
     // Opens the requirement file in markdown preview scrolled to its stable anchor.
     // Falls back to the editor at the heading line if preview is unavailable.
     const openRequirementDisposable = vscode.commands.registerCommand(
@@ -111,7 +111,7 @@ function activate(context) {
         }
     );
 
-    // RQMD-EXT-066: DocumentLinkProvider for all files in the workspace.
+    // RQMD-DOCS-006: DocumentLinkProvider for all files in the workspace.
     // Only IDs present in the index get links — unknown IDs produce no link.
     const ID_REGEX = /\bRQMD-[A-Z]+-\d+\b/g;
     const linkProvider = vscode.languages.registerDocumentLinkProvider(
@@ -141,7 +141,7 @@ function activate(context) {
         }
     );
 
-    // RQMD-EXT-066: Rebuild the index when requirement files change.
+    // RQMD-DOCS-006: Rebuild the index when requirement files change.
     const reqWatcher = vscode.workspace.createFileSystemWatcher('**/docs/requirements/**/*.md');
     reqWatcher.onDidChange(() => buildRequirementIndex());
     reqWatcher.onDidCreate(() => buildRequirementIndex());

@@ -6,25 +6,25 @@ Scope: Agent workflow entry points, preflight readiness checks, `/dev` and `/tes
 Summary: 4💡 5🔧 0✅ 0⚠️ 0⛔ 0🗑️
 <!-- acceptance-status-summary:end -->
 
-<a id="rqmd-ext-008"></a>
+<a id="rqmd-ai-exec-001"></a>
 
-### RQMD-EXT-008: Project-specific dev and test skill scaffolding
+### RQMD-AI-EXEC-001: Project-specific dev and test skill scaffolding
 
 - **Status:** 🔧 Implemented
 - **Priority:** 🟠 P1 - High
 - **Summary:** Bundle bootstrap to help generate project-local `dev` and `test` skills tailored to that repository's actual commands and workflows so that the installed `rqmd-dev` agent can delegate build, run, smoke-test, and test behavior to project-specific skills instead of relying on generic assumptions.
 
-<a id="rqmd-ext-010"></a>
+<a id="rqmd-ai-exec-002"></a>
 
-### RQMD-EXT-010: rqmd-dev delegation to project dev and test skills
+### RQMD-AI-EXEC-002: rqmd-dev delegation to project dev and test skills
 
 - **Status:** 🔧 Implemented
 - **Priority:** 🟡 P2 - Medium
 - **Summary:** `rqmd-dev` guidance to explicitly depend on repository-specific `dev` and `test` skills when they exist so that implementation agents know where to find the canonical project commands for building, running, smoke-testing, and validating the work under development.
 
-<a id="rqmd-ext-037"></a>
+<a id="rqmd-ai-exec-003"></a>
 
-### RQMD-EXT-037: Bundle bootstrap asks whether `/dev` and `/test` skills should support multiple platforms
+### RQMD-AI-EXEC-003: Bundle bootstrap asks whether `/dev` and `/test` skills should support multiple platforms
 
 - **Status:** 💡 Proposed
 - **Priority:** 🟡 P2 - Medium
@@ -35,9 +35,9 @@ Summary: 4💡 5🔧 0✅ 0⚠️ 0⛔ 0🗑️
 - And the generated guidance should either include the agreed cross-platform commands and caveats or clearly record that the repository is intentionally single-platform
 - And Windows-oriented environments such as Git Bash should be treated as first-class cases rather than implicit Unix-only fallbacks.
 
-<a id="rqmd-ext-038"></a>
+<a id="rqmd-ai-exec-004"></a>
 
-### RQMD-EXT-038: Agent preflight verifies repository readiness before implementation
+### RQMD-AI-EXEC-004: Agent preflight verifies repository readiness before implementation
 
 - **Status:** 🔧 Implemented
 - **Priority:** 🟡 P2 - Medium
@@ -49,9 +49,9 @@ Summary: 4💡 5🔧 0✅ 0⚠️ 0⛔ 0🗑️
 - And it should report missing or stale prerequisites with precise fixes instead of letting the failure surface later inside an agent run
 - And it should exit with a machine-readable success or failure result, including per-check status and remediation guidance, so prompts, tasks, and automation can gate on the same readiness check.
 
-<a id="rqmd-ext-039"></a>
+<a id="rqmd-ai-exec-005"></a>
 
-### RQMD-EXT-039: Agent workflow metadata has one source of truth
+### RQMD-AI-EXEC-005: Agent workflow metadata has one source of truth
 
 - **Status:** 💡 Proposed
 - **Priority:** 🟠 P3 - Low
@@ -61,9 +61,9 @@ Summary: 4💡 5🔧 0✅ 0⚠️ 0⛔ 0🗑️
 - Then that detail should be defined in one maintained source of truth and propagated to the derived docs or configuration surfaces that need it
 - And the repository should include a repeatable check or generation path that catches drift before stale workflow instructions reach developers or agents.
 
-<a id="rqmd-ext-040"></a>
+<a id="rqmd-ai-exec-006"></a>
 
-### RQMD-EXT-040: Generated agent workflow entry point is the canonical agent execution surface
+### RQMD-AI-EXEC-006: Generated agent workflow entry point is the canonical agent execution surface
 
 - **Status:** 🔧 Implemented
 - **Priority:** 🟠 P1 - High
@@ -74,9 +74,9 @@ Summary: 4💡 5🔧 0✅ 0⚠️ 0⛔ 0🗑️
 - And repository-specific operations such as compile, focused test, broader test, docs verification, or other primary workflows should be reachable through that same maintained interface rather than ad hoc standalone commands
 - And the interface should stay stable enough that prompts, skills, tasks, and automation can treat it as the primary execution contract for agent work.
 
-<a id="rqmd-ext-041"></a>
+<a id="rqmd-ai-exec-007"></a>
 
-### RQMD-EXT-041: `/dev` and `/test` skills can defer to a canonical agent-invocable interface
+### RQMD-AI-EXEC-007: `/dev` and `/test` skills can defer to a canonical agent-invocable interface
 
 - **Status:** 💡 Proposed
 - **Priority:** 🟡 P2 - Medium
@@ -89,9 +89,9 @@ Summary: 4💡 5🔧 0✅ 0⚠️ 0⛔ 0🗑️
 - And the bundle guidance should make clear when those skills remain useful as thin wrappers or discovery aids versus when they should be treated as redundant
 - And the guidance should remain technology-neutral, supporting shell scripts, Makefiles, justfiles, or other task-runner conventions without forcing one choice.
 
-<a id="rqmd-ext-089"></a>
+<a id="rqmd-ai-exec-008"></a>
 
-### RQMD-EXT-089: Mandatory slice closeout checklist — CHANGELOG, docs, and status sync
+### RQMD-AI-EXEC-008: Mandatory slice closeout checklist — CHANGELOG, docs, and status sync
 
 - **Status:** 💡 Proposed
 - **Priority:** 🟠 P1 - High
@@ -107,9 +107,9 @@ Summary: 4💡 5🔧 0✅ 0⚠️ 0⛔ 0🗑️
 - And this checklist is codified in the `rqmd` agent definition (`agents/rqmd.agent.md`) as a named section separate from handoff-format instructions, so it cannot be confused with output style guidance
 - And the checklist applies to both `rqmd-cli` and `rqmd-vscode` when working in a multi-root workspace — each repo gets its own CHANGELOG entry
 
-<a id="rqmd-ext-090"></a>
+<a id="rqmd-ai-exec-009"></a>
 
-### RQMD-EXT-090: Prefer VS Code-native execution surfaces over raw shell
+### RQMD-AI-EXEC-009: Prefer VS Code-native execution surfaces over raw shell
 
 - **Status:** 🔧 Implemented
 - **Priority:** 🟠 P1 - High

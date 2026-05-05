@@ -2,11 +2,11 @@
  * bootstrap.js — self-healing rqmd installer for the VS Code extension host.
  *
  * Implements:
- *   RQMD-EXT-056  same-major version policy
- *   RQMD-EXT-057  VS Code notification flow
- *   RQMD-EXT-058  unified shim entrypoint / runRqmd helper
- *   RQMD-EXT-059  concurrency lock + session debounce
- *   RQMD-EXT-060  reason-code diagnostics + Output channel logging
+ *   RQMD-VSCODE-006  same-major version policy
+ *   RQMD-VSCODE-007  VS Code notification flow
+ *   RQMD-VSCODE-008  unified shim entrypoint / runRqmd helper
+ *   RQMD-VSCODE-009  concurrency lock + session debounce
+ *   RQMD-VSCODE-010  reason-code diagnostics + Output channel logging
  *
  * Public API:
  *   ensureRqmd(context)             → { ok, reasonCode }
@@ -39,7 +39,7 @@ function majorMismatchMsg(installed, expected) {
 }
 
 // ---------------------------------------------------------------------------
-// RQMD-EXT-059: Concurrency lock + session debounce
+// RQMD-VSCODE-009: Concurrency lock + session debounce
 // ---------------------------------------------------------------------------
 
 /** @type {Promise<{ok:boolean,reasonCode:BootstrapReasonCode}>|null} */
@@ -47,7 +47,7 @@ let _bootstrapInFlight = null;
 let _notificationShownThisSession = false;
 
 // ---------------------------------------------------------------------------
-// RQMD-EXT-060: Output channel for reason-code diagnostics
+// RQMD-VSCODE-010: Output channel for reason-code diagnostics
 // ---------------------------------------------------------------------------
 
 /** @type {import('vscode').OutputChannel | null} */

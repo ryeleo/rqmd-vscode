@@ -3,52 +3,52 @@
 Scope: Documentation quality skills, clickable requirement links, stable anchors, domain term conventions, and VS Code UX commands.
 
 <!-- acceptance-status-summary:start -->
-Summary: 2💡 8🔧 1✅ 0⚠️ 0⛔ 0🗑️
+Summary: 1💡 9🔧 1✅ 0⚠️ 0⛔ 0🗑️
 <!-- acceptance-status-summary:end -->
 
-<a id="rqmd-ext-024"></a>
+<a id="rqmd-docs-001"></a>
 
-### RQMD-EXT-024: Default markdown closeout styling for installed AI guidance
+### RQMD-DOCS-001: Default markdown closeout styling for installed AI guidance
 
 - **Status:** ✅ Verified
 - **Priority:** 🟠 P1 - High
 - **Summary:** The installed default agent instructions to prefer a concise markdown closeout structure such as `# What got done`, `# Up next`, and `# Direction` so that implementation updates are easier to scan quickly in AI chat transcripts and review handoffs.
 
-<a id="rqmd-ext-028"></a>
+<a id="rqmd-docs-002"></a>
 
-### RQMD-EXT-028: Authored changelog maintenance skill
+### RQMD-DOCS-002: Authored changelog maintenance skill
 
 - **Status:** 🔧 Implemented
 - **Priority:** 🟠 P1 - High
 - **Summary:** Rqmd to ship a dedicated `/rqmd-changelog` skill for maintaining `CHANGELOG.md` so that changelog work becomes a first-class authored workflow instead of an implicit side effect of generic docs cleanup.
 
-<a id="rqmd-ext-029"></a>
+<a id="rqmd-docs-003"></a>
 
-### RQMD-EXT-029: General documentation-quality skill
+### RQMD-DOCS-003: General documentation-quality skill
 
 - **Status:** 🔧 Implemented
 - **Priority:** 🟠 P1 - High
 - **Summary:** Rqmd to ship a dedicated `/rqmd-docs` skill for documentation quality and structure work beyond simple drift correction so that README, requirement docs, bundle guidance, and other markdown can be improved using explicit standards for headings, clarity, jargon handling, page splitting, hyperlinks, and callouts instead of only being kept mechanically in sync.
 
-<a id="rqmd-ext-030"></a>
+<a id="rqmd-docs-004"></a>
 
-### RQMD-EXT-030: Consistent cross-project AI workflow experience
+### RQMD-DOCS-004: Consistent cross-project AI workflow experience
 
 - **Status:** 🔧 Implemented
 - **Priority:** 🟠 P1 - High
 - **Summary:** Shipped rqmd agents and skills to behave consistently across projects even when the requirement catalogs and priorities differ so that users build trust and familiarity with the AI workflows instead of relearning a different style in every repository.
 
-<a id="rqmd-ext-031"></a>
+<a id="rqmd-docs-005"></a>
 
-### RQMD-EXT-031: Pinned context and decision notes workflow
+### RQMD-DOCS-005: Pinned context and decision notes workflow
 
 - **Status:** 🔧 Implemented
 - **Priority:** 🟡 P2 - Medium
 - **Summary:** An `rqmd-pin` workflow for capturing important context, decisions, and quick-reference notes that should remain easy to find later so that useful insights do not disappear into chat history or scattered documentation during brainstorming and implementation.
 
-<a id="rqmd-ext-066"></a>
+<a id="rqmd-docs-006"></a>
 
-### RQMD-EXT-066: DocumentLinkProvider makes requirement IDs clickable in the editor
+### RQMD-DOCS-006: DocumentLinkProvider makes requirement IDs clickable in the editor
 
 - **Status:** 🔧 Implemented
 - **Priority:** 🟠 P1 - High
@@ -56,15 +56,15 @@ Summary: 2💡 8🔧 1✅ 0⚠️ 0⛔ 0🗑️
 - Given a file is open in the VS Code editor and contains text matching a known requirement ID (e.g. `RQMD-EXT-063`)
 - When the rqmd extension activates its DocumentLinkProvider
 - Then every matching ID is rendered as a clickable link (underlined, Cmd/Ctrl-click)
-- And clicking the link opens the requirement's source file in **markdown preview** and scrolls to the stable `<a id="rqmd-ext-063"></a>` anchor (see RQMD-EXT-068)
+- And clicking the link opens the requirement's source file in **markdown preview** and scrolls to the stable `<a id="rqmd-docs-006"></a>` anchor (see RQMD-DOCS-008)
 - And the ID→file mapping is built from `rqmd --json --non-interactive` output (which includes `source_file` per requirement), cached at workspace open, and refreshed via a file watcher on `docs/requirements/`
 - And only IDs present in the `rqmd --json` index are linked — unknown IDs (typos, future IDs not yet indexed) produce no link, not a dead link
 - And the feature works in editor, diff view, and search results
 - And if markdown preview cannot resolve the anchor, the link falls back to opening the file in the editor at the heading line
 
-<a id="rqmd-ext-067"></a>
+<a id="rqmd-docs-007"></a>
 
-### RQMD-EXT-067: Agent always emits requirement IDs as clickable markdown links
+### RQMD-DOCS-007: Agent always emits requirement IDs as clickable markdown links
 
 - **Status:** 🔧 Implemented
 - **Priority:** 🟡 P2 - Medium
@@ -78,29 +78,29 @@ Summary: 2💡 8🔧 1✅ 0⚠️ 0⛔ 0🗑️
 - And in tables, the ID and `[spec]` link share the Req column: `RQMD-EXT-063 [spec](file.md#L<n>)`
 - And the agent determines the line number by reading the file (the `<a id>` tag or `###` heading line)
 - And when the agent does not know the source file or line number, it emits the bare ID as fallback (graceful degradation)
-- And the `<a id>` anchor tags (RQMD-EXT-068) are kept for GitHub, VS Code markdown preview, and DocumentLinkProvider — they serve all link surfaces except chat
+- And the `<a id>` anchor tags (RQMD-DOCS-008) are kept for GitHub, VS Code markdown preview, and DocumentLinkProvider — they serve all link surfaces except chat
 - And the convention is encoded in the `rqmd.agent.md` instructions and the `/refine`, `/go`, and `/retro` skill files so all agent modes follow it
 
-<a id="rqmd-ext-068"></a>
+<a id="rqmd-docs-008"></a>
 
-### RQMD-EXT-068: Stable anchor IDs on requirement headings
+### RQMD-DOCS-008: Stable anchor IDs on requirement headings
 
 - **Status:** 🔧 Implemented
 - **Priority:** 🟡 P2 - Medium
 - **Summary:** As a developer or agent linking to a specific requirement, I want each requirement heading to have a stable `<a id="rqmd-ext-nnn"></a>` anchor that survives title edits, so that cross-references from chat, brainstorm.md, CHANGELOG, and other files never break when a requirement's title is reworded.
 - **Anchor authorship:** Dual approach — **(a)** agent convention writes anchors when creating/updating requirements, **(b)** `rqmd --verify-summaries` (or future `--fix-anchors`) heals any that were missed. Agent convention ships first; CLI healing can be deferred.
-- Given a requirement heading like `### RQMD-EXT-063: /refine is an interactive shaping loop`
+- Given a requirement heading like `### RQMD-SHAPE-010: /refine is an interactive shaping loop`
 
 - When the requirement is created or updated (by agent or human)
-- Then an anchor tag `<a id="rqmd-ext-063"></a>` is present immediately before the heading
+- Then an anchor tag `<a id="rqmd-shape-010"></a>` is present immediately before the heading
 - And the anchor ID is the lowercase, hyphenated requirement ID (not derived from the title text)
-- And links using `bundle.md#rqmd-ext-063` resolve correctly in VS Code markdown preview, GitHub rendered markdown, and the DocumentLinkProvider (RQMD-EXT-066)
+- And links using `bundle.md#rqmd-docs-008` resolve correctly in VS Code markdown preview, GitHub rendered markdown, and the DocumentLinkProvider (RQMD-DOCS-006)
 - And existing requirements (~68 today) are backfilled with anchors in a one-time batch before this feature ships
 - And the agent skill instructions (`rqmd-implement`, `rqmd-brainstorm`, `/refine`) include the convention: "always write `<a id>` before new requirement headings"
 
-<a id="rqmd-ext-076"></a>
+<a id="rqmd-docs-009"></a>
 
-### RQMD-EXT-076: Domain Term Introduction Convention
+### RQMD-DOCS-009: Domain Term Introduction Convention
 
 - **Status:** 🔧 Implemented
 - **Priority:** 🟠 P1 - High
@@ -118,9 +118,9 @@ Summary: 2💡 8🔧 1✅ 0⚠️ 0⛔ 0🗑️
 - And the convention is codified in `docs/doc-standards.md` alongside the existing acronym/jargon rule
 - And the `rqmd` agent instructions reference the convention so agents follow it in chat output
 
-<a id="rqmd-ext-078"></a>
+<a id="rqmd-docs-010"></a>
 
-### RQMD-EXT-078: `rqmd: Quick Capture` VS Code command
+### RQMD-DOCS-010: `rqmd: Quick Capture` VS Code command
 
 - **Status:** 💡 Proposed
 - **Priority:** 🟡 P2 - Medium
@@ -133,11 +133,11 @@ Summary: 2💡 8🔧 1✅ 0⚠️ 0⛔ 0🗑️
 - And a brief VS Code information message confirms: "📥 Added to inbox"
 - And pressing Escape cancels without writing
 
-<a id="rqmd-ext-091"></a>
+<a id="rqmd-docs-011"></a>
 
-### RQMD-EXT-091: Sentence-per-line markdown convention for diff-friendly docs
+### RQMD-DOCS-011: Sentence-per-line markdown convention for diff-friendly docs
 
-- **Status:** 💡 Proposed
+- **Status:** 🔧 Implemented
 - **Priority:** 🟡 P2 - Medium
 - **Summary:** As a developer reviewing doc changes in `git diff`, I want rqmd's authored markdown (requirement files, READMEs, skill files, agent instructions, brainstorm notes, changelogs) to follow a "one sentence per line" convention with no hard-wrapping at fixed column widths, so that diffs highlight the *single sentence* that actually changed instead of repainting an entire reflowed paragraph.
 - **Affects:** `skills/rqmd-docs/SKILL.md`, `docs/doc-standards.md` (or equivalent style guide), `agents/rqmd.agent.md`, `prompts/*.prompt.md` (where they instruct doc authoring), bootstrap defaults installed by the extension
@@ -151,4 +151,3 @@ Summary: 2💡 8🔧 1✅ 0⚠️ 0⛔ 0🗑️
 - And the `rqmd` agent instructions (and any prompt that authors docs) reference the convention so AI agents stop reflowing prose to arbitrary widths
 - And a contrasting "do / don't" example is included in the style guide (one sentence per line vs. column-wrapped paragraph)
 - **Related principle (out of scope, capture only):** the same diff-friendly motivation argues for generous vertical spacing in source code so that small logic changes diff as small line changes rather than as edits to dense one-liners — track separately if/when promoted to code-style requirement.
-

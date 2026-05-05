@@ -21,5 +21,5 @@ Maintain `CHANGELOG.md` as a clear release record. Lead with user impact and hum
 ## Edge cases
 
 - Not a commit log — include AI work only when it explains a shipped outcome
-- Prefer `Implemented RQMD-EXT-025: <description>` reference style over restating the requirement in prose
+- Prefer `Implemented RQMD-PROMPT-001: <description>` reference style over restating the requirement in prose
 - Use `/rqmd-doc-sync` when the main task is requirement-doc alignment, not changelog quality

@@ -6,66 +6,66 @@ Scope: Requirement authoring, brainstorm workflows, `/refine` shaping loops, and
 Summary: 1💡 10🔧 1✅ 0⚠️ 0⛔ 0🗑️
 <!-- acceptance-status-summary:end -->
 
-<a id="rqmd-ext-002"></a>
+<a id="rqmd-shape-001"></a>
 
-### RQMD-EXT-002: Requirement-first AI workflow guidance
+### RQMD-SHAPE-001: Requirement-first AI workflow guidance
 
 - **Status:** 🔧 Implemented
 - **Priority:** 🟠 P1 - High
 - **Summary:** Rqmd-ai guidance and docs to prescribe a requirement-first workflow before code is applied so that brainstorm ideas are promoted into tracked requirements, index updates, and changelog entries before implementation starts.
 
-<a id="rqmd-ext-003"></a>
+<a id="rqmd-shape-002"></a>
 
-### RQMD-EXT-003: Brainstorm-to-requirements planning mode
+### RQMD-SHAPE-002: Brainstorm-to-requirements planning mode
 
 - **Status:** 🔧 Implemented
 - **Priority:** 🟠 P1 - High
 - **Summary:** Rqmd-ai to support a dedicated brainstorm workflow that turns raw notes into ranked requirement proposals so that loose brainstorming can be promoted into concrete requirement entries before implementation begins.
 
-<a id="rqmd-ext-004"></a>
+<a id="rqmd-shape-003"></a>
 
-### RQMD-EXT-004: Proposal-batch implementation mode
+### RQMD-SHAPE-003: Proposal-batch implementation mode
 
 - **Status:** 🔧 Implemented
 - **Priority:** 🔴 P0 - Critical
 - **Summary:** Rqmd-ai guidance to define an explicit implement mode that works the highest-priority proposed requirements in small validated batches so that the agent updates requirements, tests, and changelog entries as details become concrete rather than deferring documentation until the end.
 
-<a id="rqmd-ext-023"></a>
+<a id="rqmd-shape-004"></a>
 
-### RQMD-EXT-023: Encourage dual user-story and Given/When/Then requirement authoring
+### RQMD-SHAPE-004: Encourage dual user-story and Given/When/Then requirement authoring
 
 - **Status:** ✅ Verified
 - **Priority:** 🟠 P1 - High
 - **Summary:** Rqmd-ai guidance and editing workflows to actively encourage requirements that include both a user story and a Given/When/Then acceptance block when both are useful so that generated or edited requirements are easier to understand at both the product-intent and implementation-detail levels.
 
-<a id="rqmd-ext-046"></a>
+<a id="rqmd-shape-005"></a>
 
-### RQMD-EXT-046: Auto-draft requirements during brainstorm and refine sessions
+### RQMD-SHAPE-005: Auto-draft requirements during brainstorm and refine sessions
 
 - **Status:** 🔧 Implemented
 - **Priority:** 🟠 P1 - High
 - **Summary:** The agent to automatically write solidified ideas into `docs/requirements/` as 💡 Proposed entries rather than asking me for permission each time so that when any session picks up the `/go` handoff prompt, the requirements it references already exist in the tracked docs and the implementation session has a clear contract to work from.
 
-<a id="rqmd-ext-047"></a>
+<a id="rqmd-shape-006"></a>
 
-### RQMD-EXT-047: Brainstorm and refine modes resist jumping to implementation
+### RQMD-SHAPE-006: Brainstorm and refine modes resist jumping to implementation
 
 - **Status:** 🔧 Implemented
 - **Priority:** 🟡 P2 - Medium
 - **Summary:** The agent to actively resist writing code, tests, or implementation changes and instead focus on shaping, clarifying, and tracking requirements so that the brainstorm/refine workflow stays focused on *what* to build and *why*, with implementation deferred to a `/go` handoff in a focused implementation session.
 
-<a id="rqmd-ext-048"></a>
+<a id="rqmd-shape-007"></a>
 
-### RQMD-EXT-048: Brainstorm and refine skills detect bug reports and offer bug template
+### RQMD-SHAPE-007: Brainstorm and refine skills detect bug reports and offer bug template
 
 - **Status:** 🔧 Implemented
 - **Priority:** 🟡 P2 - Medium
 - **Summary:** The agent to recognize that I am describing a bug (keywords like "broken", "regression", "doesn't work", "used to work") and offer the Steps to Reproduce / Expected / Actual / Root Cause template from RQMD-CORE-043 instead of the user-story template so that bugs are drafted with the right shape from the start, with `type: bug` and an `affects:` cross-reference pre-filled when the parent requirement is identifiable.
 
-<a id="rqmd-ext-061"></a>
+<a id="rqmd-shape-008"></a>
 
 
-### RQMD-EXT-061: `/go` nudges shaping before implementing unshaped requirements
+### RQMD-SHAPE-008: `/go` nudges shaping before implementing unshaped requirements
 
 - **Status:** 🔧 Implemented
 - **Priority:** 🟠 P1 - High
@@ -76,13 +76,13 @@ Summary: 1💡 10🔧 1✅ 0⚠️ 0⛔ 0🗑️
 
 - Then the agent says: "This requirement hasn't been shaped yet — want me to `/refine` it first, or proceed anyway?" — one question, not a lecture
 - And the user can proceed immediately with explicit confirmation (the nudge is friction, not a wall)
-- And if the user accepts, the agent starts an interactive `/refine` shaping loop (see RQMD-EXT-063) before continuing to implementation
+- And if the user accepts, the agent starts an interactive `/refine` shaping loop (see RQMD-SHAPE-010) before continuing to implementation
 - And the nudge applies equally to features and bugs — an unshaped bug ("it's broken") gets the same prompt as an unshaped feature
 - And requirements that already have acceptance criteria skip the nudge entirely — the agent trusts that shaping happened
 
-<a id="rqmd-ext-062"></a>
+<a id="rqmd-shape-009"></a>
 
-### RQMD-EXT-062: Brainstorm items carry promotion status
+### RQMD-SHAPE-009: Brainstorm items carry promotion status
 
 - **Status:** 💡 Proposed
 - **Priority:** 🟡 P2 - Medium
@@ -93,9 +93,9 @@ Summary: 1💡 10🔧 1✅ 0⚠️ 0⛔ 0🗑️
 - And the agent recognizes `[raw idea]` items as needing `/refine` before they can become requirements
 - And promotion status is a convention (not enforced tooling) — agents follow it, humans may skip it
 
-<a id="rqmd-ext-063"></a>
+<a id="rqmd-shape-010"></a>
 
-### RQMD-EXT-063: `/refine` is an interactive shaping loop, not a one-shot template
+### RQMD-SHAPE-010: `/refine` is an interactive shaping loop, not a one-shot template
 
 - **Status:** 🔧 Implemented
 - **Priority:** 🟠 P1 - High
@@ -113,11 +113,11 @@ Summary: 1💡 10🔧 1✅ 0⚠️ 0⛔ 0🗑️
 - And during shaping, the agent **actively invites first-person narratives** — "Walk me through what happens to you right now when you try to do X" — because turning-point insights emerge from user stories, not from template-filling
 - And subsequent `/refine` calls on the same requirement continue the shaping loop (tighten, not restart)
 - And when acceptance criteria are complete and no open questions remain, the agent declares the requirement "shaped" and offers to proceed to `/go`
-- And the shaping confirmation includes a clickable link to the requirement (see RQMD-EXT-067) so the developer can review the final spec in one click
+- And the shaping confirmation includes a clickable link to the requirement (see RQMD-DOCS-007) so the developer can review the final spec in one click
 
-<a id="rqmd-ext-077"></a>
+<a id="rqmd-shape-011"></a>
 
-### RQMD-EXT-077: Inbox file convention and `/brainstorm` quick-capture mode
+### RQMD-SHAPE-011: Inbox file convention and `/brainstorm` quick-capture mode
 
 - **Status:** 🔧 Implemented
 - **Priority:** 🟠 P1 - High
@@ -134,9 +134,9 @@ Summary: 1💡 10🔧 1✅ 0⚠️ 0⛔ 0🗑️
 - And `/catchup` and `/retro` report the inbox count: "You have N un-triaged inbox items"
 - And the inbox convention works in any rqmd-enabled project (it's just a file + prompt behaviour in the extension bundle)
 
-<a id="rqmd-ext-083"></a>
+<a id="rqmd-shape-012"></a>
 
-### RQMD-EXT-083: `/refine` drafts requirements into tracker early, refines in-place
+### RQMD-SHAPE-012: `/refine` drafts requirements into tracker early, refines in-place
 
 - **Status:** 🔧 Implemented
 - **Priority:** 🔴 P1 - High

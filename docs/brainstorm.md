@@ -61,8 +61,8 @@ Prompts and skills still assume handoffs go to a less-capable session:
 | File | Problematic language |
 |------|---------------------|
 | `prompts/refine.prompt.md` | "recommend cheaper implementation agent" |
-| `docs/requirements/bundle.md` RQMD-EXT-046 | "paste a /go handoff prompt into a cheaper agent" |
-| `docs/requirements/bundle.md` RQMD-EXT-047 | "defer to a cheaper implementation agent" |
+| `docs/requirements/bundle.md` RQMD-SHAPE-005 | "paste a /go handoff prompt into a cheaper agent" |
+| `docs/requirements/bundle.md` RQMD-SHAPE-006 | "defer to a cheaper implementation agent" |
 
 Rewrite all handoff language to assume a fork of the same smart agent. The receiver is equally capable — handoffs exist for focus management, not cost optimization.
 
@@ -96,21 +96,21 @@ Skills are written as instruction manuals for cold-starting a dumb agent. A smar
 
 **Keep:** Metadata `guide.summary` (one line) and any validation-specific commands that still exist.
 
-### 6. Deprecate RQMD-EXT-025 and RQMD-EXT-026
+### 6. Deprecate RQMD-PROMPT-001 and RQMD-PROMPT-002
 
 These tracked distinct agent variants that no longer exist:
-- **RQMD-EXT-025:** `rqmd-dev-longrunning` agent → behavior now expressed via `/go N` (slice count argument)
-- **RQMD-EXT-026:** `rqmd-dev-easy` agent → behavior now expressed via `/go easy-win` (constraint argument)
+- **RQMD-PROMPT-001:** `rqmd-dev-longrunning` agent → behavior now expressed via `/go N` (slice count argument)
+- **RQMD-PROMPT-002:** `rqmd-dev-easy` agent → behavior now expressed via `/go easy-win` (constraint argument)
 
-Both agent files were already deleted. Mark both as 🗑️ Deprecated with note pointing to `/go` argument handling (RQMD-EXT-034).
+Both agent files were already deleted. Mark both as 🗑️ Deprecated with note pointing to `/go` argument handling (RQMD-PROMPT-005).
 
-### 7. Reconsider RQMD-EXT-047 — brainstorm resisting implementation
+### 7. Reconsider RQMD-SHAPE-006 — brainstorm resisting implementation
 
 Current text: "defer to a cheaper implementation agent." This encodes the old split.
 
 **Replace with:** The agent self-disciplines within one session — shapes ideas → promotes to tracked proposals → implements when ready. No hard session boundary or mandatory deferral to a separate session. The `resist implementation` instinct is still valuable (don't jump to code before the idea is shaped), but the mechanism is self-discipline, not a session handoff.
 
-### 8. Rewrite RQMD-EXT-046 — auto-draft without "cheaper agent" framing
+### 8. Rewrite RQMD-SHAPE-005 — auto-draft without "cheaper agent" framing
 
 Current: "paste a /go handoff prompt into a cheaper agent."
 

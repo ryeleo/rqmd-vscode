@@ -24,6 +24,21 @@ Improve documentation writing, structure, and organization. Use when docs need m
 
 ## Style guide
 
+- **Prose line breaks — one sentence per line:** End each sentence at the line boundary; do not hard-wrap at a fixed column width (80, 100, 120 chars, etc.). Paragraphs are still separated by a blank line, so rendered output is unchanged. Apply to list items and callouts that contain multiple sentences.
+  Rationale: `git diff` then highlights the single sentence that changed instead of repainting an entire reflowed paragraph.
+
+  ```
+  ✅ Do — one sentence per line
+  Rqmd discovers requirements from markdown files.
+  Each file covers one domain.
+  Diffs highlight only the sentence that changed.
+
+  ❌ Don't — column-wrapped paragraph
+  Rqmd discovers requirements from markdown files. Each file covers one domain. Diffs
+  highlight only the sentence that changed, unless column wrapping causes the whole
+  paragraph to reflow on every edit.
+  ```
+
 - **Headings:** Start at h1, do not skip levels. **Always leave a blank line before and after every heading** — without surrounding blank lines, markdown parsers may treat the heading as a paragraph continuation instead of a block element. This applies to all heading levels (`#` through `######`).
 - **Page size:** Prefer smaller pages; create index pages when splitting improves navigation
 - **Jargon:** Introduce acronyms on first use; add Info callouts for extra context

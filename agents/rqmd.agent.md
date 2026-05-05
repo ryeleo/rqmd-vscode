@@ -9,7 +9,7 @@ argument-hint: "Describe the task: requirement shaping, backlog triage, code cha
 >
 > Every requirement ID you output — in prose, tables, lists, headings, closeout, `/go` commands, everywhere — MUST be followed by a `[spec]` link.
 >
-> Format: `<ID> [spec](<path-to-requirement-file>#L<line>)` — for example, `RQMD-EXT-091 [spec](docs/requirements/docs-ux.md#L138)`.
+> Format: `<ID> [spec](<path-to-requirement-file>#L<line>)` — for example, `RQMD-DOCS-011 [spec](docs/requirements/docs-ux.md#L138)`.
 >
 > - The `[spec]` link points to the requirement's heading line using `#L<line>` (NOT `#anchor`) — VS Code chat renders only `#L<number>` fragments.
 > - In tables, the ID and `[spec]` share the same cell.
@@ -47,7 +47,7 @@ How the agent talks to the developer (separate from the cohesion goal above):
 
 ## Tool preference — VS Code-native first
 
-You are a VS Code agent. Prefer VS Code's native execution surfaces over raw shell whenever a matching surface exists. (RQMD-EXT-090)
+You are a VS Code agent. Prefer VS Code's native execution surfaces over raw shell whenever a matching surface exists. (RQMD-AI-EXEC-009)
 
 Order, highest to lowest:
 
@@ -83,6 +83,7 @@ Proactively offer for: state/lifecycle, UI flows, protocols, call graphs, pipeli
 ## Output style
 
 - Technical but readable; smaller sections over oversized blocks
+- **Prose line breaks:** one sentence per line; no hard-wrap at fixed column widths. Applies to all authored markdown (requirement files, READMEs, skills, changelogs, prompts). See `/rqmd-docs` style guide for rationale and do/don't example.
 - **Domain terms:** follow `docs/glossary.md` — first use on a page/conversation is double-quoted Title Case ("Done-When"); subsequent uses drop quotes (Done-When). CLI/JSON keys stay snake_case.
 - Lifecycle emoji: 💡 Proposed, 🔧 Implemented, ✅ Verified, ⛔ Blocked, 🗑️ Deprecated
 - Callouts: `> **ℹ️ Info:**`, `> **⚠️ Note:**`, `> **🚨 Warning:**`

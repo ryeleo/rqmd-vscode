@@ -7,9 +7,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 > **⚠️ Note:** Version numbers are intended to stay in sync with the `rqmd` Python CLI package.
 
-<a id="unreleased"></a>
+<a id="v0-2-12"></a>
 
-## [Unreleased]
+## [0.2.12] - 2026-05-05
+
+### Added
+
+- `skills/rqmd-implement/SKILL.md`, `skills/rqmd-verify/SKILL.md`, `skills/rqmd-triage/SKILL.md`, `skills/rqmd-init/SKILL.md`, `skills/rqmd-status-maintenance/SKILL.md`: Added `## Telemetry instrumentation` section to each skill listing named friction points, inline `send_event` call pattern with `detail.workflow` context, and scrubbing reminder (RQMD-AI-FEEDBACK-005 [spec](docs/requirements/feedback.md#L71))
+- `.github/prompts/telemetry-review.prompt.md` (rqmd-cli workspace): New developer-only prompt that queries the telemetry DB via tunnel, clusters events ≥ 2, deduplicates against existing requirements, and drafts accepted clusters as 💡 Proposed entries (RQMD-AI-FEEDBACK-006 [spec](docs/requirements/feedback.md#L86))
+
+### Changed
+
+- `skills/rqmd-docs/SKILL.md`: Added "Prose line breaks — one sentence per line" rule to the style guide with rationale and do/don't example (RQMD-EXT-091 [spec](docs/requirements/docs-ux.md#L138))
+- `agents/rqmd.agent.md`: Output style section now references the sentence-per-line convention (RQMD-EXT-091 [spec](docs/requirements/docs-ux.md#L138))
 
 <a id="v0-2-11"></a>
 

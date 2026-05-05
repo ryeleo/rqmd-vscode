@@ -6,9 +6,9 @@ Scope: Tech-debt sweep, staleness surface, `/archive` for deprecated requirement
 Summary: 3💡 1🔧 0✅ 0⚠️ 0⛔ 0🗑️
 <!-- acceptance-status-summary:end -->
 
-<a id="rqmd-ext-079"></a>
+<a id="rqmd-techdebt-001"></a>
 
-### RQMD-EXT-079: `/tech-debt-sweep` prompt — guided multi-pass codebase debt triage with auto-fix
+### RQMD-TECHDEBT-001: `/tech-debt-sweep` prompt — guided multi-pass codebase debt triage with auto-fix
 
 - **Status:** 💡 Proposed
 - **Priority:** 🔴 P1 - High
@@ -33,9 +33,9 @@ Summary: 3💡 1🔧 0✅ 0⚠️ 0⛔ 0🗑️
 - And in multi-root workspaces, the sweep targets one repo at a time (user picks which)
 - And if nothing is found, it confirms "clean sweep, no debt detected" and skips the commit
 
-<a id="rqmd-ext-080"></a>
+<a id="rqmd-techdebt-002"></a>
 
-### RQMD-EXT-080: `/archive` prompt — retire deprecated requirement docs
+### RQMD-TECHDEBT-002: `/archive` prompt — retire deprecated requirement docs
 
 - **Status:** 💡 Proposed
 - **Priority:** 🟡 P2 - Medium
@@ -57,9 +57,9 @@ Summary: 3💡 1🔧 0✅ 0⚠️ 0⛔ 0🗑️
 - And the user picks one (or edits the suggestion), and the agent executes it
 - And if splitting, the new file gets a proper header, summary line, and anchor IDs
 
-<a id="rqmd-ext-082"></a>
+<a id="rqmd-techdebt-003"></a>
 
-### RQMD-EXT-082: `/archive` for individual requirements across domains
+### RQMD-TECHDEBT-003: `/archive` for individual requirements across domains
 
 - **Status:** 💡 Proposed
 - **Priority:** 🟡 P2 - Medium
@@ -82,9 +82,9 @@ Summary: 3💡 1🔧 0✅ 0⚠️ 0⛔ 0🗑️
 - When the extraction completes
 - Then the now-empty source doc is itself moved to `archived/` (don't leave a zero-requirement file behind)
 
-<a id="rqmd-ext-087"></a>
+<a id="rqmd-techdebt-004"></a>
 
-### RQMD-EXT-087: `/rqmd-staleness` skill and `/tech-debt` prompt — surface tech-debt hotspots
+### RQMD-TECHDEBT-004: `/rqmd-staleness` skill and `/tech-debt` prompt — surface tech-debt hotspots
 
 - **Status:** 🔧 Implemented
 - **Priority:** 🟡 P2 - Medium

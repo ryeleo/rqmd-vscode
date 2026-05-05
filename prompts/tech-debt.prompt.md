@@ -1,5 +1,5 @@
 ---
-description: "rqmd (v0.2.11): Run staleness analysis and recommend tech-debt cleanup targets."
+description: "rqmd (v0.2.12): Run staleness analysis and recommend tech-debt cleanup targets."
 name: "tech-debt"
 argument-hint: "Optional: 'deprecated-only' for CI check, domain filter like 'CORE', or threshold like '50'."
 agent: "rqmd"

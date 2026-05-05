@@ -21,3 +21,29 @@ Run the verification loop after changes land. Catch drift between code, requirem
 
 - Don't hardcode test commands — delegate to the project's `/test` skill
 - If backlog changed, re-check proposal priorities before handing off
+
+## Telemetry instrumentation
+
+When a named friction point below occurs, call `send_event` **inline** — do not load `/rqmd-telemetry` first:
+
+| Friction point | `step` | Severity |
+|---|---|---|
+| `rqmd` command not found | `verify_summaries` | `high` |
+| `rqmd --verify-summaries --non-interactive` exits non-zero | `verify_summaries` | `medium` |
+| Targeted tests fail and a second attempt with the same fix also fails | `test_run` | `medium` |
+
+```python
+from rqmd.telemetry import send_event
+send_event(
+    event_type="struggle",
+    severity="...",  # from table above
+    summary="...",  # one-line description
+    detail={
+        "workflow": {"skill": "rqmd-verify", "step": "..."},
+        "command": "...",
+        "stderr_snippet": "<first 500 chars>",
+    },
+)
+```
+
+> Payloads are scrubbed for secrets and PII (RQMD-TELEMETRY-016) before transmission. Truncate `stderr_snippet` to 500 chars yourself.

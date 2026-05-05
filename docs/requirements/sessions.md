@@ -6,28 +6,28 @@ Scope: Session tree structure, `/retro` retrospectives, `/catchup` orientation, 
 Summary: 4💡 3🔧 0✅ 0⚠️ 0⛔ 1🗑️
 <!-- acceptance-status-summary:end -->
 
-<a id="rqmd-ext-064"></a>
+<a id="rqmd-session-001"></a>
 
-### RQMD-EXT-064: Post-implementation `/retro` prompt
+### RQMD-SESSION-001: Post-implementation `/retro` prompt
 
 - **Status:** 🗑️ Deprecated
 - **Priority:** 🟡 P2 - Medium
-- **Superseded by:** RQMD-EXT-071
+- **Superseded by:** RQMD-SESSION-003
 - **Summary:** As a developer who just shipped a batch, I want a `/retro` prompt that reviews what happened and flags drift — untracked changes, skipped refinement, requirements that jumped Proposed → Implemented — so that I build awareness of where my process slipped without blocking velocity.
 
 > Original sketch — fully shaped as RQMD-EXT-071 with drift categories, classification protocol, and session tree integration.
 
-<a id="rqmd-ext-065"></a>
+<a id="rqmd-session-002"></a>
 
-### RQMD-EXT-065: Session-start orientation shows backlog health
+### RQMD-SESSION-002: Session-start orientation shows backlog health
 
 - **Status:** 💡 Proposed
 - **Priority:** 🟡 P2 - Medium
 - **Summary:** As a developer starting a new chat session in an rqmd workspace, I want the agent to proactively show backlog health (in-progress count, proposed count, recent drift indicators like "last session implemented 3 items without refinement") so that I get a quick orientation before diving in.
 
-<a id="rqmd-ext-071"></a>
+<a id="rqmd-session-003"></a>
 
-### RQMD-EXT-071: `/retro` prompt — structured post-work retrospective
+### RQMD-SESSION-003: `/retro` prompt — structured post-work retrospective
 
 - **Status:** 🔧 Implemented
 - **Priority:** 🟠 P1 - High
@@ -93,11 +93,11 @@ Summary: 4💡 3🔧 0✅ 0⚠️ 0⛔ 1🗑️
 - A `retro` node is written to the session file with inline notification
 - Output uses linked requirement IDs
 - Prompt lives at `prompts/retro.prompt.md`
-- [RQMD-EXT-064](docs/requirements/bundle.md#rqmd-ext-064) is deprecated as superseded
+- [RQMD-SESSION-001](docs/requirements/sessions.md#rqmd-session-001) is deprecated as superseded
 
-<a id="rqmd-ext-072"></a>
+<a id="rqmd-session-004"></a>
 
-### RQMD-EXT-072: `/catchup` prompt — re-orientation when returning
+### RQMD-SESSION-004: `/catchup` prompt — re-orientation when returning
 
 - **Status:** 🔧 Implemented
 - **Priority:** 🟠 P1 - High
@@ -109,9 +109,9 @@ Summary: 4💡 3🔧 0✅ 0⚠️ 0⛔ 1🗑️
 - And it writes a session-tree node of type `catchup` to start the new session file
 - And the prompt lives at `prompts/catchup.prompt.md` in the extension bundle
 
-<a id="rqmd-ext-073"></a>
+<a id="rqmd-session-005"></a>
 
-### RQMD-EXT-073: Retro nudge timer — time-aware coaching via VS Code setting
+### RQMD-SESSION-005: Retro nudge timer — time-aware coaching via VS Code setting
 
 - **Status:** 💡 Proposed
 - **Priority:** 🟡 P2 - Medium
@@ -124,9 +124,9 @@ Summary: 4💡 3🔧 0✅ 0⚠️ 0⛔ 1🗑️
 - And the timer resets after a `/retro` invocation or a detected idle gap (>1h with no chat messages)
 - And when the session is long (e.g. >4h or past midnight local), the agent may shift to a warmer, playful tone — casual language, Python-flavoured easter eggs, gentle humour — signalling "I see you, please rest" without being preachy
 
-<a id="rqmd-ext-074"></a>
+<a id="rqmd-session-006"></a>
 
-### RQMD-EXT-074: Session tree — navigable conversation structure in `docs/sessions/`
+### RQMD-SESSION-006: Session tree — navigable conversation structure in `docs/sessions/`
 
 - **Status:** 💡 Proposed
 - **Priority:** 🟠 P1 - High
@@ -190,15 +190,15 @@ Summary: 4💡 3🔧 0✅ 0⚠️ 0⛔ 1🗑️
 - Agent notifies user of each recorded node via inline `>` blockquote
 - Agent can trace `Parent:` chains and report navigation paths when user asks to "go back"
 - `/retro` and `/catchup` both read and write to session files
-- `rqmd-history` skill (RQMD-EXT-075) teaches the agent the full protocol
+- `rqmd-history` skill (RQMD-SESSION-007) teaches the agent the full protocol
 
 #### Open
 
 - Session boundary detection: what starts a new session file? `/catchup`? Idle gap? Explicit command? Needs its own brainstorm pass.
 
-<a id="rqmd-ext-075"></a>
+<a id="rqmd-session-007"></a>
 
-### RQMD-EXT-075: `rqmd-history` skill — session tree reading and navigation
+### RQMD-SESSION-007: `rqmd-history` skill — session tree reading and navigation
 
 - **Status:** 💡 Proposed
 - **Priority:** 🟡 P2 - Medium
@@ -209,9 +209,9 @@ Summary: 4💡 3🔧 0✅ 0⚠️ 0⛔ 1🗑️
 - And the skill populates `skills/rqmd-history/SKILL.md` in the extension bundle
 - And the skill teaches the agent to keep session files concise — only decisions, insights, and turning points, not every search or edit
 
-<a id="rqmd-ext-081"></a>
+<a id="rqmd-session-008"></a>
 
-### RQMD-EXT-081: `/retro` tech-debt drift category
+### RQMD-SESSION-008: `/retro` tech-debt drift category
 
 - **Status:** 🔧 Implemented
 - **Priority:** 🟡 P2 - Medium

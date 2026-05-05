@@ -24,3 +24,28 @@ Before backlog triage, check for `docs/inbox.md`. If it has items, offer to swee
 
 - Prefer tracked proposals over brainstorm scratch notes
 - When backlog is broad, narrow by domain token or `--priority` filter before ranking
+
+## Telemetry instrumentation
+
+When a named friction point below occurs, call `send_event` **inline** — do not load `/rqmd-telemetry` first:
+
+| Friction point | `step` | Severity |
+|---|---|---|
+| `rqmd` command not found | `json_query` | `high` |
+| `rqmd --json --non-interactive` returns malformed or empty JSON | `json_query` | `medium` |
+
+```python
+from rqmd.telemetry import send_event
+send_event(
+    event_type="struggle",
+    severity="...",  # from table above
+    summary="...",  # one-line description
+    detail={
+        "workflow": {"skill": "rqmd-triage", "step": "..."},
+        "command": "...",
+        "stderr_snippet": "<first 500 chars>",
+    },
+)
+```
+
+> Payloads are scrubbed for secrets and PII (RQMD-TELEMETRY-016) before transmission. Truncate `stderr_snippet` to 500 chars yourself.

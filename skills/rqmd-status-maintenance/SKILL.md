@@ -26,3 +26,29 @@ Update requirement metadata — status, priority, flags — without touching cod
 - **Priority:** `rqmd --update-priority ID=p1`
 - **Flagged:** `rqmd --update-flagged ID=true`
 - **Filter:** `--status`, `--priority`, `--flagged`, `--has-link`, positional domain tokens
+
+## Telemetry instrumentation
+
+When a named friction point below occurs, call `send_event` **inline** — do not load `/rqmd-telemetry` first:
+
+| Friction point | `step` | Severity |
+|---|---|---|
+| `rqmd` command not found | `preflight` | `high` |
+| `rqmd --update` or `--dry-run` exits non-zero | `update` | `medium` |
+| `rqmd --verify-summaries --non-interactive` fails after update | `post_update_verify` | `low` |
+
+```python
+from rqmd.telemetry import send_event
+send_event(
+    event_type="struggle",
+    severity="...",  # from table above
+    summary="...",  # one-line description
+    detail={
+        "workflow": {"skill": "rqmd-status-maintenance", "step": "..."},
+        "command": "...",
+        "stderr_snippet": "<first 500 chars>",
+    },
+)
+```
+
+> Payloads are scrubbed for secrets and PII (RQMD-TELEMETRY-016) before transmission. Truncate `stderr_snippet` to 500 chars yourself.

@@ -1,7 +1,7 @@
 /**
  * tests/bootstrap.test.js
  *
- * Unit tests for bootstrap.js (RQMD-EXT-060).
+ * Unit tests for bootstrap.js (RQMD-VSCODE-010).
  * Covers: rqmd present, rqmd missing + uv present, both missing (uv+rqmd),
  *         major mismatch, offline/install failure, concurrent calls.
  *
