@@ -1,5 +1,5 @@
 ---
-description: "rqmd (v0.2.12): Release readiness pass — verification, docs, changelog, blockers."
+description: "rqmd (v0.3.0): Release readiness pass — verification, docs, changelog, blockers."
 name: "ship-check"
 argument-hint: "Describe what is about to ship, or say what kind of final verification you want."
 agent: "rqmd"
@@ -7,8 +7,8 @@ agent: "rqmd"
 
 Release-readiness check.
 
-- Tests pass, docs synchronized, CHANGELOG accurate, no blockers
-- Run smoke + validation commands
+- Run smoke and validation commands
+- Confirm tests pass, docs are synchronized, CHANGELOG is accurate, and blockers are absent
 - Confirm README/CHANGELOG/requirement docs reflect shipped behavior
 - Call out blockers/risk plainly
 - Clear go/no-go + recommended follow-ups

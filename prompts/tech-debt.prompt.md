@@ -1,5 +1,5 @@
 ---
-description: "rqmd (v0.2.12): Run staleness analysis and recommend tech-debt cleanup targets."
+description: "rqmd (v0.3.0): Run staleness analysis and recommend tech-debt cleanup targets."
 name: "tech-debt"
 argument-hint: "Optional: 'deprecated-only' for CI check, domain filter like 'CORE', or threshold like '50'."
 agent: "rqmd"
@@ -14,3 +14,4 @@ Tech-debt cleanup powered by staleness scoring.
 - `explain` → show scoring signal weights and configuration
 - Domain filter → narrow to a specific requirement prefix (e.g. "CORE", "UI", "EXT")
 - Threshold → adjust staleness cutoff (default ≥ 70)
+- Include requirement IDs with `[spec]` links in findings and handoff

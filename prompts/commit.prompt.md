@@ -1,5 +1,5 @@
 ---
-description: "rqmd (v0.2.12): Commit current work with a clear, human-narrative git message."
+description: "rqmd (v0.3.0): Commit current work with a clear, human-narrative git message."
 name: "commit"
 argument-hint: "Optionally describe the focus of this commit, or leave blank to auto-summarize from the diff."
 agent: "rqmd"
@@ -7,14 +7,8 @@ agent: "rqmd"
 
 Create a clean git commit.
 
-**Message format:**
-- Subject: concise human decision, not file list
-- Body: human motivation + `# AI Development` section with agent work summary
-
-- Footer: `AI agent: <model> <version>`
-
-**Workflow:**
-1. Review `git diff --staged` and `git diff`
-2. Stage coherent unit; ask if changes span unrelated concerns
-3. Commit; report hash + summary
-4. No amend/force-push, no sweeping unrelated changes
+- Review `git diff --staged` and `git diff`; stage only one coherent unit.
+- Ask before committing if changes span unrelated concerns.
+- Message: subject is a human decision, body explains motivation, `# AI Development` summarizes agent work, footer is `AI agent: <model> <version>`.
+- No amend, force-push, or sweeping unrelated changes.
+- Commit and report hash plus one-line summary.

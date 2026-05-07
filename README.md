@@ -25,7 +25,7 @@ Once installed, the following are immediately available in Copilot Chat.
 | `/refine` | Refine existing requirements through focused discussion |
 | `/brainstorm` | Turn loose ideas into ranked requirement proposals |
 | `/go` | Start or continue the implementation loop |
-| `/next` | Orchestrate the highest-priority next slice: recommend, hand off with `/go`, and implement only when asked |
+| `/next` | Suggest the next logical step from session context, blockers, and priority tiebreakers |
 | `/bug` | File a tracked bug requirement from the current chat context |
 | `/commit` | Create a well-structured git commit for the current work |
 | `/commit-and-go` | Commit each validated slice and keep going |

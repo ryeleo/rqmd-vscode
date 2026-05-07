@@ -9,7 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 <a id="unreleased"></a>
 
-## [Unreleased]
+## [0.3.0] - 2026-05-07
 
 ### Added
 
@@ -21,6 +21,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- RQMD-PROMPT-004 [spec](docs/requirements/prompts.md#L41): Honed all `prompts/*.prompt.md` files into compact technical entrypoints; `/next` now prioritizes session continuity and dependency flow before backlog priority.
 - `skills/rqmd-docs/SKILL.md`: Added "Prose line breaks — one sentence per line" rule to the style guide with rationale and do/don't example (RQMD-EXT-091 [spec](docs/requirements/docs-ux.md#L138))
 - `agents/rqmd.agent.md`: Output style section now references the sentence-per-line convention (RQMD-EXT-091 [spec](docs/requirements/docs-ux.md#L138))
 - `docs/requirements/extension.md`: RQMD-VSCODE-007 [spec](docs/requirements/extension.md#L88) status corrected to 🔧 Implemented — the notification flow (`bootstrap.js`) and all three message strings were already shipped in 0.2.12; status was never updated. 7/7 unit tests pass (`node --test tests/bootstrap.test.js`).
