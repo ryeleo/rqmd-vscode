@@ -3,7 +3,7 @@
 Scope: User-driven rqmd product feedback, telemetry skills, and GitHub issue creation from feedback sessions.
 
 <!-- acceptance-status-summary:start -->
-Summary: 1💡 5🔧 0✅ 0⚠️ 0⛔ 0🗑️
+Summary: 1💡 6🔧 0✅ 0⚠️ 0⛔ 0🗑️
 <!-- acceptance-status-summary:end -->
 
 <a id="rqmd-ai-feedback-001"></a>
@@ -95,3 +95,20 @@ Summary: 1💡 5🔧 0✅ 0⚠️ 0⛔ 0🗑️
 - And each cluster of ≥2 events is presented with: severity range, distinct repos affected, representative `detail.command` and `stderr_snippet`, and a suggested requirement title
 - And on developer confirmation, the agent drafts each accepted cluster as a 💡 Proposed requirement in the appropriate `docs/requirements/` file, including a back-reference to the telemetry query that produced it
 - And clusters that match existing open requirements are flagged as duplicates rather than redrafted.
+
+<a id="rqmd-ai-feedback-007"></a>
+
+### RQMD-AI-FEEDBACK-007: Emit telemetry when user reports hard-wrapping violations
+
+- **Status:** 🔧 Implemented
+- **Priority:** 🟠 P1 - High
+- **Summary:** The `rqmd-docs` skill and `rqmd` mode instructions to include an explicit instrumentation point that emits a `feedback` telemetry event whenever a user reports that prose was hard-wrapped at a fixed column width, so that the persistence and model-specific patterns of this recurring violation are tracked as queryable signal rather than disappearing into chat history.
+- Given an agent is operating under the `rqmd-docs` skill or the `rqmd` mode instructions
+- When the user says something that indicates hard-wrapping occurred — e.g. "still wrapping", "line wrapping issues", "hard wrapped", "fix the wrapping", "don't wrap lines", or any complaint that prose was reflowed or broken at ~80/100 chars
+- Then the agent emits a telemetry event with `event_type="feedback"`, `severity="medium"`, `detail.category="doc_style_violation"`, and `detail.violation="hard_wrap"`
+- And `detail.model_id` is populated with the active model identifier per RQMD-TELEMETRY-017 [spec](../../rqmd-cli/docs/requirements/telemetry.md) so violations are attributed to the model that caused them
+- And `detail.context` contains a short snippet (≤120 chars) of the hard-wrapped prose that triggered the complaint, if the agent can identify it
+- And the instrumentation point is listed explicitly in both `skills/rqmd-docs/SKILL.md` and in the `rqmd` mode instructions so agents do not need to infer when to emit it
+- And the event is submitted in addition to — not instead of — fixing the hard-wrapping in the document
+- And the `rqmd-feedback` skill documents `doc_style_violation` as a valid `detail.category` value alongside the existing categories.
+- **Related:** RQMD-DOCS-011 [spec](docs-ux.md#L138) — the sentence-per-line convention this instrumentation tracks compliance for; RQMD-TELEMETRY-017 [spec](../../rqmd-cli/docs/requirements/telemetry.md) — model_id field required.

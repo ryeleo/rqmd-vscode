@@ -7,11 +7,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 > **⚠️ Note:** Version numbers are intended to stay in sync with the `rqmd` Python CLI package.
 
-<a id="v0-2-12"></a>
+<a id="unreleased"></a>
 
-## [0.2.12] - 2026-05-05
+## [Unreleased]
 
 ### Added
+
+- Developer-only `.github/skills/prompt-honing/SKILL.md` skill for honing bundled prompt files without adding it to the installed extension bundle; `.vscodeignore` now excludes `.github/**` from VSIX packages.
+- [RQMD-AI-FEEDBACK-007](docs/requirements/feedback.md#L101): Hard-wrap telemetry instrumentation. `skills/rqmd-docs/SKILL.md` now includes a "Hard-wrap telemetry instrumentation" section with an explicit instrumentation point: when a user reports that prose was hard-wrapped at a fixed column width, the agent fixes the wrapping AND emits a `feedback` telemetry event with `category="doc_style_violation"`, `violation="hard_wrap"`, the active `model_id`, and an optional context snippet (≤120 chars). `agents/rqmd.agent.md` Output style section now lists the same instrumentation rule inline so agents are reminded without loading the skill. `skills/rqmd-feedback/SKILL.md` category table extended with `doc_style_violation`.
 
 - `skills/rqmd-implement/SKILL.md`, `skills/rqmd-verify/SKILL.md`, `skills/rqmd-triage/SKILL.md`, `skills/rqmd-init/SKILL.md`, `skills/rqmd-status-maintenance/SKILL.md`: Added `## Telemetry instrumentation` section to each skill listing named friction points, inline `send_event` call pattern with `detail.workflow` context, and scrubbing reminder (RQMD-AI-FEEDBACK-005 [spec](docs/requirements/feedback.md#L71))
 - `.github/prompts/telemetry-review.prompt.md` (rqmd-cli workspace): New developer-only prompt that queries the telemetry DB via tunnel, clusters events ≥ 2, deduplicates against existing requirements, and drafts accepted clusters as 💡 Proposed entries (RQMD-AI-FEEDBACK-006 [spec](docs/requirements/feedback.md#L86))
@@ -20,6 +23,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - `skills/rqmd-docs/SKILL.md`: Added "Prose line breaks — one sentence per line" rule to the style guide with rationale and do/don't example (RQMD-EXT-091 [spec](docs/requirements/docs-ux.md#L138))
 - `agents/rqmd.agent.md`: Output style section now references the sentence-per-line convention (RQMD-EXT-091 [spec](docs/requirements/docs-ux.md#L138))
+- `docs/requirements/extension.md`: RQMD-VSCODE-007 [spec](docs/requirements/extension.md#L88) status corrected to 🔧 Implemented — the notification flow (`bootstrap.js`) and all three message strings were already shipped in 0.2.12; status was never updated. 7/7 unit tests pass (`node --test tests/bootstrap.test.js`).
 
 <a id="v0-2-11"></a>
 

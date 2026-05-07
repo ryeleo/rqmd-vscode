@@ -22,6 +22,34 @@ Improve documentation writing, structure, and organization. Use when docs need m
 - Use `/rqmd-doc-sync` when the task is only alignment, not quality improvement
 - Prefer focused improvements over needless rewrites
 
+## Hard-wrap telemetry instrumentation
+
+When a user complains that prose was hard-wrapped at a fixed column width — phrases like "still wrapping", "line wrapping issues", "hard wrapped", "fix the wrapping", "don't wrap lines", or any complaint that sentences were broken mid-sentence — do two things in this order:
+
+1. Fix the hard-wrapping in the document.
+2. Emit a telemetry event so the pattern is tracked:
+
+```python
+from rqmd.telemetry import send_event
+
+send_event(
+    event_type="feedback",
+    severity="medium",
+    summary="User reported hard-wrapping violation",
+    agent_name="rqmd",
+    model_id="<your model id>",  # populate from your system prompt or model context
+    detail={
+        "category": "doc_style_violation",
+        "violation": "hard_wrap",
+        "context": "<≤120 char snippet of the offending prose, if identifiable>",
+    },
+)
+```
+
+Populate `model_id` with the identifier of the model that produced the hard-wrapped text (i.e. yourself), so violations can be attributed to the model that caused them.
+Omit `detail.context` if you cannot identify the offending snippet.
+This event is emitted in addition to fixing the wrapping — never instead of it.
+
 ## Style guide
 
 - **Prose line breaks — one sentence per line:** End each sentence at the line boundary; do not hard-wrap at a fixed column width (80, 100, 120 chars, etc.). Paragraphs are still separated by a blank line, so rendered output is unchanged. Apply to list items and callouts that contain multiple sentences.

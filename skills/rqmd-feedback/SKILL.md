@@ -47,6 +47,7 @@ All feedback uses `event_type="feedback"`, separating user-driven input from age
 | `docs_gap` | Documentation missing or out of sync |
 | `workflow_confusion` | Guidance led in wrong direction |
 | `performance` | Command noticeably slow |
+| `doc_style_violation` | Agent produced prose that violated the sentence-per-line convention (hard-wrapping); always set `detail.violation="hard_wrap"` and `detail.model_id=<model identifier>` |
 | `other` | Does not fit above |
 
 | Severity | Meaning |

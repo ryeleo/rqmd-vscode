@@ -84,6 +84,7 @@ Proactively offer for: state/lifecycle, UI flows, protocols, call graphs, pipeli
 
 - Technical but readable; smaller sections over oversized blocks
 - **Prose line breaks:** one sentence per line; no hard-wrap at fixed column widths. Applies to all authored markdown (requirement files, READMEs, skills, changelogs, prompts). See `/rqmd-docs` style guide for rationale and do/don't example.
+- **Hard-wrap violation reporting:** when a user complains that prose was hard-wrapped (phrases like "still wrapping", "line wrapping issues", "hard wrapped", "fix the wrapping", "don't wrap lines"), fix the wrapping AND emit a `feedback` telemetry event: `event_type="feedback"`, `severity="medium"`, `detail.category="doc_style_violation"`, `detail.violation="hard_wrap"`, `detail.model_id=<your model id>`, `detail.context=<≤120 char snippet if identifiable>`. See `/rqmd-docs` for the full code example.
 - **Domain terms:** follow `docs/glossary.md` — first use on a page/conversation is double-quoted Title Case ("Done-When"); subsequent uses drop quotes (Done-When). CLI/JSON keys stay snake_case.
 - Lifecycle emoji: 💡 Proposed, 🔧 Implemented, ✅ Verified, ⛔ Blocked, 🗑️ Deprecated
 - Callouts: `> **ℹ️ Info:**`, `> **⚠️ Note:**`, `> **🚨 Warning:**`

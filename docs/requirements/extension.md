@@ -3,7 +3,7 @@
 Scope: VS Code extension packaging and distribution — Marketplace publication, command palette integration, chat participant registration, prompt/skill surface contributions, and self-healing rqmd bootstrap.
 
 <!-- acceptance-status-summary:start -->
-Summary: 4💡 6🔧 1✅ 0⚠️ 0⛔ 0🗑️
+Summary: 3💡 7🔧 1✅ 0⚠️ 0⛔ 0🗑️
 <!-- acceptance-status-summary:end -->
 
 <a id="rqmd-vscode-001"></a>
@@ -87,7 +87,7 @@ Summary: 4💡 6🔧 1✅ 0⚠️ 0⛔ 0🗑️
 
 ### RQMD-VSCODE-007: Missing-rqmd bootstrap notification flow
 
-- **Status:** 💡 Proposed
+- **Status:** 🔧 Implemented
 - **Priority:** 🟠 P1 - High
 - **Blocked by:** RQMD-VSCODE-006
 - **Summary:** The extension to show a VS Code notification and immediately bootstrap rqmd (and uv if needed) without requiring me to approve each individual install command so that the painful flow of approving many commands just to run rqmd is eliminated.

@@ -40,8 +40,9 @@ send_event(
     severity="high",
     summary="rqmd --verify-summaries exited non-zero",
     agent_name="rqmd",
+    model_id="claude-sonnet-4-5",  # populate from your system prompt or model context
     detail={
-        "command": "rqmd --verify-summaries --non-interactive",
+        "command": "rqmd --verify-summaries -y",
         "expected": "Exit 0",
         "actual": "Exit 1 with summary mismatch",
         "stderr_snippet": "...",
@@ -58,7 +59,7 @@ send_event(
     summary="Could not invoke rqmd; fell back to file edits",
     detail={
         "category": "command_discovery",
-        "commands_attempted": ["rqmd --json --non-interactive", "uv run rqmd --json --non-interactive"],
+        "commands_attempted": ["rqmd --json -y", "uv run rqmd --json -y"],
         "fallback_action": "Edited docs/requirements directly",
         "stderr_snippet": "command not found: rqmd",
     },
@@ -71,9 +72,10 @@ send_event(
 |---|---|---|
 | `session_id` | yes | UUID per chat session or agent run |
 | `agent_name` | no | e.g. `rqmd` |
-| `event_type` | yes | `struggle` / `suggestion` / `error` / `success` / `workflow_step` |
+| `event_type` | yes | `struggle` / `suggestion` / `error` / `success` / `workflow_step` / `feedback` |
 | `severity` | yes | `low` / `medium` / `high` / `critical` |
 | `summary` | yes | One-line, <200 chars |
+| `model_id` | no | AI model identifier — populate from your own system prompt or VS Code model context (e.g. `"claude-sonnet-4-5"`, `"gpt-4o"`). Omit or leave null when not available; never fabricate. |
 | `detail` | no | Structured context (command, expected, actual, stderr_snippet, etc.) |
 
 ## HTTP reference

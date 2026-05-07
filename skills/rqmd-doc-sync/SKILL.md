@@ -14,7 +14,7 @@ Align docs with shipped behavior. Scope narrowly — this is not a writing-quali
 
 - Affected `docs/requirements/*.md` entries match shipped behavior
 - README and CHANGELOG reflect the change
-- `rqmd --verify-summaries --non-interactive` passes
+- `rqmd --verify-summaries -y` passes
 
 ## Edge cases
 

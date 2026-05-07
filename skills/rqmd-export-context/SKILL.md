@@ -11,10 +11,10 @@ metadata:
       - Draft updates using --update ID=STATUS without --write to preview.
       - Apply only after review by adding --write.
     examples:
-      - rqmd --status proposed --json --non-interactive
-      - rqmd --json --non-interactive
+      - rqmd --status proposed --json -y
+      - rqmd --json -y
       - rqmd --update RQMD-CORE-001=implemented
-      - rqmd --verify-summaries --non-interactive
+      - rqmd --verify-summaries -y
 ---
 
 Get the minimum requirement context needed to proceed. Prefer reading `docs/requirements/*.md` directly for single requirements or domain context. Use `rqmd --json` for a machine-readable catalog overview.
@@ -26,6 +26,6 @@ Get the minimum requirement context needed to proceed. Prefer reading `docs/requ
 
 ## Edge cases
 
-- For next-batch selection: `rqmd --status proposed --json --non-interactive` then narrow to 1-3 items
-- For machine-readable full catalog: `rqmd --json --non-interactive`
+- For next-batch selection: `rqmd --status proposed --json -y` then narrow to 1-3 items
+- For machine-readable full catalog: `rqmd --json -y`
 - Prefer direct file reads for single requirements — faster and more precise than CLI roundtrip

@@ -9,7 +9,7 @@ This section records the rqmd tooling versions currently expected by this reposi
 Refresh it after upgrading rqmd by running `rqmd --sync-index-metadata --force-yes`.
 
 <!-- rqmd-project-metadata:start -->
-- `rqmd_version`: `0.2.11`
+- `rqmd_version`: `0.2.12`
 - `json_schema_version`: `1.1.0`
 <!-- rqmd-project-metadata:end -->
 
