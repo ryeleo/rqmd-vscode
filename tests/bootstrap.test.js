@@ -5,6 +5,10 @@
  * Covers: rqmd present, rqmd missing + uv present, both missing (uv+rqmd),
  *         major mismatch, offline/install failure, concurrent calls.
  *
+ * Also validates that every prompt file and skill SKILL.md on disk is
+ * registered in package.json under chatPromptFiles / chatSkills, and that
+ * no stale manifest entries point at non-existent files (RQMD-BUG-001).
+ *
  * Uses Node 18+ built-in test runner — no extra dependencies.
  * Run: node --test tests/bootstrap.test.js
  */
@@ -13,6 +17,8 @@
 
 const { test, describe, beforeEach } = require('node:test');
 const assert = require('node:assert/strict');
+const fs = require('node:fs');
+const path = require('node:path');
 
 // ---------------------------------------------------------------------------
 // Helpers
@@ -237,4 +243,57 @@ describe('bootstrap.ensureRqmd', () => {
             'subprocess stderr must appear in the output channel');
     });
 
+});
+
+// ---------------------------------------------------------------------------
+// Manifest integrity (RQMD-BUG-001)
+// ---------------------------------------------------------------------------
+
+describe('package.json manifest integrity', () => {
+    const REPO_ROOT = path.resolve(__dirname, '..');
+    const manifest = JSON.parse(fs.readFileSync(path.join(REPO_ROOT, 'package.json'), 'utf8'));
+    const contributes = manifest.contributes ?? {};
+    const registeredPrompts = new Set(
+        (contributes.chatPromptFiles ?? []).map(e => e.path)
+    );
+    const registeredSkills = new Set(
+        (contributes.chatSkills ?? []).map(e => e.path)
+    );
+
+    test('every prompt file on disk is registered in chatPromptFiles', () => {
+        const missing = [];
+        for (const f of fs.readdirSync(path.join(REPO_ROOT, 'prompts')).sort()) {
+            if (!f.endsWith('.prompt.md')) continue;
+            const rel = `./prompts/${f}`;
+            if (!registeredPrompts.has(rel)) missing.push(rel);
+        }
+        assert.deepEqual(missing, [], `Unregistered prompt(s): ${missing.join(', ')}`);
+    });
+
+    test('every skill SKILL.md on disk is registered in chatSkills', () => {
+        const missing = [];
+        for (const dir of fs.readdirSync(path.join(REPO_ROOT, 'skills')).sort()) {
+            const skillFile = path.join(REPO_ROOT, 'skills', dir, 'SKILL.md');
+            if (!fs.existsSync(skillFile)) continue;
+            const rel = `./skills/${dir}/SKILL.md`;
+            if (!registeredSkills.has(rel)) missing.push(rel);
+        }
+        assert.deepEqual(missing, [], `Unregistered skill(s): ${missing.join(', ')}`);
+    });
+
+    test('no stale chatPromptFiles entries point at missing files', () => {
+        const stale = [];
+        for (const rel of registeredPrompts) {
+            if (!fs.existsSync(path.join(REPO_ROOT, rel.replace(/^\.\//, '')))) stale.push(rel);
+        }
+        assert.deepEqual(stale, [], `Stale prompt entry(s): ${stale.join(', ')}`);
+    });
+
+    test('no stale chatSkills entries point at missing files', () => {
+        const stale = [];
+        for (const rel of registeredSkills) {
+            if (!fs.existsSync(path.join(REPO_ROOT, rel.replace(/^\.\//, '')))) stale.push(rel);
+        }
+        assert.deepEqual(stale, [], `Stale skill entry(s): ${stale.join(', ')}`);
+    });
 });
