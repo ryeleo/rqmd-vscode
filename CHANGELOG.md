@@ -9,6 +9,22 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 <a id="unreleased"></a>
 
+## [Unreleased]
+
+## [0.3.1] - 2026-05-12
+
+### Added
+
+- `scripts/check-manifest.sh`: dev utility that verifies every `prompts/*.prompt.md` and every `skills/*/SKILL.md` on disk is registered in `package.json` under `chatPromptFiles` / `chatSkills`; exits non-zero and prints missing entries if any are found.
+
+### Fixed
+
+- `prompts/catchup.prompt.md`, `prompts/retro.prompt.md`, `prompts/triage.prompt.md` registered in `package.json` `chatPromptFiles` — the prompt files existed on disk since earlier releases but were missing from the extension manifest, so `/catchup`, `/retro`, and `/triage` were not surfaced in VS Code chat.
+
+### Changed
+
+- RQMD-AI-EXEC-010 [spec](docs/requirements/agent-execution.md#L132): Added explicit workspace-boundary prohibition to `agents/rqmd.agent.md`. The `rqmd` agent must never write to `/memories/`, `/memories/session/`, `/memories/repo/`, or any path outside the workspace roots; when the VS Code platform `<memoryInstructions>` block conflicts with this rule, rqmd-mode wins. Explicit user-requested out-of-workspace writes are allowed but must be called out with a `⚠️ Note:` callout or documented in a repo-local file.
+
 ## [0.3.0] - 2026-05-07
 
 ### Added

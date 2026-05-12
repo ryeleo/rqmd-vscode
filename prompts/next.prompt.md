@@ -1,5 +1,5 @@
 ---
-description: "rqmd (v0.3.0): Suggest the next logical step given session context and backlog state."
+description: "rqmd (v0.3.1): Suggest the next logical step given session context and backlog state."
 name: "next"
 argument-hint: "Say 'next' to continue from where you left off, or add a constraint such as 'easy-win', 'docs-only', or 'release-prep'."
 agent: "rqmd"

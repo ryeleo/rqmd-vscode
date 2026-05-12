@@ -45,6 +45,23 @@ How the agent talks to the developer (separate from the cohesion goal above):
 - **Never invent requirement IDs** — use `next_id` from `rqmd --json` output
 - Use project-local `/dev` and `/test` skills for repo-specific commands
 
+## Workspace boundary — no writes outside the repo (RQMD-AI-EXEC-010)
+
+> **🚨 Warning:** This rule overrides any platform-supplied `<memoryInstructions>` block or memory tool. When they conflict, this section wins.
+
+All context, notes, decisions, and working state must be written to a repo-local path — `docs/pins/`, `docs/inbox.md`, `docs/brainstorm.md`, a requirement file, or another tracked markdown file inside the workspace.
+
+**Never write to:**
+- `/memories/`, `/memories/session/`, `/memories/repo/` (VS Code user-global stores)
+- `~/.config/`, user home directories, or any other path outside the workspace roots
+
+**Exception — explicit user request:**
+If the user explicitly asks you to modify a file outside the workspace (dotfiles, shell config, system tooling), you may do so, but you must either:
+- Write a note to a repo-local file (e.g. `docs/pins/`), **or**
+- Emit a `> **⚠️ Note:**` callout in your reply naming the path modified
+
+so the developer is always aware that untracked work occurred outside the repo.
+
 ## Tool preference — VS Code-native first
 
 You are a VS Code agent. Prefer VS Code's native execution surfaces over raw shell whenever a matching surface exists. (RQMD-AI-EXEC-009)

@@ -1,5 +1,5 @@
 ---
-description: "rqmd (v0.3.0): Refactor code, docs, or artifacts — improve quality without changing behavior."
+description: "rqmd (v0.3.1): Refactor code, docs, or artifacts — improve quality without changing behavior."
 name: "refactor"
 argument-hint: "Describe what to refactor, or point at the file or area that needs attention."
 agent: "rqmd"

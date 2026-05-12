@@ -3,7 +3,7 @@
 Scope: Agent workflow entry points, preflight readiness checks, `/dev` and `/test` skill scaffolding and delegation.
 
 <!-- acceptance-status-summary:start -->
-Summary: 4💡 5🔧 0✅ 0⚠️ 0⛔ 0🗑️
+Summary: 4💡 6🔧 0✅ 0⚠️ 0⛔ 0🗑️
 <!-- acceptance-status-summary:end -->
 
 <a id="rqmd-ai-exec-001"></a>
@@ -127,3 +127,18 @@ Summary: 4💡 5🔧 0✅ 0⚠️ 0⛔ 0🗑️
 - And the convention is encoded in the `rqmd` agent definition (`agents/rqmd.agent.md`) and surfaced in the `rqmd-init` skill so generated `/dev` and `/test` skills mention any discovered `tasks.json` and `launch.json` entries
 - And `rqmd-init` scans `.vscode/tasks.json` and `.vscode/launch.json` during the interview and includes the relevant labels in the generated `/dev` and `/test` skill bodies
 
+<a id="rqmd-ai-exec-010"></a>
+
+### RQMD-AI-EXEC-010: Agent must not write outside the current workspace repos
+
+- **Status:** 🔧 Implemented
+- **Priority:** 🟠 P1 - High
+- **Summary:** The rqmd agent must not write to any path outside the current workspace repositories — including VS Code user-global stores such as `/memories/` — so that all context, notes, decisions, and working state remain in the repo itself: versionable, human-readable, and accessible to every collaborator and future AI session without side-channel dependencies.
+- Given a VS Code agent operating in rqmd mode is asked to store context, record a note, track a decision, or remember something for a future session
+- When the agent chooses where to write that information
+- Then it must write to a repo-local path only — `docs/pins/`, `docs/inbox.md`, `docs/brainstorm.md`, a requirement file, or another tracked markdown file inside the workspace
+- And the agent must never write to `/memories/`, `/memories/session/`, `/memories/repo/`, or any path outside the workspace roots, even if the active AI platform surfaces a memory tool or a `<memoryInstructions>` block that encourages it
+- And when a VS Code platform instruction (such as `<memoryInstructions>`) conflicts with this rule, the rqmd-mode constraint wins — the agent must explicitly override the platform default
+- And `agents/rqmd.agent.md` must contain an explicit prohibition on writing to platform-global memory stores, so the rule survives model updates and mode-instruction refreshes without relying on the developer to catch it
+- And any skill or prompt that currently encourages writing to `/memories/` must be updated to redirect to the appropriate repo-local alternative
+- And when the user explicitly asks the agent to modify files outside the workspace — such as dotfiles, shell config, or system tooling — the agent may do so, but must document the change in a repo-local file (e.g. `docs/pins/`) or, at minimum, emit a `> **⚠️ Note:**` callout naming the path that was modified, so the developer is always aware that untracked work occurred outside the repo

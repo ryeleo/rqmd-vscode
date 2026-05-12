@@ -1,5 +1,5 @@
 ---
-description: "rqmd (v0.3.0): Rank the backlog and pick the next 1–3 items to work on."
+description: "rqmd (v0.3.1): Rank the backlog and pick the next 1–3 items to work on."
 name: "triage"
 argument-hint: "Describe the backlog area, status filter, or domain to focus on — or leave blank for a full sweep."
 agent: "rqmd"
