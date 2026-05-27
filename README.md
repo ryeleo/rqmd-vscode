@@ -1,5 +1,9 @@
 # rqmd — AI Agent Bundle
 
+> **⚠️ Archived:** This extension is no longer actively maintained.
+> rqmd was a learning project — the CLI underneath it turned out to be too slow for practical AI-agent workflows, and modern AI tooling has moved on.
+> The final release is **v0.4.0**. The extension will be unpublished from the VS Code Marketplace.
+
 **Local-First Requirements Driven Development for Copilot Chat.** The rqmd extension brings the rqmd workflow into VS Code as installable prompts, skills, and agent modes for GitHub Copilot Chat.
 
 > See also [Local-First Software: You Own Your Data, in spite of the Cloud](https://martin.kleppmann.com/papers/local-first.pdf)
